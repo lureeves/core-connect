@@ -1,0 +1,73 @@
+.welcome h1{
+    color: #000;
+
+    font-size: 2.5vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.welcome h3{
+    color: #000;
+    font-size: 1.875vw;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.question-section{
+    width:70%;
+    margin-bottom:5rem;
+
+}
+.question{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.12rem;
+    border: 1px solid #C7CBDA;
+    border-radius: 0.625rem;
+    padding: 1.38rem 2.12rem;
+    
+}
+
+.question h3{
+    height: 1.8125rem;
+    align-self: stretch;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.question p{
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.test{
+    gap:2rem;
+}
+
+.test h3{
+    color: #000;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.test button{
+    color: #FFF;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    width: 10.25rem;
+    height: 2.8125rem;
+    flex-shrink: 0;
+    border-radius: 0.25rem;
+    background: #384475;
+}
