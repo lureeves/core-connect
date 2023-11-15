@@ -99,10 +99,10 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold' >DESIGN</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
+            <MentorCard id={0}/>
+            <MentorCard id={1}/>
+            <MentorCard id={2}/>
+            <MentorCard id={3}/>
            
           </div>
         </div>
@@ -111,10 +111,10 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold'>PRODUCT MANAGEMENT</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
+            <MentorCard id={4}/>
+            <MentorCard id={5}/>
+            <MentorCard id={6}/>
+            <MentorCard id={7}/>
           </div>
         </div>
 
@@ -122,10 +122,10 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold'> ENGINEERING</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
-            <MentorCard/>
+            <MentorCard id={8}/>
+            <MentorCard id={9}/>
+            <MentorCard id={10}/>
+            <MentorCard id={11}/>
           </div>
         </div>
 
