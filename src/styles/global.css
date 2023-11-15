@@ -1,10 +1,10 @@
-
 /* Header Start */
 .navbar{
     background: #C7CBDA;
     height: 5.375rem; 
     flex-shrink: 0;
 }
+
 .logo{
     width: 11.125rem;
     height: 2rem;
@@ -13,6 +13,7 @@
     gap: 0.4375rem;
     flex-shrink: 0; 
 }
+
 .logo-img{
     width: 2rem;
     height: 2rem;
@@ -29,7 +30,6 @@
     text-transform: capitalize;
 }
 
-
 .nav-links{
     gap: 3.75rem;
     color: #000;
@@ -38,13 +38,11 @@
     font-weight: 600;
     line-height: normal;
 }
+
 .pfp{
     width: 1.4375rem;
     height: 1.4375rem;
     flex-shrink: 0; 
     border-radius: 999px;
 }
-
-
-
 /* Header End */

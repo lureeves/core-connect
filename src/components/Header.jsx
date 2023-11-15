@@ -10,7 +10,7 @@ const Header = () => {
             <a href="/" className='flex gap-2'>
                 <img className="logo-img" src={Logo} alt="" />
                 <h2>Core Connect</h2>
-            </a>
+            </a> 
             
         </div>
 
