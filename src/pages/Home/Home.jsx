@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import MagGlass from '../../assets/vector.svg'
 import arrow from '../../assets/arrow.svg'
 import filter from '../../assets/filter-icon.svg'
+import MentorCard from './components/MentorCard.jsx'
 import '../Home/Home.css'
 
 const Home = () => {
@@ -55,7 +56,7 @@ const Home = () => {
               onClick={()=>Flipping(1)}
             >
               <img src={MagGlass} alt="" />
-              <input className="w-full" type="text" placeholder='Search Role'/>
+              <input className="w-full p-1" type="text" placeholder='Search Role'/>
             </div>
 
             <div className='filter-container flex justify-between items-center w-56 h-10 py-3 pr-6 pl-7 gap-3'
@@ -98,10 +99,11 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold' >DESIGN</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
+           
           </div>
         </div>
 
@@ -109,10 +111,10 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold'>PRODUCT MANAGEMENT</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
           </div>
         </div>
 
@@ -120,10 +122,10 @@ const Home = () => {
         <div className='flex flex-col gap-4'>
           <h2 className='text-base font-semibold'> ENGINEERING</h2>
           <div className='grid grid-cols-4 gap-5 '>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
-            <div className='bg-black w-64 h-96 rounded-lg'> </div>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
+            <MentorCard/>
           </div>
         </div>
 
