@@ -9,11 +9,10 @@ const mentors =[
     values:[],
     active: 0,
     completed:0,
-    industry:""
+    industry:"",
+    pic:"",
+    profile:{}
     
-
-
-
 }
 
 

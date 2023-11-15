@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Home from './pages/Home/Home.jsx';
 import CoreValuesTest from './pages/CoreValuesTest/CoreValuesTest.jsx'
 // import ContactUs from './pages/ContactUs';
-
+import './App.css'
 function App() {
   return (
     

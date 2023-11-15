@@ -1,28 +1,29 @@
+.welcome{
+    width: 58.25em;
+    
+}
 .welcome h1{
     color: #000;
 
-    font-size: 2.5vw;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 .welcome h3{
     color: #000;
-    font-size: 1.875vw;
+    font-size: 1.875rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.question-section{
-    width:70%;
-    margin-bottom:5rem;
-
-}
 .question{
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 33.25rem;
+    
     gap: 2.12rem;
     border: 1px solid #C7CBDA;
     border-radius: 0.625rem;
@@ -70,4 +71,18 @@
     flex-shrink: 0;
     border-radius: 0.25rem;
     background: #384475;
+}
+.mentor-section{
+    max-width: 67.75rem;
+}
+.filter-container{
+    border-radius: 1.25rem;
+    border: 1px solid #C7CBDA;
+    background: #FFF;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10) inset;
+}
+/* flex justify-between items-center w-64 h-10 py-3 pr-6 pl-7 gap-3*/
+
+.filter-box{
+    width: 9rem;
 }
