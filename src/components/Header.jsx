@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '../assets/Logo.png'
+import Logo from '/public/logo.png';
 import pfp from '../assets/default_profile.jpg'
 import '../styles/global.css'
 const Header = () => {
