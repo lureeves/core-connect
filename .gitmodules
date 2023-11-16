@@ -1,0 +1,3 @@
+[submodule "submodules/core-connect"]
+	path = submodules/core-connect
+	url = https://github.com/lureeves/core-connect
