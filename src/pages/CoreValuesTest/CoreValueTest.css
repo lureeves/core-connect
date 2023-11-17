@@ -1,0 +1,21 @@
+/* Test Begining */
+.core-value-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns with equal width */
+    grid-template-rows: repeat(7, auto); /* 7 rows, height adjusts to content */
+    gap: 10px; /* Space between grid items */
+    padding: 10px; /* Padding around the grid */
+  }
+  
+  .core-value-button {
+    padding: 10px; /* Padding inside each button */
+    background-color: lightgray; /* Default background color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+  }
+  
+  .core-value-button.selected {
+    background-color: lightblue; /* Background color for selected items */
+  }
+  /* Test Ends */
