@@ -28,21 +28,22 @@ const TestCard = () => {
   };
 
   return (
-    <div className='w-4/5 py-14 px-24 mx-auto border-transparent rounded-lg shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
+    <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
+        {/* Card title */}
         <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose at least 10!</h3>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
+        {/* Card buttons */}
+        <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
             {coreValues.map(value => (
             <button
                 key={value}
-                className='mx-2
-                           my-3
-                           p-2 
+                className='my-3
+                           p-1 
                            g-white 
                            border-2 
-                           border-[#D7E0FF] 
+                           border-[#D7E0FF] `
                            shadow-[#D7E0FF_0px_0px_4px]
-                           '
+                           hover:scale-105'
                 style={{ 
                     borderRadius: '15px',
                     backgroundColor: selectedValues.includes(value) ? '#D7E0FF' : 'white' 
@@ -54,7 +55,8 @@ const TestCard = () => {
             ))}
         </div>
         
-        <button onClick={handleSubmit} className='mt-16 py-2 px-9 bg-[#3A2A9B] rounded-3xl text-white float-right'>Next</button>
+        {/* Next button */}
+        <button onClick={handleSubmit} className='mt-16 py-2 px-9 bg-[#3A2A9B] rounded-3xl text-white hover:scale-105 float-right'>Next</button>
     
     </div>
   );
