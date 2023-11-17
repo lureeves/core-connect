@@ -58,6 +58,7 @@ const TestCard = () => {
         {/* Next button */}
         <button onClick={handleSubmit} className='mt-16 py-2 px-9 bg-[#3A2A9B] rounded-3xl text-white hover:scale-105 float-right'>Next</button>
     
+
     </div>
   );
 };
