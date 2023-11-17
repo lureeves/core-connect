@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../CoreValueTest.css';
 
 const TestCard = () => {
   const coreValues = [
@@ -27,22 +28,34 @@ const TestCard = () => {
   };
 
   return (
-    <div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
-        {coreValues.map(value => (
-          <button
-            key={value}
-            style={{ 
-              padding: '10px', 
-              backgroundColor: selectedValues.includes(value) ? 'lightblue' : 'lightgray' 
-            }}
-            onClick={() => handleValueClick(value)}
-          >
-            {value}
-          </button>
-        ))}
-      </div>
-      <button onClick={handleSubmit} style={{ marginTop: '20px' }}>Next</button>
+    <div className='w-4/5 py-14 px-24 mx-auto border-transparent rounded-lg shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
+        <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose at least 10!</h3>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '10px' }}>
+            {coreValues.map(value => (
+            <button
+                key={value}
+                className='mx-2
+                           my-3
+                           p-2 
+                           g-white 
+                           border-2 
+                           border-[#D7E0FF] 
+                           shadow-[#D7E0FF_0px_0px_4px]
+                           '
+                style={{ 
+                    borderRadius: '15px',
+                    backgroundColor: selectedValues.includes(value) ? '#D7E0FF' : 'white' 
+                    }}
+                onClick={() => handleValueClick(value)}
+            >
+                {value}
+            </button>
+            ))}
+        </div>
+        
+        <button onClick={handleSubmit} className='mt-16 py-2 px-9 bg-[#3A2A9B] rounded-3xl text-white float-right'>Next</button>
+    
     </div>
   );
 };
