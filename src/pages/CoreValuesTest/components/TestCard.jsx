@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import '../CoreValueTest.css';
 
+// Card handles everything from when the user clicks on the "Start Test" button to 
+// returning the user's core values
+
 const TestCard = () => {
-  const coreValues = [
+    const coreValues = [
     "Acheivement", "Discipline", "Generosity", "Knowledge", "Respect",
     "Adaptability", "Empathy", "Hard work", "Leadership", "Responsibility",
     "Collaboration", "Excitement", "Honesty", "Loyalty", "Security",
@@ -10,22 +13,48 @@ const TestCard = () => {
     "Courage", "Flexibility", "Innovation", "Patience", "Trust",
     "Creativity", "Fairness", "Integrity", "Persistence", "Unity",
     "Curiosity", "Freedom", "Kindness", "Recognition", "Wisdom"
-  ];
+    ];
 
-  const [selectedValues, setSelectedValues] = useState([]);
+    const [selectedValues, setSelectedValues] = useState([]);
+    const [step, setStep] = useState(1);
 
-  const handleValueClick = (value) => {
+    // Checks for duplicates selected values set and adds appropriate values
+    const handleValueClick = (value) => {
     if (selectedValues.includes(value)) {
-      setSelectedValues(selectedValues.filter(v => v !== value));
-    } else if (selectedValues.length < 10) {
-      setSelectedValues([...selectedValues, value]);
-    }
-  };
+        setSelectedValues(selectedValues.filter(v => v !== value));
+    } else {
+        setSelectedValues([...selectedValues, value]);
+    }};
 
-  const handleSubmit = () => {
+
+    // Logic for states of test
+    const handleNext = () => {
+        if (step === 1) {
+            setStep(2);
+        } else if (step === 2 && selectedValues.length >= 10) {
+            setStep(3);
+        } else if (step === 3 && selectedValues.length === 10) {
+            setStep(4);
+        } else if (step === 4 && selectedValues.length === 5) {
+            setStep(5);
+        } else if (step === 5 && selectedValues.length === 3) {
+            // Goto different page
+        }
+    };
+
+
+    // Used when user clicks back button
+    const handleBack = () => {
+        if (step > 1) {
+            setStep(step - 1);
+        }
+    };
+    
+
+    const handleSubmit = () => {
     console.log('Selected Values:', selectedValues);
-    // Handle the submission logic here (e.g., saving the data or navigating to the next page)
-  };
+    // Handles the submission logic here (e.g., saving the data or navigating to the next page)
+    };
 
   return (
     <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
