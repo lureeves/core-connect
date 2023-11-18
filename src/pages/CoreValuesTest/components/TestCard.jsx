@@ -37,8 +37,6 @@ const TestCard = () => {
             setStep(3);
         } else if (selectedValues.length === 3) {
             setStep(4);
-        } else {
-            // Goto different page
         }
     };
 
@@ -57,6 +55,7 @@ const TestCard = () => {
         console.log('Step:', step);
         setStep(step + 1)
         console.log('Step:', step);
+        // if step === 4 then redirect
     };
 
   return (
@@ -88,15 +87,19 @@ const TestCard = () => {
             ))}
         </div>
         
-        {/* Displays back button if not on first test page */}
+        {/* Back button only after first page */}
         {step >= 2 ?
             <button onClick={handleBack} 
                     className='mt-16 
                         py-2 
                         px-9 
                         rounded-3xl 
-                        text-white 
+                        text-[#3A2A9B] 
+                        font-semibold
                         hover:scale-105 
+                        border-2
+                        border-[#3A2A9B]
+                        bg-white
                         bg-[#3A2A9B]'>
                 Back
             </button>
@@ -119,6 +122,24 @@ const TestCard = () => {
                 Next
             </button>
         : null}
+
+        {/* Submit button only on last page*/}
+        {step === 4 ?
+        <button onClick={selectedValues.length > 10 ?handleSubmit : null}
+                className='mt-16 
+                            py-2 
+                            px-9 
+                            rounded-xl 
+                            text-white 
+                            hover:scale-105 
+                            float-right'
+                style={{
+                    // Condition if they have selected minimum number of values
+                    backgroundColor: selectedValues.length > 10 ? '#3A2A9B' : '#B9BBC3'
+                }}>
+            Submit
+        </button>
+    : null}
     
     </div>
     </>
