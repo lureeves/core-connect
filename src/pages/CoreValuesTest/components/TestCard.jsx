@@ -29,15 +29,15 @@ const TestCard = () => {
 
     // Logic for states of test
     const handleNext = () => {
-        if (step === 1) {
+        if (selectedValues.length >= 10) {
+            setStep(1);
+        } else if (selectedValues.length === 10) {
             setStep(2);
-        } else if (step === 2 && selectedValues.length >= 10) {
+        } else if (selectedValues.length === 5) {
             setStep(3);
-        } else if (step === 3 && selectedValues.length === 10) {
+        } else if (selectedValues.length === 3) {
             setStep(4);
-        } else if (step === 4 && selectedValues.length === 5) {
-            setStep(5);
-        } else if (step === 5 && selectedValues.length === 3) {
+        } else {
             // Goto different page
         }
     };
@@ -50,13 +50,18 @@ const TestCard = () => {
         }
     };
     
-
+    // Submission logic handling
     const handleSubmit = () => {
-    console.log('Selected Values:', selectedValues);
-    // Handles the submission logic here (e.g., saving the data or navigating to the next page)
+        console.log('Selected Values:', selectedValues);
+
+        console.log('Step:', step);
+        setStep(step + 1)
+        console.log('Step:', step);
     };
 
   return (
+    // Fragmentation for multiple returns
+    <>
     <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
         {/* Card title */}
         <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose at least 10!</h3>
@@ -64,30 +69,59 @@ const TestCard = () => {
         {/* Card buttons */}
         <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
             {coreValues.map(value => (
-            <button
-                key={value}
-                className='my-3
-                           p-1 
-                           g-white 
-                           border-2 
-                           border-[#D7E0FF] `
-                           shadow-[#D7E0FF_0px_0px_4px]
-                           hover:scale-105'
-                style={{ 
-                    borderRadius: '15px',
-                    backgroundColor: selectedValues.includes(value) ? '#D7E0FF' : 'white' 
-                    }}
-                onClick={() => handleValueClick(value)}
-            >
-                {value}
-            </button>
+                <button
+                        key={value}
+                        className='my-3
+                                p-1 
+                                g-white 
+                                border-2 
+                                border-[#D7E0FF] `
+                                shadow-[#D7E0FF_0px_0px_4px]
+                                hover:scale-105'
+                        style={{ 
+                            borderRadius: '15px',
+                            backgroundColor: selectedValues.includes(value) ? '#D7E0FF' : 'white' 
+                            }}
+                        onClick={() => handleValueClick(value)}>
+                    {value}
+                </button>
             ))}
         </div>
         
+        {/* Displays back button if not on first test page */}
+        {step >= 2 ?
+            <button onClick={handleBack} 
+                    className='mt-16 
+                        py-2 
+                        px-9 
+                        rounded-3xl 
+                        text-white 
+                        hover:scale-105 
+                        bg-[#3A2A9B]'>
+                Back
+            </button>
+        : null}
+
         {/* Next button */}
-        <button onClick={handleSubmit} className='mt-16 py-2 px-9 bg-[#3A2A9B] rounded-3xl text-white hover:scale-105 float-right'>Next</button>
+        {step <= 3 ?
+            <button onClick={selectedValues.length > 10 ?handleSubmit : null}
+                    className='mt-16 
+                                py-2 
+                                px-9 
+                                rounded-3xl 
+                                text-white 
+                                hover:scale-105 
+                                float-right'
+                    style={{
+                        // Condition if they have selected minimum number of values
+                        backgroundColor: selectedValues.length > 10 ? '#3A2A9B' : '#B9BBC3'
+                    }}>
+                Next
+            </button>
+        : null}
     
     </div>
+    </>
   );
 };
 
