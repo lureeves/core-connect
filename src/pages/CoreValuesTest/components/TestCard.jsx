@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../CoreValueTest.css';
+import { ActionButton, CoreValueButton }  from './Buttons.jsx'
 
 // Card handles everything from when the user clicks on the "Start Test" button to 
 // returning the user's core values
@@ -27,34 +28,40 @@ const TestCard = () => {
     }};
 
 
-    // Logic for states of test
-    const handleNext = () => {
-        if (selectedValues.length >= 10) {
-            setStep(1);
-        } else if (selectedValues.length === 10) {
-            setStep(2);
-        } else if (selectedValues.length === 5) {
-            setStep(3);
-        } else if (selectedValues.length === 3) {
-            setStep(4);
+    // // Logic for states of test
+    // const handleNext = () => {
+    //     if (selectedValues.length >= 10) {
+    //         setStep(1);
+    //     } else if (selectedValues.length === 10) {
+    //         setStep(2);
+    //     } else if (selectedValues.length === 5) {
+    //         setStep(3);
+    //     } else if (selectedValues.length === 3) {
+    //         setStep(4);
+    //     }
+    // };
+
+
+    // Used when user clicks 'back' button
+    const handleBack = () => {
+        if (step > 1) {
+            console.log('Step:', step);
+            setStep(step - 1);
         }
     };
 
-
-    // Used when user clicks back button
-    const handleBack = () => {
-        if (step > 1) {
-            setStep(step - 1);
-        }
+    // Used when user clicks 'next' button
+    const handleNext = () => {
+        console.log('Step:', step);
+        setStep(step + 1);
+        console.log('Selected Values:', selectedValues);
     };
     
     // Submission logic handling
     const handleSubmit = () => {
-        console.log('Selected Values:', selectedValues);
 
         console.log('Step:', step);
-        setStep(step + 1)
-        console.log('Step:', step);
+
         // if step === 4 then redirect
     };
 
@@ -62,84 +69,41 @@ const TestCard = () => {
     // Fragmentation for multiple returns
     <>
     <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
-        {/* Card title */}
-        <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose at least 10!</h3>
         
-        {/* Card buttons */}
+        {/* Set up large multiway if statement */}
+        {/* each step should be each should determine based upon step then choose the appropriate output*/}
+        
+        
+        
+        {/* Card title */}
+        <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose more than 10!</h3>
+        
+        {/* Core Value buttons */}
         <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
             {coreValues.map(value => (
-                <button
-                        key={value}
-                        className='my-3
-                                p-1 
-                                g-white 
-                                border-2 
-                                border-[#D7E0FF] `
-                                shadow-[#D7E0FF_0px_0px_4px]
-                                hover:scale-105'
-                        style={{ 
-                            borderRadius: '15px',
-                            backgroundColor: selectedValues.includes(value) ? '#D7E0FF' : 'white' 
-                            }}
-                        onClick={() => handleValueClick(value)}>
-                    {value}
-                </button>
+                <CoreValueButton
+                    key={value}
+                    value={value}
+                    isSelected={selectedValues.includes(value)}
+                    onClick={handleValueClick}
+                />
             ))}
         </div>
         
         {/* Back button only after first page */}
-        {step >= 2 ?
-            <button onClick={handleBack} 
-                    className='mt-16 
-                        py-2 
-                        px-9 
-                        rounded-3xl 
-                        text-[#3A2A9B] 
-                        font-semibold
-                        hover:scale-105 
-                        border-2
-                        border-[#3A2A9B]
-                        bg-white
-                        bg-[#3A2A9B]'>
-                Back
-            </button>
-        : null}
+        {step >= 2 ? 
+            <ActionButton type="back" onClick={handleBack} isEnabled={step >= 2} /> 
+            : null }
 
-        {/* Next button */}
-        {step <= 3 ?
-            <button onClick={selectedValues.length > 10 ?handleSubmit : null}
-                    className='mt-16 
-                                py-2 
-                                px-9 
-                                rounded-3xl 
-                                text-white 
-                                hover:scale-105 
-                                float-right'
-                    style={{
-                        // Condition if they have selected minimum number of values
-                        backgroundColor: selectedValues.length > 10 ? '#3A2A9B' : '#B9BBC3'
-                    }}>
-                Next
-            </button>
-        : null}
+        {/* Next button on every page except last */}
+        {step <= 3 ? 
+            <ActionButton type="next" onClick={handleNext} isEnabled={selectedValues.length > 10} /> 
+            : null}
 
         {/* Submit button only on last page*/}
-        {step === 4 ?
-        <button onClick={selectedValues.length > 10 ?handleSubmit : null}
-                className='mt-16 
-                            py-2 
-                            px-9 
-                            rounded-xl 
-                            text-white 
-                            hover:scale-105 
-                            float-right'
-                style={{
-                    // Condition if they have selected minimum number of values
-                    backgroundColor: selectedValues.length > 10 ? '#3A2A9B' : '#B9BBC3'
-                }}>
-            Submit
-        </button>
-    : null}
+        {step === 4 ? 
+            <ActionButton type="submit" onClick={handleSubmit} isEnabled={step === 4} /> 
+            : null }
     
     </div>
     </>
