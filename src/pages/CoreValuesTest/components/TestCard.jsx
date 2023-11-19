@@ -18,19 +18,21 @@ const TestCard = () => {
     ];
 
     // Variable declarations
-    const [selectedValues, setSelectedValues] = useState([]);
-    const [displayValues, setDisplayValues] = useState([]);
+    // Past Chosen Values
+    const [stateOneValues, setStateOneValues] = useState([]);
+    const [stateTwoValues, setStateTwoValues] = useState([]);
+    const [stateThreeValues, setStateThreeValues] = useState([]);
+    const [stateFourValues, setStateFourValues] = useState([]);
+    // Currently Values
+    const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
+    const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
     const [step, setStep] = useState(1);
 
     // Checks for duplicates selected values set and adds appropriate values
     const handleValueClick = (value) => {
-        if (displayValues.includes(value)) {
-            // Removes selection on button
-            setDisplayValues(displayValues.filter(v => v !== value));
+        if (selectedValues.includes(value)) {
             setSelectedValues(selectedValues.filter(v => v !== value));
         } else {
-            // Adds value to lists
-            setDisplayValues([...displayValues, value]);
             setSelectedValues([...selectedValues, value]);
         }
     };
@@ -44,19 +46,36 @@ const TestCard = () => {
 
     // Used when user clicks 'next' button
     const handleNext = () => {
+        // Increment step
         setStep(step + 1);
-        setDisplayValues([]);
+
+        // Conditionally save old selected values
+        if (selectedValues.length > 10){
+            setStateOneValues(selectedValues);
+        } else if (selectedValues.length === 10){
+            setStateTwoValues(selectedValues);
+        } else if (selectedValues.length === 5){
+            setStateThreeValues(selectedValues);
+        } else {
+            setStateFourValues(selectedValues);
+        }
+
+
         console.log('Step:', step);
+        console.log('Shown Values:', shownValues);
         console.log('Selected Values:', selectedValues);
-        console.log('Display Values:', displayValues);
+        console.log('stateOneValues:', stateOneValues);
+        console.log('stateTwoValues:', stateTwoValues);
+        console.log('stateThreeValues:', stateThreeValues);
+        console.log('stateFourValues:', stateFourValues);
     };
     
     // Submission logic handling
     const handleSubmit = () => {
         console.log('Step:', step);
-        console.log('Submit clicked:')
+        console.log('Submit selected:')
+        console.log('Shown Values:', shownValues);
         console.log('Selected Values:', selectedValues);
-        console.log('Display Values:', displayValues);
     };
 
 
@@ -85,7 +104,7 @@ const TestCard = () => {
             <>
             <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 10!</h3>
             <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                {selectedValues.map(value => (
+                {stateOneValues.map(value => (
                     <CoreValueButton
                         key={value}
                         value={value}
@@ -102,7 +121,7 @@ const TestCard = () => {
             <>
             <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 5!</h3>
             <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                {selectedValues.map(value => (
+                {shownValues.map(value => (
                     <CoreValueButton
                         key={value}
                         value={value}
@@ -119,7 +138,7 @@ const TestCard = () => {
             <>
             <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 3!</h3>
             <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                {selectedValues.map(value => (
+                {shownValues.map(value => (
                     <CoreValueButton
                         key={value}
                         value={value}
@@ -151,13 +170,13 @@ const TestCard = () => {
 
     // Contionally enable 'Next' Button when correct number of values are displayed
     const NextConditional = () => {
-        if (displayValues.length > 10){
+        if (selectedValues.length > 10){
             return true;
-        } else if (displayValues.length === 10 && step === 2){
+        } else if (selectedValues.length === 10 && step === 2){
             return true;
-        } else if (displayValues.length === 5 && step === 3){
+        } else if (selectedValues.length === 5 && step === 3){
             return true;
-        } else if (displayValues.length === 3 && step === 4){
+        } else if (selectedValues.length === 3 && step === 4){
             return true;
         } else {
             return false;
