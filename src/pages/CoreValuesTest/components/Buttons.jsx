@@ -13,7 +13,7 @@ import React from 'react';
  */
 export const CoreValueButton = ({ value, isSelected, onClick }) => (
   <button
-    className={`my-3 p-1 g-white border-2 border-[#D7E0FF] shadow-[#D7E0FF_0px_0px_4px] hover:scale-105 ${isSelected ? 'bg-[#D7E0FF]' : 'bg-white'}`}
+    className={`my-3 p-1 g-white border-2 border-[#D7E0FF] shadow-[#D7E0FF_0px_0px_4px] hover:scale-[1.03] ${isSelected ? 'bg-[#D7E0FF]' : 'bg-white'}`}
     style={{ borderRadius: '15px' }}
     onClick={() => onClick(value)}
   >
@@ -38,19 +38,19 @@ export const ActionButton = ({ type, onClick, isEnabled }) => {
   switch (type) {
     case 'back':
       buttonText = 'Back';
-      buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-[#3A2A9B] font-semibold hover:scale-105 border-2 border-[#3A2A9B] bg-white';
+      buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-[#3A2A9B] font-semibold hover:scale-[1.03] border-2 border-[#3A2A9B] bg-white';
       break;
     case 'next':
       buttonText = 'Next';
-      buttonClass = `mt-16 py-2 px-9 rounded-3xl text-white hover:scale-105 float-right ${isEnabled ? 'bg-[#3A2A9B]' : 'bg-[#B9BBC3]'}`;
+      buttonClass = `mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.03] float-right ${isEnabled ? 'bg-[#3A2A9B]' : 'bg-[#B9BBC3]'}`;
       break;
     case 'submit':
       buttonText = 'Submit';
-      buttonClass = `mt-16 py-2 px-9 rounded-xl text-white hover:scale-105 float-right ${isEnabled ? 'bg-[#3A2A9B]' : 'bg-[#B9BBC3]'}`;
+      buttonClass = `mt-16 py-2 px-9 rounded-xl text-white hover:scale-[1.03] float-right ${isEnabled ? 'bg-[#3A2A9B]' : 'bg-[#B9BBC3]'}`;
       break;
     default:
       buttonText = 'Button';
-      buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-white hover:scale-105 float-right bg-[#3A2A9B]';
+      buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.03] float-right bg-[#3A2A9B]';
   }
 
   return (
