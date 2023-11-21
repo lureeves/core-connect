@@ -22,42 +22,24 @@ const TestCard = () => {
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
-    const [stateFourValues, setStateFourValues] = useState([]);
     // Current Values
     const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
     const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
     const [step, setStep] = useState(1);
 
-    // Updates shownValues based on the current step
-    const updateShownValues = (newStep) => {
-        switch (newStep) {
-            case 1:
-                setShownValues(coreValues);
-                break;
-            case 2:
-                setShownValues(stateOneValues);
-                break;
-            case 3:
-                setShownValues(stateTwoValues);
-                break;
-            case 4:
-                setShownValues(stateThreeValues);
-                break;
-            default:
-                setShownValues([]);
-        }
-    };
-
     // Handles value selection and deselection
     const handleValueClick = (value) => {
+        // Checking if value is already in list
         if (selectedValues.includes(value)) {
+            // Remove value from list
             setSelectedValues(selectedValues.filter(v => v !== value));
         } else {
+            // Add value to list
             setSelectedValues([...selectedValues, value]);
         }
     };
     
-
+    // Handles next button logic
     const handleNext = () => {
         let newValues = [];
         const newStep = step + 1;
@@ -73,16 +55,16 @@ const TestCard = () => {
                 break;
             case 3:
                 newValues = selectedValues;
-                setStateThreeValues(newValues); // Ensure this is correctly capturing the 5 selected values
+                setStateThreeValues(newValues);
                 break;
         }
-    
+
         setShownValues(newValues);
         setSelectedValues([]);
         setStep(newStep);
     };    
     
-    
+    // Handles back button logic
     const handleBack = () => {
         const newStep = step - 1;
     
@@ -92,33 +74,24 @@ const TestCard = () => {
                 setSelectedValues(stateOneValues); // Reset to previously selected values in step 1
                 break;
             case 2:
-                setShownValues(coreValues); // Show all core values for reselection
+                setShownValues(coreValues); // Show selected values from step 1
                 setSelectedValues(stateTwoValues); // Reset to previously selected values in step 2
                 break;
             case 3:
-                setShownValues(stateTwoValues); // Show the values from step 2
+                setShownValues(stateTwoValues); // Show selected values from step 2
                 setSelectedValues(stateThreeValues); // Reset selected values to step 3
                 break;
         }
-    
         setStep(newStep);
     };
     
-    
-    
-    
-    
-    
-    
-    
     // Submission logic handling
     const handleSubmit = () => {
-        console.log('Step:', step);
-        console.log('Submit selected:')
-        console.log('Shown Values:', shownValues);
-        console.log('Selected Values:', selectedValues);
+        // Convert array to string
+        let string = JSON.stringify(selectedValues);
+        // Store string in local storage
+        localStorage.setItem('selectedValues', string);
     };
-
 
     // Core Value grid
     const InitialValues = () => {
@@ -158,12 +131,11 @@ const TestCard = () => {
         );
     };
     const FiveValues = () => {
-        console.log('Rendering FiveValues with:', shownValues);
         return (
             <>
                 <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 5!</h3>
                 <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                    {shownValues.map(value => (
+                    {stateTwoValues.map(value => (
                         <CoreValueButton
                             key={value}
                             value={value}
@@ -176,7 +148,6 @@ const TestCard = () => {
         );
     };
     const ThreeValues = () => {
-        console.log('Rendering ThreeValues with:', stateThreeValues);
         return (
             <>
                 <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 3!</h3>
@@ -194,7 +165,6 @@ const TestCard = () => {
         );
     };
     
-
 
     // Conditionally rending of Core Value grid
     const GridRender = () => {
@@ -229,13 +199,9 @@ const TestCard = () => {
     
     // Updates the shownValues when the component mounts or step changes
     useEffect(() => {
-        console.log('Effect - Step:', step);
-        console.log('Effect - Shown Values:', shownValues);
     }, [step, shownValues]);
     
     
-    
-
     return (
         // Fragmentation for multiple returns
         <>
@@ -256,7 +222,7 @@ const TestCard = () => {
 
             {/* Submit button only on last page*/}
             {step === 4 ? 
-                <ActionButton type="submit" onClick={handleSubmit} isEnabled={step === 4} /> 
+                <ActionButton type="submit" onClick={handleSubmit} isEnabled={NextConditional()} /> 
                 : null }
         
         </div>
