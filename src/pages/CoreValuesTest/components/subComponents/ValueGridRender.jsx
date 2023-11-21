@@ -1,6 +1,28 @@
 // StepComponents.jsx
 import React from 'react';
-import { CoreValueButton } from './Buttons.jsx';
+import { CoreValueButton, ActionButton } from './Buttons.jsx';
+
+/**
+ * Component to display initial core values for selection.
+ * @param {Object} props - Component props.
+ * @param {Array} props.coreValues - Array of core values to be displayed totalling 35.
+ * @param {Array} props.selectedValues - Array of currently selected values.
+ * @param {Function} props.handleValueClick - Function to handle the selection of a value.
+ */
+export const StartTest = ({ _, __, handleNext }) => {
+    return (
+        <>
+            <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose more than 10!</h3>
+            <div>
+                <ActionButton 
+                    type="start" 
+                    onClick={handleNext} 
+                    isEnabled={true} 
+                />
+            </div>
+        </>
+    );
+};
 
 /**
  * Component to display initial core values for selection.

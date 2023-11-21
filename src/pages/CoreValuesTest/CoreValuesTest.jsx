@@ -2,7 +2,6 @@ import React from 'react';
 import TestCard from './components/TestCard.jsx';
 
 const CoreValuesTest = () => {
-
     // Redirect to home
     const handleButtonClick = () => {
         window.location.href = '/';

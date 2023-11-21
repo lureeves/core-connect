@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
 import { ActionButton }  from './subComponents/Buttons.jsx'
-import { InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
+import { StartTest, InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
 
 /**
  * The TestCard component is responsible for managing the core values test. 
@@ -27,7 +27,7 @@ const TestCard = () => {
     const [shownValues, setShownValues] = useState([]);
     const [selectedValues, setSelectedValues] = useState([]);
     // State hook to track the current step of the test.
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(0);
 
     /**
      * Handles the logic for selecting or deselecting a value.
@@ -82,6 +82,12 @@ const TestCard = () => {
      */
     const GridRender = () => {
         switch(step) {
+            case 0: return (
+                <>
+                    <StartTest {...{coreValues, selectedValues, handleNext}} />
+                    <ActionButton type="start" onClick={handleNext} isEnabled={true} />
+                </>
+            );
             case 1: return <InitialValues {...{coreValues, selectedValues, handleValueClick}} />;
             case 2: return <TenValues {...{stateOneValues, selectedValues, handleValueClick}} />;
             case 3: return <FiveValues {...{stateTwoValues, selectedValues, handleValueClick}} />;
@@ -89,6 +95,7 @@ const TestCard = () => {
             default: return <DefaultComponent />;
         }
     }
+
 
     /**
      * Determines if the 'Next' button should be enabled based on the current step and selection.

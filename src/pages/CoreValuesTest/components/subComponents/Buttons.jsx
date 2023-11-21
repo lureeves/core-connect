@@ -48,6 +48,10 @@ export const ActionButton = ({ type, onClick, isEnabled }) => {
       buttonText = 'Submit';
       buttonClass = `mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.04] float-right ${isEnabled ? 'bg-[#3A2A9B]' : 'bg-[#B9BBC3]'}`;
       break;
+    case 'start':
+      buttonText = 'Start Test';
+      buttonClass = `mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.04] float-right 'bg-[#3A2A9B]'`;
+      break;
     default:
       buttonText = 'Button';
       buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.04] float-right bg-[#3A2A9B]';
