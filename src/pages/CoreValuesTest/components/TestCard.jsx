@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
-import { ActionButton, CoreValueButton }  from './Buttons.jsx'
+import { ActionButton }  from './Buttons.jsx'
+import { InitialValues, TenValues, FiveValues, ThreeValues } from './ValueGridRender.jsx';
 
 // Card handles everything from when the user clicks on the "Start Test" button to 
 // saving the user's core values to the browser
-
 const TestCard = () => {
     // Core values to choose from
     const coreValues = [
@@ -93,90 +93,17 @@ const TestCard = () => {
         localStorage.setItem('selectedValues', string);
     };
 
-    // Core Value grid
-    const InitialValues = () => {
-        return (
-            // {/* Card title */}
-            <>
-            <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose more than 10!</h3>
-
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                {coreValues.map(value => (
-                    <CoreValueButton
-                        key={value}
-                        value={value}
-                        isSelected={selectedValues.includes(value)}
-                        onClick={handleValueClick}
-                    />
-                ))}
-            </div>
-            </>
-        );
-    };
-    const TenValues = () => {
-        return (
-            <>
-            <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 10!</h3>
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                {stateOneValues.map(value => (
-                    <CoreValueButton
-                        key={value}
-                        value={value}
-                        isSelected={selectedValues.includes(value)}
-                        onClick={handleValueClick}
-                    />
-                ))}
-            </div>
-            </>
-        );
-    };
-    const FiveValues = () => {
-        return (
-            <>
-                <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 5!</h3>
-                <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                    {stateTwoValues.map(value => (
-                        <CoreValueButton
-                            key={value}
-                            value={value}
-                            isSelected={selectedValues.includes(value)}
-                            onClick={handleValueClick}
-                        />
-                    ))}
-                </div>
-            </>
-        );
-    };
-    const ThreeValues = () => {
-        return (
-            <>
-                <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 3!</h3>
-                <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-                    {stateThreeValues.map(value => (
-                        <CoreValueButton
-                            key={value}
-                            value={value}
-                            isSelected={selectedValues.includes(value)}
-                            onClick={handleValueClick}
-                        />
-                    ))}
-                </div>
-            </>
-        );
-    };
-    
-
     // Conditionally rending of Core Value grid
     const GridRender = () => {
         switch(step) {
             case 1:
-                return <InitialValues />;
+                return <InitialValues coreValues={coreValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 2:
-                return <TenValues />;
+                return <TenValues stateOneValues={stateOneValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 3:
-                return <FiveValues />;
+                return <FiveValues stateTwoValues={stateTwoValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 4:
-                return <ThreeValues />;
+                return <ThreeValues stateThreeValues={stateThreeValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             default:
                 return <DefaultComponent />;
         }
@@ -201,7 +128,6 @@ const TestCard = () => {
     useEffect(() => {
     }, [step, shownValues]);
     
-    
     return (
         // Fragmentation for multiple returns
         <>
@@ -214,6 +140,7 @@ const TestCard = () => {
             {step >= 2 ? 
                 <ActionButton type="back" onClick={handleBack} isEnabled={'True'} /> 
                 : null }
+
             {/* Next button on every page except last */}
             {step <= 3 ? 
                 <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} /> 
