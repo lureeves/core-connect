@@ -37,7 +37,7 @@ export const ActionButton = ({ type, onClick, isEnabled }) => {
 
   switch (type) {
     case 'back':
-      buttonText = 'Back'
+      buttonText = 'Back';
       buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-[#3A2A9B] font-semibold hover:scale-[1.03] border-2 border-[#3A2A9B] bg-white';
       break;
     case 'next':
@@ -51,7 +51,6 @@ export const ActionButton = ({ type, onClick, isEnabled }) => {
     default:
       buttonText = 'Button';
       buttonClass = 'mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.03] float-right bg-[#3A2A9B]';
-
   }
 
   return (

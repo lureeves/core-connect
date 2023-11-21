@@ -22,7 +22,7 @@ const TestCard = () => {
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
-    // Currently Values
+    // Current Values
     const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
     const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
     const [step, setStep] = useState(1);
