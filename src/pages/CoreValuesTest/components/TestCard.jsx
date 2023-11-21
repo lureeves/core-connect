@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
-import { ActionButton }  from './Buttons.jsx'
-import { InitialValues, TenValues, FiveValues, ThreeValues } from './ValueGridRender.jsx';
+import { ActionButton }  from './subComponents/Buttons.jsx'
+import { InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
 
-// Card handles everything from when the user clicks on the "Start Test" button to 
-// saving the user's core values to the browser
+/**
+ * The TestCard component is responsible for managing the core values test. 
+ * It handles user interactions across different steps of the test and manages the state of selected values.
+ */
 const TestCard = () => {
-    // Core values to choose from
+    // List of core values available for selection.
     const coreValues = [
     "Acheivement", "Discipline", "Generosity", "Knowledge", "Respect",
     "Adaptability", "Empathy", "Hard work", "Leadership", "Responsibility",
@@ -17,143 +19,105 @@ const TestCard = () => {
     "Curiosity", "Freedom", "Kindness", "Recognition", "Wisdom"
     ];
 
-    // Variable declarations
-    // Past Chosen Values
+    // State hooks for managing the values selected in different steps.
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
-    // Current Values
-    const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
-    const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
+    // State hooks for managing currently displayed (shown) and selected values.
+    const [shownValues, setShownValues] = useState([]);
+    const [selectedValues, setSelectedValues] = useState([]);
+    // State hook to track the current step of the test.
     const [step, setStep] = useState(1);
 
-    // Handles value selection and deselection
+    /**
+     * Handles the logic for selecting or deselecting a value.
+     * @param {string} value - The value to be selected or deselected.
+     */
     const handleValueClick = (value) => {
-        // Checking if value is already in list
-        if (selectedValues.includes(value)) {
-            // Remove value from list
-            setSelectedValues(selectedValues.filter(v => v !== value));
-        } else {
-            // Add value to list
-            setSelectedValues([...selectedValues, value]);
-        }
+        const isValueSelected = selectedValues.includes(value);
+        setSelectedValues(isValueSelected
+            ? selectedValues.filter(v => v !== value)
+            : [...selectedValues, value]
+        );
     };
     
-    // Handles next button logic
+    /**
+     * Handles the logic for moving to the next step of the test.
+     */
     const handleNext = () => {
-        let newValues = [];
-        const newStep = step + 1;
-    
+        const newValues = selectedValues;
         switch (step) {
-            case 1:
-                newValues = selectedValues;
-                setStateOneValues(newValues);
-                break;
-            case 2:
-                newValues = selectedValues;
-                setStateTwoValues(newValues);
-                break;
-            case 3:
-                newValues = selectedValues;
-                setStateThreeValues(newValues);
-                break;
+            case 1: setStateOneValues(newValues); break;
+            case 2: setStateTwoValues(newValues); break;
+            case 3: setStateThreeValues(newValues); break;
         }
-
         setShownValues(newValues);
         setSelectedValues([]);
-        setStep(newStep);
-    };    
+        setStep(step + 1);
+    };   
     
-    // Handles back button logic
+    /**
+     * Handles the logic for moving back to the previous step of the test.
+     */
     const handleBack = () => {
         const newStep = step - 1;
-    
         switch (newStep) {
-            case 1:
-                setShownValues(coreValues); // Show all core values for reselection
-                setSelectedValues(stateOneValues); // Reset to previously selected values in step 1
-                break;
-            case 2:
-                setShownValues(coreValues); // Show selected values from step 1
-                setSelectedValues(stateTwoValues); // Reset to previously selected values in step 2
-                break;
-            case 3:
-                setShownValues(stateTwoValues); // Show selected values from step 2
-                setSelectedValues(stateThreeValues); // Reset selected values to step 3
-                break;
+            case 1: setShownValues(coreValues); setSelectedValues(stateOneValues); break;
+            case 2: setShownValues(coreValues); setSelectedValues(stateTwoValues); break;
+            case 3: setShownValues(stateTwoValues); setSelectedValues(stateThreeValues); break;
         }
         setStep(newStep);
     };
     
-    // Submission logic handling
+    /**
+     * Handles the logic for submitting the final selected values.
+     */
     const handleSubmit = () => {
-        // Convert array to string
-        let string = JSON.stringify(selectedValues);
-        // Store string in local storage
-        localStorage.setItem('selectedValues', string);
+        const stringifiedValues = JSON.stringify(selectedValues);
+        localStorage.setItem('selectedValues', stringifiedValues);
     };
 
-    // Conditionally rending of Core Value grid
+    /**
+     * Conditionally renders the grid of core values based on the current step.
+     */
     const GridRender = () => {
         switch(step) {
-            case 1:
-                return <InitialValues coreValues={coreValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
-            case 2:
-                return <TenValues stateOneValues={stateOneValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
-            case 3:
-                return <FiveValues stateTwoValues={stateTwoValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
-            case 4:
-                return <ThreeValues stateThreeValues={stateThreeValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
-            default:
-                return <DefaultComponent />;
+            case 1: return <InitialValues {...{coreValues, selectedValues, handleValueClick}} />;
+            case 2: return <TenValues {...{stateOneValues, selectedValues, handleValueClick}} />;
+            case 3: return <FiveValues {...{stateTwoValues, selectedValues, handleValueClick}} />;
+            case 4: return <ThreeValues {...{stateThreeValues, selectedValues, handleValueClick}} />;
+            default: return <DefaultComponent />;
         }
     }
 
-    // Contionally enable 'Next' Button when correct number of values are displayed
+    /**
+     * Determines if the 'Next' button should be enabled based on the current step and selection.
+     */
     const NextConditional = () => {
-        if (step === 1 && selectedValues.length > 10) {
-            return true;
-        } else if (step === 2 && selectedValues.length === 10) {
-            return true;
-        } else if (step === 3 && selectedValues.length === 5) {
-            return true;
-        } else if (step === 4 && selectedValues.length === 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return (
+            (step === 1 && selectedValues.length > 10) ||
+            (step === 2 && selectedValues.length === 10) ||
+            (step === 3 && selectedValues.length === 5) ||
+            (step === 4 && selectedValues.length === 3)
+        );
     }
-    
-    // Updates the shownValues when the component mounts or step changes
+
+    // Effect hook to trigger updates on step change.
     useEffect(() => {
+        // Your logic here if needed when the step or shownValues changes.
     }, [step, shownValues]);
     
     return (
-        // Fragmentation for multiple returns
         <>
-        <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
-            
-            {/* Grid of core values */}
-            {GridRender()}
-            
-            {/* Back button only after first page */}
-            {step >= 2 ? 
-                <ActionButton type="back" onClick={handleBack} isEnabled={'True'} /> 
-                : null }
-
-            {/* Next button on every page except last */}
-            {step <= 3 ? 
-                <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} /> 
-                : null}
-
-            {/* Submit button only on last page*/}
-            {step === 4 ? 
-                <ActionButton type="submit" onClick={handleSubmit} isEnabled={NextConditional()} /> 
-                : null }
-        
-        </div>
+            <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
+                {GridRender()}
+                {step >= 2 && <ActionButton type="back" onClick={handleBack} isEnabled={true} />}
+                {step <= 3 && <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} />}
+                {step === 4 && <ActionButton type="submit" onClick={handleSubmit} isEnabled={NextConditional()} />}
+            </div>
         </>
-  );
+    );
 };
 
 export default TestCard;
+

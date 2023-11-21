@@ -2,6 +2,13 @@
 import React from 'react';
 import { CoreValueButton } from './Buttons.jsx';
 
+/**
+ * Component to display initial core values for selection.
+ * @param {Object} props - Component props.
+ * @param {Array} props.coreValues - Array of core values to be displayed totalling 35.
+ * @param {Array} props.selectedValues - Array of currently selected values.
+ * @param {Function} props.handleValueClick - Function to handle the selection of a value.
+ */
 export const InitialValues = ({ coreValues, selectedValues, handleValueClick }) => {
     return (
         <>
@@ -20,6 +27,13 @@ export const InitialValues = ({ coreValues, selectedValues, handleValueClick }) 
     );
 };
 
+/**
+ * Component to display and allow selection from the first set of chosen values.
+ * @param {Object} props - Component props.
+ * @param {Array} props.stateOneValues - Array of values selected totalling the first step of selected values.
+ * @param {Array} props.selectedValues - Array of currently selected values, specifically 10.
+ * @param {Function} props.handleValueClick - Function to handle the selection of a value.
+ */
 export const TenValues = ({ stateOneValues, selectedValues, handleValueClick }) => {
     return (
         <>
@@ -38,6 +52,13 @@ export const TenValues = ({ stateOneValues, selectedValues, handleValueClick }) 
     );
 };
 
+/**
+ * Component to display and allow selection from the second set of chosen values.
+ * @param {Object} props - Component props.
+ * @param {Array} props.stateTwoValues - Array of values selected totalling 10.
+ * @param {Array} props.selectedValues - Array of currently selected values, specifically 5.
+ * @param {Function} props.handleValueClick - Function to handle the selection of a value.
+ */
 export const FiveValues = ({ stateTwoValues, selectedValues, handleValueClick }) => {
     return (
         <>
@@ -56,6 +77,13 @@ export const FiveValues = ({ stateTwoValues, selectedValues, handleValueClick })
     );
 };
 
+/**
+ * Component to display and allow selection from the third set of chosen values.
+ * @param {Object} props - Component props.
+ * @param {Array} props.stateThreeValues - Array of values selected totalling 5.
+ * @param {Array} props.selectedValues - Array of currently selected values, specifically 3.
+ * @param {Function} props.handleValueClick - Function to handle the selection of a value.
+ */
 export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick }) => {
     return (
         <>
@@ -73,4 +101,3 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
         </>
     );
 };
-    
