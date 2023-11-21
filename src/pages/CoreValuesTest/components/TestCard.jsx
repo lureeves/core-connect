@@ -22,7 +22,7 @@ const TestCard = () => {
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
-    // Current Values
+    // Currently Values
     const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
     const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
     const [step, setStep] = useState(1);
@@ -214,7 +214,6 @@ const TestCard = () => {
             {step >= 2 ? 
                 <ActionButton type="back" onClick={handleBack} isEnabled={'True'} /> 
                 : null }
-
             {/* Next button on every page except last */}
             {step <= 3 ? 
                 <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} /> 
