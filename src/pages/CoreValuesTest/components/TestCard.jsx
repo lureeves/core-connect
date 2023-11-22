@@ -73,7 +73,6 @@ const TestCard = () => {
         }
     }
 
-
     /**
      * Determines if the 'Next' button should be enabled based on the current step and selection.
      */
