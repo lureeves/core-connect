@@ -1,13 +1,21 @@
 import React from 'react';
-import { CoreValueButton } from './Buttons.jsx'
+import { CoreValueButton, ActionButton } from './Buttons.jsx'
 
-
+/**
+ * StartTest component renders the page before inital test to see if user wants to enter the page or not.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Function} props.onStart - The function to handle click events on the values.
+ */
 export const StartTest = ({ onStart }) => {
     return (
-        <div>
-            <h2>Are you ready to start the test?</h2>
-            <button onClick={onStart}>Start Test</button>
-        </div>
+        <>
+            <div className="flex flex-col justify-center items-center">
+                <p className=" text-lg w-[33.1875rem] text-center font-bold leading-[normal] pb-[3.025rem]">
+                    Use this simple test to understand yourself better and learn how you can bring your Core Values into mentorship! 
+                </p>
+                <ActionButton type="start" onClick={onStart} isEnabled={'True'} />
+            </div>
+        </>
     );
 };
 
