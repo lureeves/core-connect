@@ -1,5 +1,14 @@
-*{
-  margin:0px;
-  padding:0px;
-  
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply leading-[normal] m-0;
 }
+
+
+*{
+    font-family: 'Open Sans';
+    margin:0px;
+    padding:0px;
+  }

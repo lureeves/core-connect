@@ -50,7 +50,7 @@ export const ActionButton = ({ type, onClick, isEnabled }) => {
       break;
     case 'start':
       buttonText = 'Start Test';
-      buttonClass = `mt-16 py-2 px-9 rounded-3xl text-white hover:scale-[1.04] float-right 'bg-[#3A2A9B]'`;
+      buttonClass = `flex-shrink-0 w-[13.8125rem] h-[3.125rem] rounded-[25px] bg-[#3a2a9b] text-white hover:scale-[1.04] justify-center items-center`;
       break;
     default:
       buttonText = 'Button';

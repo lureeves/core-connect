@@ -4,9 +4,9 @@ import pfp from '../assets/default_profile.jpg'
 import '../styles/global.css'
 const Header = () => {
   return (
-    <nav className='navbar flex w-screen justify-between p-5 items-center '>
+    <nav className='navbar flex w-screen  p-5 items-center '>
         {/*Logo Container */}
-        <div className='flex logo justify-center items-center'>
+        <div className='flex logo w-6/12 justify-start items-center'>
             <a href="/" className='flex gap-2'>
                 <img className="logo-img" src={Logo} alt="" />
                 <h2>Core Connect</h2>
@@ -15,7 +15,7 @@ const Header = () => {
         </div>
 
         {/*Page Tags*/}
-        <div className='flex justify-around items-center nav-links mr-4'>
+        <div className='flex justify-end w-6/12 items-center nav-links mr-8'>
             <a href="/CoreValueTest">Core Value Test</a>
             <a href="/">Find My Mentor</a>
             <div className='flex gap-2'>
