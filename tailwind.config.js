@@ -1,11 +1,36 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-    content: [
-      "./index.html",
-      "./src/**/*.{js,ts,jsx,tsx}",
-    ],
+module.exports = {
+    content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
-      extend: {},
+      extend: {
+        colors: {
+          white: "#fff",
+          black: "#000",
+          gray: "#1b2033",
+          ghostwhite: "#f3f5fe",
+          darkslateblue: "#2c4193",
+          indigo: "#3a2a9b",
+        },
+        spacing: {},
+        fontFamily: {
+          "open-sans": "'Open Sans'",
+        },
+      },
+      fontSize: {
+        smi: "13px",
+        base: "16px",
+        "4xl": "23px",
+        xs: "12px",
+        sm: "14px",
+        mid: "17px",
+        lg: "18px",
+        xl: "20px",
+        "11xl": "30px",
+        inherit: "inherit",
+      },
     },
-    plugins: [],
-  }
+    corePlugins: {
+      preflight: false,
+    },
+  };
+  
