@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
 import { ActionButton }  from './subComponents/Buttons.jsx'
-import { InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
+import { StartTest, InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
 
 // TestCard component handles the core values test
 const TestCard = () => {
@@ -16,12 +16,13 @@ const TestCard = () => {
     ];
 
     // State for storing selected values at each step
+    const [testStarted, setTestStarted] = useState(false);
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
     const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
     const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(0);
 
     // Handles toggling value selection
     const handleValueClick = (value) => {
@@ -30,6 +31,12 @@ const TestCard = () => {
         } else {
             setSelectedValues([...selectedValues, value]);
         }
+    };
+
+    // Handles next button click logic
+    const handleStart = () => {
+        setTestStarted(true);
+        setStep(step + 1);
     };
     
     // Handles next button click logic
@@ -64,6 +71,9 @@ const TestCard = () => {
     
     // Render the correct grid based on the current step
     const GridRender = () => {
+        if (!testStarted) {
+            return <StartTest onStart={handleStart} />;
+        }
         switch(step) {
             case 1: return <InitialValues coreValues={coreValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 2: return <TenValues stateOneValues={stateOneValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
@@ -96,7 +106,7 @@ const TestCard = () => {
             {/* Back button only after first page */}
             {step >= 2 && <ActionButton type="back" onClick={handleBack} isEnabled={'True'} />}
             {/* Next button on every page except last */}
-            {step <= 3 && <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} />}
+            {step != 0 && step <= 3 && <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} />}
             {/* Submit button only on last page*/}
             {step === 4 && <ActionButton type="submit" onClick={handleSubmit} isEnabled={NextConditional()} />}
         </div> </>

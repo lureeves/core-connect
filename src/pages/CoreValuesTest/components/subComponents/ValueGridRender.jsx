@@ -1,6 +1,17 @@
 import React from 'react';
 import { CoreValueButton } from './Buttons.jsx'
 
+
+export const StartTest = ({ onStart }) => {
+    return (
+        <div>
+            <h2>Are you ready to start the test?</h2>
+            <button onClick={onStart}>Start Test</button>
+        </div>
+    );
+};
+
+
 /**
  * InitialValues component renders the initial set of core values for the user to select from.
  * @param {Object} props - The properties passed to the component.
