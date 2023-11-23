@@ -10,7 +10,7 @@ export const StartTest = ({ onStart }) => {
     return (
         <>
             <div className="flex flex-col justify-center items-center">
-                <p className=" text-lg w-[33.1875rem] text-center font-bold leading-[normal] pb-[3.025rem]">
+                <p className="font-bold text-lg w-[33.1875rem] text-center leading-[normal] pb-[3.025rem]">
                     Use this simple test to understand yourself better and learn how you can bring your Core Values into mentorship! 
                 </p>
                 <ActionButton type="start" onClick={onStart} isEnabled={'True'} />
@@ -106,7 +106,7 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
     return (
         <>
             <h3 className='mb-16 font-lg font-semibold mx-[92px]'>Of the selected values below, narrow down to 3!</h3>
-            <div className='gap-[50px] mx-[92px] my-[75px] 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+            <div className='gap-x-[20px] gap-y-[38px] mx-[92px] my-[75px] 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
                 {stateThreeValues.map(value => (
                     <CoreValueButton
                         key={value}
@@ -126,13 +126,13 @@ export const FinalValues = ({ finalValues }) => {
         <div className=''>
             <>
                 <div className="flex flex-col justify-center items-center" >
-                    <h3 className='mb-[47px] font-lg font-semibold'>Congratulations on taking the time to learn more about yourself!</h3>
+                    <h3 className='mb-[47px] font-lg font-bold'>Congratulations on taking the time to learn more about yourself!</h3>
                     <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
                     <div className='flex'>
                         <img src="https://via.placeholder.com/150" alt="Placeholder" className="mr-[25px] rounded-[10px] " />
                         <div className='flex flex-col'>
                             {finalValues.map(value => (
-                                <div key={value} className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF]">
+                                <div key={value} className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF] text-center">
                                     {value}
                                 </div>
                             ))}

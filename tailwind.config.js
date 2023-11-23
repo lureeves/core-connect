@@ -28,6 +28,15 @@ module.exports = {
         "11xl": "30px",
         inherit: "inherit",
       },
+      fontWeight: {
+        'thin': 100,
+        'extralight': 200,
+        'light': 300,
+        'normal': 400,
+        'medium': 500,
+        'semibold': 600,   
+        'bold': 700,
+      },
     },
   };
   
