@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
 import { ActionButton }  from './subComponents/Buttons.jsx'
-import { StartTest, InitialValues, TenValues, FiveValues, ThreeValues } from './subComponents/ValueGridRender.jsx';
+import { StartTest, InitialValues, TenValues, FiveValues, ThreeValues, FinalValues } from './subComponents/ValueGridRender.jsx';
 
 // TestCard component handles the core values test
 const TestCard = () => {
@@ -20,6 +20,7 @@ const TestCard = () => {
     const [stateOneValues, setStateOneValues] = useState([]);
     const [stateTwoValues, setStateTwoValues] = useState([]);
     const [stateThreeValues, setStateThreeValues] = useState([]);
+    const [finalValues, setFinalValues] = useState([]);
     const [shownValues, setShownValues] = useState([]); // Shown for that page (selected values from the last step)
     const [selectedValues, setSelectedValues] = useState([]); // Currently selected values
     const [step, setStep] = useState(0);
@@ -66,6 +67,8 @@ const TestCard = () => {
     
     // Handles submit button click logic 
     const handleSubmit = () => {
+        setFinalValues(selectedValues);
+        setStep(5);
         localStorage.setItem('selectedValues', JSON.stringify(selectedValues));
     };
     
@@ -79,6 +82,7 @@ const TestCard = () => {
             case 2: return <TenValues stateOneValues={stateOneValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 3: return <FiveValues stateTwoValues={stateTwoValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
             case 4: return <ThreeValues stateThreeValues={stateThreeValues} selectedValues={selectedValues} handleValueClick={handleValueClick} />;
+            case 5: return <FinalValues finalValues={selectedValues} />;
             default: return <DefaultComponent />;
         }
     }
@@ -99,17 +103,18 @@ const TestCard = () => {
     }, [step, shownValues]);
     
     return (
-        <> <div className='w-9/12 py-14 px-24 mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix'>
+        <> 
+        <div className={`w-${step === 5 ? '7/12' : '9/12'} pt-[65px] pb-[50px] mx-auto text-lg border-transparent rounded-xl shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px] clearfix`}> 
             {/* Grid of core values */}
             {GridRender()}
-
             {/* Back button only after first page */}
-            {step >= 2 && <ActionButton type="back" onClick={handleBack} isEnabled={'True'} />}
+            {step != 5 && step >= 2 && <ActionButton type="back" onClick={handleBack} isEnabled={'True'} />}
             {/* Next button on every page except last */}
             {step != 0 && step <= 3 && <ActionButton type="next" onClick={handleNext} isEnabled={NextConditional()} />}
             {/* Submit button only on last page*/}
             {step === 4 && <ActionButton type="submit" onClick={handleSubmit} isEnabled={NextConditional()} />}
-        </div> </>
+        </div> 
+        </>
   );
 };
 
