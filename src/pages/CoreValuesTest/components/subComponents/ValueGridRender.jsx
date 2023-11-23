@@ -30,8 +30,8 @@ export const StartTest = ({ onStart }) => {
 export const InitialValues = ({ coreValues, selectedValues, handleValueClick }) => {
     return (
         <>
-            <h3 className='mb-16 font-lg font-semibold'>Select all your core values from the list below. Be sure to choose more than 10!</h3>
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+            <h3 className='mb-16 font-lg font-semibold mx-[92px]'>Select all your core values from the list below. Be sure to choose more than 10!</h3>
+            <div className='gap-x-[20px] gap-y-[38px] mx-[92px] my-[75px]'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
                 {coreValues.map(value => (
                     <CoreValueButton
                         key={value}
@@ -55,8 +55,8 @@ export const InitialValues = ({ coreValues, selectedValues, handleValueClick }) 
 export const TenValues = ({ stateOneValues, selectedValues, handleValueClick }) => {
     return (
         <>
-            <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 10!</h3>
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+            <h3 className='mb-16 font-lg font-semibold mx-[92px]'>Of the selected values below, narrow down to 10!</h3>
+            <div className='gap-x-[20px] gap-y-[38px] mx-[92px] my-[75px] 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
                 {stateOneValues.map(value => (
                     <CoreValueButton
                         key={value}
@@ -80,8 +80,8 @@ export const TenValues = ({ stateOneValues, selectedValues, handleValueClick }) 
 export const FiveValues = ({ stateTwoValues, selectedValues, handleValueClick }) => {
     return (
         <>
-            <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 5!</h3>
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+            <h3 className='mb-16 font-lg font-semibold mx-[92px]'>Of the selected values below, narrow down to 5!</h3>
+            <div className='gap-x-[20px] gap-y-[38px] mx-[92px] my-[75px] 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
                 {stateTwoValues.map(value => (
                     <CoreValueButton
                         key={value}
@@ -105,8 +105,8 @@ export const FiveValues = ({ stateTwoValues, selectedValues, handleValueClick })
 export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick }) => {
     return (
         <>
-            <h3 className='mb-16 font-lg font-semibold'>Of the selected values below, narrow down to 3!</h3>
-            <div className='gap-5 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
+            <h3 className='mb-16 font-lg font-semibold mx-[92px]'>Of the selected values below, narrow down to 3!</h3>
+            <div className='gap-[50px] mx-[92px] my-[75px] 'style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
                 {stateThreeValues.map(value => (
                     <CoreValueButton
                         key={value}
@@ -117,5 +117,29 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
                 ))}
             </div>
         </>
+    );
+};
+
+
+export const FinalValues = ({ finalValues }) => {
+    return (
+        <div className=''>
+            <>
+                <div className="flex flex-col justify-center items-center" >
+                    <h3 className='mb-[47px] font-lg font-semibold'>Congratulations on taking the time to learn more about yourself!</h3>
+                    <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
+                    <div className='flex'>
+                        <img src="https://via.placeholder.com/150" alt="Placeholder" className="mr-[25px] rounded-[10px] " />
+                        <div className='flex flex-col'>
+                            {finalValues.map(value => (
+                                <div key={value} className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF]">
+                                    {value}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </>
+        </div>
     );
 };
