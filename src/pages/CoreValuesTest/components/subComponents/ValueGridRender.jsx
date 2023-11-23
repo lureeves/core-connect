@@ -121,25 +121,39 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
 };
 
 
+/**
+ * FinalValues component displays the top 3 selected core values with dynamically calculated widths.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Array} props.finalValues - An array of the final three selected core values.
+ */
 export const FinalValues = ({ finalValues }) => {
+    // Calculates the width for a core value based on its character length.
+    const calculateWidth = (value) => {
+        const baseWidth = 20; // Base width
+        const widthPerCharacter = 10; // Additional width per character
+        return `${baseWidth + (value.length * widthPerCharacter)}px`;
+    };
+
     return (
         <div className=''>
-            <>
-                <div className="flex flex-col justify-center items-center" >
-                    <h3 className='mb-[47px] font-lg font-bold'>Congratulations on taking the time to learn more about yourself!</h3>
-                    <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
-                    <div className='flex'>
-                        <img src="https://via.placeholder.com/150" alt="Placeholder" className="mr-[25px] rounded-[10px] " />
-                        <div className='flex flex-col'>
-                            {finalValues.map(value => (
-                                <div key={value} className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF] text-center">
-                                    {value}
-                                </div>
-                            ))}
-                        </div>
+            <div className="flex flex-col justify-center items-center">
+                <h3 className='mb-[47px] font-lg font-bold'>Congratulations on taking the time to learn more about yourself!</h3>
+                <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
+                <div className='flex'>
+                    <img src="https://via.placeholder.com/150" alt="Placeholder" className="mr-[25px] rounded-[10px]" />
+                    <div className='flex flex-col'>
+                        {finalValues.map(value => (
+                            <div 
+                                key={value} 
+                                className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF] text-center"
+                                style={{ width: calculateWidth(value) }}
+                            >
+                                {value}
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </>
+            </div>
         </div>
     );
 };
