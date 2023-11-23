@@ -3,6 +3,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
       extend: {
+        fontFamily: {
+            'sans': ["Open Sans"],
+        },
         colors: {
           white: "#fff",
           black: "#000",
@@ -12,9 +15,6 @@ module.exports = {
           indigo: "#3a2a9b",
         },
         spacing: {},
-        fontFamily: {
-          "open-sans": "'Open Sans'",
-        },
       },
       fontSize: {
         smi: "13px",

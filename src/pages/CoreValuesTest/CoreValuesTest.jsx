@@ -11,8 +11,8 @@ const CoreValuesTest = () => {
         <div>
             {/* Heading */}
             <div className='py-20 w-9/12 mx-auto m-0 p-0'>
-                <h1 className="text-3xl font-semibold pb-5">Grow your confidence by aligning with yourself.</h1>
-                <h1 className='text-lg'>Focusing on your values reminds you of what’s really important and puts the stressors like uncertainty and overwhelm that lead to issues like imposter syndrome and employee dissatisfaction into perspective. Research studies have shown that those who think about their highest values before a stressful event actually experience less stress and show a substantial decrease in the stress hormone, cortisol, compared to control groups.</h1>
+                <h1 className="text-[30px] font-semibold pb-5">Grow your confidence by aligning with yourself.</h1>
+                <h1 className='text-lg '>Focusing on your values reminds you of what’s really important and puts the stressors like uncertainty and overwhelm that lead to issues like imposter syndrome and employee dissatisfaction into perspective. Research studies have shown that those who think about their highest values before a stressful event actually experience less stress and show a substantial decrease in the stress hormone, cortisol, compared to control groups.</h1>
             </div>
             
             {/* Test card */}
