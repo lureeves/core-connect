@@ -2,6 +2,7 @@ import React from 'react'
 import pfp from '../../assets/default_profile.jpg'
 import Marker from '../../assets/locationMarker.svg';
 import Review from './components/Review.jsx'
+import Calendar from './components/Calendar.jsx';
 
 const MentorProfile = () => {
   return (
@@ -89,10 +90,10 @@ const MentorProfile = () => {
             </div>
 
             {/* Right Column/ Calendar */}
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 w-full '>
                 <h2 className='font-bold'>My Availability</h2>
-                <div>
-                    Calendar
+                <div className='flex w-fulljustify-start '>
+                    <Calendar />
                 </div>
             </div>
         </div>
