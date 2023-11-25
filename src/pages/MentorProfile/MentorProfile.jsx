@@ -7,10 +7,16 @@ import RequestForm from './components/RequestForm.jsx';
 const MentorProfile = () => {
   const [openForm, setOpenForm ] = useState(false);
 
+  const closeForm = () => setOpenForm(false)
+  const openedForm = () => {
+    setOpenForm(true);
+    console.log("opening");
+
+  }
   return (
     <>
         
-        <div className={`w-screen flex flex-col items-center mt-24 mx-24 bg-opacity-20 backdrop-sm`}>
+        <div className={`w-screen flex flex-col items-center mt-24 mx-24 `}>
             {/* Profile Picture and header */}
             <div className='w-10/12 flex gap-6'>
                 <div>
@@ -97,7 +103,7 @@ const MentorProfile = () => {
                 <div className='flex flex-col gap-4 w-full '>
                     <h2 className='font-bold'>My Availability</h2>
                     <div className='flex w-fulljustify-start '>
-                        <Calendar />
+                        <Calendar open={openForm} onOpen={openedForm}/>
                     </div>
                 </div>
             </div>
@@ -116,7 +122,10 @@ const MentorProfile = () => {
         
         </div>
         <div>
-            <RequestForm />
+            {
+                openForm && <RequestForm open={openForm} onClosed={closeForm} />
+            }
+            
         </div>
     </>
   )

@@ -7,7 +7,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { FakeAvailability } from '../../../data/FakeAvailability';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import arrow from '../../../assets/arrow.svg'
-import '../components/calendar.css'
 
 const theme = createTheme({
     components: {
@@ -93,7 +92,7 @@ const theme = createTheme({
 
   
   
-const Calendar = () => {
+const Calendar = (props) => {
   const [date, setDate] = useState(dayjs);
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(null);
@@ -138,7 +137,7 @@ const Calendar = () => {
                     return <button key={index} onClick={()=>{handleTimeSelection(index)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===index?'bg-[#6F789A] text-white': ''} `}>{times}</button>
                 })}
             </div>
-            <button onClick={()=>{setOpen(false)}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
+            <button onClick={()=>{setOpen(false); props.onOpen();}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
         </div>
         
     </div>
