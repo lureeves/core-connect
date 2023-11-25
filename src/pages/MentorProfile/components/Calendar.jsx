@@ -5,6 +5,8 @@ import {   DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { FakeAvailability } from '../../../data/FakeAvailability';
+import { PickersDay } from '@mui/x-date-pickers/PickersDay';
+import arrow from '../../../assets/arrow.svg'
 import '../components/calendar.css'
 
 const theme = createTheme({
@@ -12,70 +14,131 @@ const theme = createTheme({
       MuiDateCalendar: {
         styleOverrides: {
           root:{
-            display: 'flex',
-            justifyContent: 'center', // Center content horizontally
+            justifyContent: '', // Center content horizontally
             alignItems: 'center',
             width:'27.5rem',
-            height:'25.125rem',
-            fontWeight: '600',
-            color: 'red'
-            
-          },
-          monthContainer:{
-            color:'red'
+            height:'26.125rem', 
+            borderRadius:"0.625"    
           }
-          
         },
       },
-      MuiPickersArrowSwitcher: {
-        styleOverrides: {
-          LeftArrowIcon:{
-           
+      MuiPickersDay:{
+        styleOverrides:{
+          root:{
+            fontSize:'0.875rem',
+            padding:'1.2rem',
+            marginRight:'.5rem',
+            marginLeft:'.6rem',
+            marginBottom:'.2rem',
+            fontFamily:'Open sans'
+            
           }
         }
       },
-      MuiDateCalendarMonthContainer:{
+      MuiDayCalendar:{
         styleOverrides:{
-            color:'red'
+          root:{
+            width:'27rem'
+          },
+          header:{
+            fontWeight:'600',
+            gap:'1rem',
+          
+          }
+        }
+      },
+      MuiPickersCalendarHeader:{
+        // Month and arrow switchers
+        styleOverrides:{
+          // all of it
+          root:{
+            width:"100%",
+            
+          },
+          // the month name
+          label:{
+            fontSize:'1.125rem',
+            fontWeight:'700',
+            marginLeft:'7rem',
+            width:"100%",
+            textTransform:"uppercase",
+            lineHeight:"normal",
+            fontFamily:'Open sans'
+            
+            
+          }
+        }
+      },
+      MuiTypography:{
+        // week day names
+        styleOverrides:{
+          root:{
+            fontSize:'0.9375rem',
+            fontWeight:'600', 
+            fontFamily:'Open sans'   
+          }
+        }
+      },
+      MuiPickersArrowSwitcher:{
+        // arrows
+        styleOverrides:{
+          root:{
+            height:"30px"
+          }
         }
       }
-     
+
     },
   });
+
+  
   
 const Calendar = () => {
   const [date, setDate] = useState(dayjs);
   const [open, setOpen] = useState(false);
+  const [time, setTime] = useState(null);
 
+  const handleTimeSelection = (x) =>{
+    setTime(x); 
+    console.log(x);
+  }
   return (
     <div className=' flex flex-col items-start '>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider theme={theme}>
 
-                <div onClick={()=>{}}>
+                <div onClick={()=>{setOpen(true)}}>
                     <DateCalendar className='border border-slate-200 rounded-md w-32'
                         value={date}
+                        views={['day']}
                         onChange={(newDate)=>{setDate(newDate); console.log(`${date.$D} ${date.$M +1} ${date.$y}`)}}
-                        
                         dayOfWeekFormatter={(_day, weekday) => `${weekday.format('ddd')}`}
-                        fontWeight={500}
                         disablePast={true}
-                        
-                        
-                        
+                        sx={{
+                         
+
+                        }}
                         
                     />
+                   
                 </div>
                 
              </ThemeProvider>
         </LocalizationProvider>
-        <div className={``}>
-            <button>PST</button>
-            <div className='grid grid-cols-4'>
-                {FakeAvailability[1].map((time, index)=>{
-                    return <button key={index} className='mx-1 border border-slate-200 px-4 py-2 '>{time}</button>
+        <div className={open?`p-5 border border-slate-200 w-[27.5rem] flex flex-col items-center gap-5`: "hidden"}>
+          <div className=' w-full ml-2 '>
+            <div className='flex w-fit m-1 border border-slate-200 text-[0.9375rem] font-sans font-semibold shadow-md rounded-md px-[0.625rem] py-[0.3125rem] gap-[0.5625rem]'>
+              <button disabled={true}>PST</button>
+              <img className='rotate-180' src={arrow} alt="" />
+            </div>
+          </div>
+           
+            <div className='flex flex-wrap w-full mb-5 mx-1'>
+                {FakeAvailability[1].map((times, index)=>{
+                    return <button key={index} onClick={()=>{handleTimeSelection(index)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===index?'bg-[#6F789A] text-white': ''} `}>{times}</button>
                 })}
             </div>
+            <button onClick={()=>{setOpen(false)}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
         </div>
         
     </div>
