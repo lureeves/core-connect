@@ -4,11 +4,11 @@ import '../styles/global.css';
 
 const Footer = () => {
   return (
-    <footer className="footer bg-base-200 text-base-content mt-10">
+    <footer className="footer bg-base-200 text-base-content mt-10  w-full bottom-0">
         <div className="flex justify-between py-4">
             {/* Left side container */}
             <div className="left-content">
-                <div className='flex logo justify-center items-center'>
+                <div className='flex logo justify-center items-center ml-3'>
                     <a href="/" className='flex gap-2'>
                         <img className="logo-img" src={Logo} alt="Core Connect Logo" />
                         <h2>Core Connect</h2>
