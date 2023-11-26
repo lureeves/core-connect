@@ -4,7 +4,7 @@ import '../styles/global.css';
 
 const Footer = () => {
   return (
-    <footer className="footer bg-base-200 text-base-content mt-10  w-screen bottom-0">
+    <footer className="footer bg-base-200 text-base-content mt-10  w-full bottom-0">
         <div className="flex justify-between py-4">
             {/* Left side container */}
             <div className="left-content">
