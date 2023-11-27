@@ -4,7 +4,7 @@ import pfp from '../assets/default_profile.jpg'
 import '../styles/global.css'
 const Header = () => {
   return (
-    <nav className='navbar flex w-full  p-5 items-center '>
+    <nav className='navbar flex w-full p-5 items-center '>
         {/*Logo Container */}
         <div className='flex logo w-6/12 justify-start items-center'>
             <a href="/" className='flex gap-2'>
