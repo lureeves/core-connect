@@ -4,40 +4,68 @@ import Marker from '../../assets/locationMarker.svg';
 import Review from './components/Review.jsx'
 import Calendar from './components/Calendar.jsx';
 import RequestForm from './components/RequestForm.jsx';
-const MentorProfile = () => {
-  const [openForm, setOpenForm ] = useState(false);
+import { MentorData } from '../../data/GoogleDriveMentors.jsx';
 
+/** */
+
+const randomLocations = ["Chicago, IL","Los Angeles, CA","New York, NY","Dallas, TX","Minneapolis, MN"]
+const MentorProfile = (props) => {
+//   temp selector
+  const [temp,setTemp] = useState(0);
+
+
+  const [openForm, setOpenForm ] = useState(false);
+  const name = MentorData[temp]?.first_name + " " + MentorData[temp]?.last_name;
+  const help_with =MentorData[temp].help_with.split(",");
   const closeForm = () => setOpenForm(false)
   const openedForm = () => {
     setOpenForm(true);
     console.log("opening");
 
   }
+
+  const tempProfileChanger = (num) =>{
+    setTemp(num);
+  }
   return (
     <>
         <div className='w-full flex justify-center'>
             <div className={`w-fit flex flex-col items-center mt-24 mx-24 z-0 ${openForm?'filter blur-md':''} `}>
                 {/* Profile Picture and header */}
+                <h1>Test Buttons</h1>
+                <div className='flex gap-3'>
+                    <button onClick={()=>tempProfileChanger(0)} className='bg-slate-200 p-3 rounded-2xl'>1</button>
+                    <button onClick={()=>tempProfileChanger(1)} className='bg-slate-200 p-3 rounded-2xl'>2</button>
+                    <button onClick={()=>tempProfileChanger(2)} className='bg-slate-200 p-3 rounded-2xl'>3</button>
+                    <button onClick={()=>tempProfileChanger(3)} className='bg-slate-200 p-3 rounded-2xl'>4</button>
+                    <button onClick={()=>tempProfileChanger(4)} className='bg-slate-200 p-3 rounded-2xl'>5</button>
+                </div>
                 <div className='w-9/12 flex gap-6'>
+                    
                     <div>
                         <img className="w-48 rounded-md" src={pfp} alt="" />
                     </div>
                     <div className='flex flex-col justify-end gap-2'>
-                        <h2 className='font-bold text-2xl leading-none'>Name</h2>
-                        <h3 className='text-xl leading-none'>Work at Company</h3>
+                        <h2 className='font-bold text-[1.5625rem] leading-none'>{name=="undefined undefined"? "Name": name}</h2>
+                        <div className='flex gap-1 font-sans text-[1.3125rem]'>
+                            <h3 className='font-semibold'>{MentorData[temp].role}</h3>
+                            <h3>at</h3>
+                            <h3 className='font-semibold'>{MentorData[temp].company}</h3>
+                        </div>
+                        
                         <div className='flex gap-1 '>
                             <img className='w-4' src={Marker} alt="" />
-                            <p>City, State</p>
+                            <p className='font-semibold '>{randomLocations[temp]}</p>
                         </div>
-                        <div className='flex gap-1'>
-                            <p className='font-semibold bg-[#D7E0FF] px-1 rounded-md uppercase'>
-                                Value 1
+                        <div className='flex gap-[.625rem]'>
+                            <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
+                                {MentorData[temp].core_value_1}
                             </p>
-                            <p className='font-semibold bg-[#D7E0FF] px-1 rounded-md uppercase'>
-                                Value 2
+                            <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
+                                {MentorData[temp].core_value_2}
                             </p>
-                            <p className='font-semibold bg-[#D7E0FF] px-1 rounded-md uppercase'>
-                                Value 3
+                            <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
+                                {MentorData[temp].core_value_3}
                             </p>
                         </div>
                     </div>
@@ -91,10 +119,12 @@ const MentorProfile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-col gap-3 border border-slate-200 p-3 px-5 rounded-md'>
+                        <div className='flex flex-col w-[33.25rem] h-[8.375rem] gap-[1.69rem] border border-slate-200 py-[1.69rem] px-[1.44rem] rounded-md'>
                             <h3 className='font-bold text-lg'>What I can help with</h3>
-                            <div className='mx-4 font-medium'>
-                                Things that I can help with
+                            <div className='flex mx-4 gap-[0.625rem] font-medium'>
+                                {help_with.map((val)=>{
+                                    return <div className='font-sans text-[0.9375rem] font-semibold'>{val}</div>
+                                })}
                             </div>
                         </div>
                     </div>
