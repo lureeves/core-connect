@@ -17,7 +17,7 @@ const Home = () => {
      }
   }
   return (
-    <div className='text-black flex flex-col items-center w-screen '>
+    <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
         {/* Intro Section */}
         <div className='flex flex-col items-center w-9/12'>
             {/* Welcome Section */}
@@ -99,31 +99,16 @@ const Home = () => {
             <h2 className='text-[1.1875rem] font-semibold self-start'>Featuring New Mentors</h2>
             {/* Design mentors */}
             <div className='flex flex-col gap-4'>
-                <h2 className='text-[base] font-semibold'>DESIGN</h2>
-                <div className='grid grid-cols-4 gap-5 '>
+                <h2 className='text-[base] font-semibold'></h2>
+                <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
                     <MentorCard id={0}/>
                     <MentorCard id={1}/>
                     <MentorCard id={2}/>
                     <MentorCard id={3}/>
-                
-                </div>
-            </div>
-
-            {/* PM Mentors */}
-            <div className='flex flex-col gap-4'>
-                <h2 className='text-base font-semibold'>PRODUCT MANAGEMENT</h2>
-                <div className='grid grid-cols-4 gap-5 '>
                     <MentorCard id={4}/>
                     <MentorCard id={5}/>
                     <MentorCard id={6}/>
                     <MentorCard id={7}/>
-                </div>
-            </div>
-
-            {/* Engineering Mentors */}
-            <div className='flex flex-col gap-4'>
-                <h2 className='text-base font-semibold'> ENGINEERING</h2>
-                <div className='grid grid-cols-4 gap-5 '>
                     <MentorCard id={8}/>
                     <MentorCard id={9}/>
                     <MentorCard id={10}/>

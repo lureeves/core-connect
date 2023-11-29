@@ -10,8 +10,7 @@ const Header = () => {
             <a href="/" className='flex gap-2'>
                 <img className="logo-img" src={Logo} alt="" />
                 <h2 className="font-['Poppins'] font-[24px] tracking-[-1.08] text-[#1B2033]">Core Connect</h2>
-            </a> 
-            
+            </a>    
         </div>
 
         {/*Page Tags*/}
