@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '/public/logo.png';
-import pfp from '../assets/default_profile.jpg'
+import pfp from '../assets/SeanPfp.png'
 import '../styles/global.css'
 const Header = () => {
   return (
@@ -18,10 +18,13 @@ const Header = () => {
         <div className='flex justify-end w-6/12 items-center nav-links mr-8'>
             <a href="/CoreValueTest">Core Value Test</a>
             <a href="/">Find My Mentor</a>
-            <div className='flex gap-2'>
-                <img className="pfp" src={pfp} alt="" />
-                <h2>Profile</h2>
-            </div>
+            <a href="/MentorProfile">
+                <div className='flex gap-2'>
+                    <img className="pfp" src={pfp} alt="" />
+                    <h2>Sean</h2>
+                </div>
+            </a>
+            
         </div>
     </nav>
   )
