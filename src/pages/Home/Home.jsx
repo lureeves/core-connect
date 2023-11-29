@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
         {/* Intro Section */}
-        <div className='flex flex-col items-center w-9/12'>
+        <div className='flex flex-col items-center w-[67.75rem]'>
             {/* Welcome Section */}
             <div className="flex flex-col text-[2.5rem] font-bold mt-[4.96rem] mb-[3.1875rem]">
                 <h1 className="text-[2.5rem] font-['Poppins'] mb-[0.75rem]">Welcome!</h1>
@@ -47,7 +47,7 @@ const Home = () => {
         {/* End Intro Section */}
 
         {/* Filter Mentor Section */}
-        <div className='flex flex-col items-center mt-[7.5rem] w-9/12'>
+        <div className='flex flex-col items-center mt-[7.5rem] w-[67.75rem]'>
             {/* Search Buttons and Title */}
             <div className='flex flex-col items-start '>
                 <h2 className='text-[1.5rem] font-semibold '>Find your mentor today!</h2>
