@@ -8,6 +8,12 @@ import { FakeAvailability } from '../../../data/FakeAvailability';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import arrow from '../../../assets/arrow.svg'
 
+
+/**
+ * @param createTheme is Mui way of transforming the calendar component
+ * Each component within it has its own name to change.
+ *  
+*/ 
 const theme = createTheme({
     components: {
       MuiDateCalendar: {
@@ -91,12 +97,21 @@ const theme = createTheme({
   });
 
   
-  
+  /**
+   * 
+   * @param {boolean} props.open 
+   * @returns a true or false if the modal is open for the request form
+   * @param {function} props.onOpen 
+   * @returns a function that changes if the modal is open or not.
+   */
+
 const Calendar = (props) => {
   const [date, setDate] = useState(dayjs);
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(null);
 
+  // Handles the time (X:XX) selected.
+  // Chooses which index so it can pass through to the request form
   const handleTimeSelection = (x) =>{
     setTime(x); 
     console.log(x);
@@ -114,8 +129,7 @@ const Calendar = (props) => {
                         dayOfWeekFormatter={(_day, weekday) => `${weekday.format('ddd')}`}
                         disablePast={true}
                         sx={{
-                         
-
+                          
                         }}
                         
                     />
