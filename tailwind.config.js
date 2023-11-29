@@ -3,6 +3,9 @@ module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
     theme: {
       extend: {
+        width: {
+            'max-content': 'max-content',
+          },
         fontFamily: {
             'sans': ["Open Sans"],
         },
