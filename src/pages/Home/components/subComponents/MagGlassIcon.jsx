@@ -1,6 +1,3 @@
-    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path id="Vector" d="M10.8746 11.352L14 14.5M12.5556 7.27778C12.5556 10.4688 9.96877 13.0556 6.77778 13.0556C3.5868 13.0556 1 10.4688 1 7.27778C1 4.0868 3.5868 1.5 6.77778 1.5C9.96877 1.5 12.5556 4.0868 12.5556 7.27778Z" stroke="#343434" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
 import React from 'react';
 
 const MagGlassIcon = () => (
