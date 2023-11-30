@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { MagGlass, arrow, filter } from '../../assets';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import MentorCard from './components/MentorCard.jsx'
@@ -7,6 +7,9 @@ import '../Home/Home.css'
 
 const Home = () => {
     const [flip, setFlip] = useState(0);
+
+    // Logs found indexes in search
+    const [mentorIndexes, setMentorIndexes] = useState([]);
 
     // Flips arrow on search filter
     const Flipping = (num)=>{
@@ -17,6 +20,11 @@ const Home = () => {
         setFlip(num);
         }
     };
+
+    // Logs found indexes in search
+    useEffect(() => {
+        console.log(mentorIndexes);
+    }, [mentorIndexes]);
 
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
@@ -55,7 +63,7 @@ const Home = () => {
                 <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
 
                     {/* Role Search */}
-                    <RoleSearch />
+                    <RoleSearch setMentorIndexes={setMentorIndexes} />
 
                     {/* Industry Search */}
                     <div className='filter-container flex justify-between items-center w-[13.5rem] h-10 py-3 pr-6 pl-7 gap-3'
@@ -94,24 +102,14 @@ const Home = () => {
 
             {/* Mentor Cards Section*/}
             <div className='flex flex-col items-center'>
-                <h2 className='text-[1.1875rem] font-semibold self-start'>Featuring New Mentors</h2>
+                <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>
                 {/* Design mentors */}
-                <div className='flex flex-col gap-4'>
-                    <h2 className='text-[base] font-semibold'></h2>
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
-                        <MentorCard id={0}/>
-                        <MentorCard id={1}/>
-                        <MentorCard id={2}/>
-                        <MentorCard id={3}/>
-                        <MentorCard id={4}/>
-                        <MentorCard id={5}/>
-                        <MentorCard id={6}/>
-                        <MentorCard id={7}/>
-                        <MentorCard id={8}/>
-                        <MentorCard id={9}/>
-                        <MentorCard id={10}/>
-                        <MentorCard id={11}/>
-                    </div>
+                        {mentorIndexes.length > 0 ? (
+                            mentorIndexes.map((index) => <MentorCard key={index} id={index} />)
+                        ) : (
+                            Array.from({ length: 12 }, (_, index) => <MentorCard key={index} id={index} />)
+                        )}
                 </div>
             </div>
             {/* End Mentor Card Section */}
