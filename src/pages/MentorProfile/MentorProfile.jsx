@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import pfp from '../../assets/default_profile.jpg'
 import Marker from '../../assets/locationMarker.svg';
 import Review from './components/Review.jsx'
 import Calendar from './components/Calendar.jsx';
@@ -17,10 +16,7 @@ const MentorProfile = (props) => {
 
 
   const [openForm, setOpenForm ] = useState(false);
-  const [reviews, setReviews] = useState([1,2,3]);
-  const randomUserUrl = `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 100)}.jpg`;
-  const name = MentorData[temp]?.first_name + " " + MentorData[temp]?.last_name;
-  const help_with =MentorData[temp].help_with.split(",");
+
   const closeForm = () => setOpenForm(false)
   const openedForm = () => {
     setOpenForm(true);
