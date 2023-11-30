@@ -10,7 +10,7 @@ import '../../Home/Home.css'
  * It features a search input field and a dropdown that displays
  * matching roles based on the user's input.
  */
-const RoleSearch = () => {
+const RoleSearch = (props) => {
     // State to hold the current search term
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -30,10 +30,8 @@ const RoleSearch = () => {
         const results = MentorData.filter((mentor) => 
             mentor.role.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        results.forEach(filteredMentor => {
-            console.log(`${filteredMentor.first_name} ${filteredMentor.last_name} - ${filteredMentor.role}`);
-        });
-        console.log('--- End of set ---');
+        const indexes = results.map(mentor => MentorData.indexOf(mentor));
+        props.setMentorIndexes(indexes);
     }, [searchTerm]);
 
     return (
