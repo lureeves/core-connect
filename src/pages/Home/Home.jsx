@@ -8,7 +8,27 @@ import '../Home/Home.css'
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
+<<<<<<< HEAD
     const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
+=======
+  const Flipping = (num)=>{
+     if (num==flip){
+      setFlip(0);
+     }
+     else{
+      setFlip(num);
+     }
+  }
+  return (
+    <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
+        {/* Intro Section */}
+        <div className='flex flex-col items-center w-[67.75rem]'>
+            {/* Welcome Section */}
+            <div className="flex flex-col text-[2.5rem] font-bold mt-[4.96rem] mb-[3.1875rem]">
+                <h1 className="text-[2.5rem] font-['Poppins'] mb-[0.75rem]">Welcome!</h1>
+                <h3 className='text-[1.875rem]'>Gain certainty and confidence in your career journey through the guidance and support of mentorship.</h3>
+            </div>
+>>>>>>> 66d4c05 (A few fixes. Adding more data)
 
     // Flips arrow on search filter
     const Flipping = (num)=>{
@@ -50,9 +70,26 @@ const Home = () => {
             </div>
             {/* End Intro Section */}
 
+<<<<<<< HEAD
             {/* Filter Mentor Section */}
             <div className='flex flex-col items-start mt-[7.5rem] w-9/12'>
                 <h2 className='flex flex-col items-start text-[1.5rem] font-semibold '>Find your mentor today!</h2>
+=======
+            {/* Take Test Section */}
+            <div className='test flex flex-col items-center mt-[3.19rem] gap-6'>
+                <h3>Do you know your Core Values? Take a simple test to find out!</h3>
+                <a href="/CoreValueTest"><button className="bg-[#2C4193] text-white text-[0.9375rem] font-semibold rounded-[4px] w-40 h-11">Take My Test</button></a>
+            </div>
+        </div>
+        {/* End Intro Section */}
+
+        {/* Filter Mentor Section */}
+        <div className='flex flex-col items-center mt-[7.5rem] w-[67.75rem]'>
+            {/* Search Buttons and Title */}
+            <div className='flex flex-col items-start '>
+                <h2 className='text-[1.5rem] font-semibold '>Find your mentor today!</h2>
+
+>>>>>>> 66d4c05 (A few fixes. Adding more data)
                 {/* Filtering Input Field */}
                 <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
 
