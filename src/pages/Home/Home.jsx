@@ -49,55 +49,51 @@ const Home = () => {
             {/* End Intro Section */}
 
             {/* Filter Mentor Section */}
-            <div className='flex flex-col items-center mt-[7.5rem] w-9/12'>
-                {/* Search Buttons and Title */}
-                <div className='flex flex-col items-start '>
-                    <h2 className='text-[1.5rem] font-semibold '>Find your mentor today!</h2>
+            <div className='flex flex-col items-start mt-[7.5rem] w-9/12'>
+                <h2 className='flex flex-col items-start text-[1.5rem] font-semibold '>Find your mentor today!</h2>
+                {/* Filtering Input Field */}
+                <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
 
-                    {/* Filtering Input Field */}
-                    <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
+                    {/* Role Search */}
+                    <RoleSearch />
 
-                        {/* Role Search */}
-                        <RoleSearch />
+                    {/* Industry Search */}
+                    <div className='filter-container flex justify-between items-center w-[13.5rem] h-10 py-3 pr-6 pl-7 gap-3'
+                        onClick={()=>Flipping(2)}
+                        >
+                        <button className='filters-dropdown'>Industry</button>
+                        <img src={arrow} alt="" className={flip==2?``:`rotate-180`}  />
+                    </div>
 
-                        {/* Industry Search */}
-                        <div className='filter-container flex justify-between items-center w-[13.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                            onClick={()=>Flipping(2)}
-                            >
-                            <button className='filters-dropdown'>Industry</button>
-                            <img src={arrow} alt="" className={flip==2?``:`rotate-180`}  />
-                        </div>
+                    {/* Core Values */}
+                    <div className='filter-container flex justify-between items-center w-[12.25rem] h-10 py-3 pr-6 pl-7 gap-3'
+                        onClick={()=>Flipping(3)}
+                        >
+                        <button className='filters-dropdown'>Core Values</button>
+                        <img src={arrow} alt="" className={flip==3?``:`rotate-180`} />
+                    </div>
 
-                        {/* Core Values */}
-                        <div className='filter-container flex justify-between items-center w-[12.25rem] h-10 py-3 pr-6 pl-7 gap-3'
-                            onClick={()=>Flipping(3)}
-                            >
-                            <button className='filters-dropdown'>Core Values</button>
-                            <img src={arrow} alt="" className={flip==3?``:`rotate-180`} />
-                        </div>
+                    {/* Availability */}
+                    <div className='filter-container flex justify-between items-center w-[15.5rem] h-10 py-3 pr-6 pl-7 gap-3'
+                        onClick={()=>Flipping(4)}
+                        >
+                        <button className='filters-dropdown'>Availability</button>
+                        <img src={arrow} alt="" className={flip==4?``:`rotate-180`} />
+                    </div>
 
-                        {/* Availability */}
-                        <div className='filter-container flex justify-between items-center w-[15.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                            onClick={()=>Flipping(4)}
-                            >
-                            <button className='filters-dropdown'>Availability</button>
-                            <img src={arrow} alt="" className={flip==4?``:`rotate-180`} />
-                        </div>
-
-                        {/* Filters */}
-                        <div className='filter-container filter-box flex justify-center items-center w-[8.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                            onClick={()=>Flipping(5)}
-                            >
-                            <img src={filter} alt="" />
-                            <button className='filters-dropdown'>Filters</button>
-                        </div>
+                    {/* Filters */}
+                    <div className='filter-container filter-box flex justify-center items-center w-[8.5rem] h-10 py-3 pr-6 pl-7 gap-3'
+                        onClick={()=>Flipping(5)}
+                        >
+                        <img src={filter} alt="" />
+                        <button className='filters-dropdown'>Filters</button>
                     </div>
                 </div>
             </div>
             {/* End Filtering Mentor Section */}
 
             {/* Mentor Cards Section*/}
-            <div className='flex flex-col items-center gap-4'>
+            <div className='flex flex-col items-center'>
                 <h2 className='text-[1.1875rem] font-semibold self-start'>Featuring New Mentors</h2>
                 {/* Design mentors */}
                 <div className='flex flex-col gap-4'>
