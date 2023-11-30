@@ -138,7 +138,7 @@ const Calendar = (props) => {
                 
              </ThemeProvider>
         </LocalizationProvider>
-        <div className={open?`p-5 border border-slate-200 w-[27.5rem] flex flex-col items-center gap-5`: "hidden"}>
+        <div className={open?`p-5 border border-slate-200 w-[27.5rem] flex flex-col items-center gap-5 rounded-lg`: "hidden"}>
           <div className=' w-full ml-2 '>
             <div className='flex w-fit m-1 border border-slate-200 text-[0.9375rem] font-sans font-semibold shadow-md rounded-md px-[0.625rem] py-[0.3125rem] gap-[0.5625rem]'>
               <button disabled={true}>PST</button>
@@ -148,7 +148,9 @@ const Calendar = (props) => {
            
             <div className='flex flex-wrap w-full mb-5 mx-1'>
                 {FakeAvailability[1].map((times, index)=>{
-                    return <button key={index} onClick={()=>{handleTimeSelection(index)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===index?'bg-[#6F789A] text-white': ''} `}>{times}</button>
+                    return <button key={index} onClick={()=>{handleTimeSelection(index)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===index?'bg-[#6F789A] text-white': ''} `}>
+                      {times}
+                      </button>
                 })}
             </div>
             <button onClick={()=>{setOpen(false); props.onOpen();}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
