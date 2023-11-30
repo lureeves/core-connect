@@ -8,9 +8,6 @@ import '../Home/Home.css'
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
-    // Logs found indexes in search
-    const [mentorIndexes, setMentorIndexes] = useState([]);
-
     // Flips arrow on search filter
     const Flipping = (num)=>{
         if (num==flip){
@@ -20,11 +17,6 @@ const Home = () => {
         setFlip(num);
         }
     };
-
-    // Logs found indexes in search
-    useEffect(() => {
-        console.log(mentorIndexes);
-    }, [mentorIndexes]);
 
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
