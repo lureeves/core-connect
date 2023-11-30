@@ -100,7 +100,7 @@ const Home = () => {
                 {/* Design mentors */}
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
                         {mentorIndexes.length > 0 ? (
-                            mentorIndexes.map((index) => <MentorCard key={index} id={index} />)
+                            mentorIndexes.slice(0, 12).map((index) => <MentorCard key={index} id={index} />)
                         ) : (
                             Array.from({ length: 12 }, (_, index) => <MentorCard key={index} id={index} />)
                         )}

@@ -3,7 +3,6 @@ import calendar from '../../../assets/calendar.svg'
 import clock from '../../../assets/clock.svg'
 import computer from '../../../assets/computer.svg'
 import clipboard from '../../../assets/clipboard.svg'
-import pfp from '../../../assets/default_profile.jpg'
 import line from '../../../assets/line.svg'
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx'
 
@@ -32,10 +31,10 @@ const MentorCard = (props) => {
         {/* Name And Company */}
         <div className=''>
             <h2 className='font-bold text-[1rem] pl-[0.81rem]'>{name}</h2>
-            <div className='flex items-center gap-1 pl-[0.81rem]'>
+            <div className='flex items-center gap-1 pl-[0.81rem] w-[15.58rem] whitespace-nowrap'>
                 <p className='font-semibold text-[0.875rem]'>{MentorData[props.id].role}</p>
                 <p>at</p>
-                <p className='font-semibold text-[0.875rem]'>{MentorData[props.id].company}</p>
+                <p className='font-semibold text-[0.875rem] truncate'>{MentorData[props.id].company}</p>
             </div>
         </div>
         {/* Helps with Categories */}
