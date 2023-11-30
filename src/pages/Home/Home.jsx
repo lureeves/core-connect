@@ -8,6 +8,8 @@ import '../Home/Home.css'
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
+    const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
+
     // Flips arrow on search filter
     const Flipping = (num)=>{
         if (num==flip){
