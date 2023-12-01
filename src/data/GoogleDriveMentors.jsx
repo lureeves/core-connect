@@ -18,7 +18,7 @@ export const MentorData=[
             "what_i'm_looking_for_as_a_mentor": "Helping with personal branding",
             "Column17": "Marketing",
             "Column18": "Adobe Suite",
-            "industry": "Artificial Intelligence",
+            "industry": "AI",
             "software": "WordPress, MySQL, Python",
             "company_size": 100,
             "career_pivoted": "no"
@@ -99,7 +99,7 @@ export const MentorData=[
             "Starts appearing on page": "Homepage\/01",
             "first_name": "Olivia",
             "last_name": "Jones",
-            "role": "Product Manger",
+            "role": "Product Manager",
             "company": "Boeing",
             "help_with": "Cover letter, Interview, Negotiation, Work-life balance",
             "years_of_experience": 2,
