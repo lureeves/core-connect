@@ -37,7 +37,7 @@ const RoleSearch = ({ setMentorIndexes, setIsDropdownOpen }) => {
     }, [searchTerm, showDropdown]);
     
     return (
-        <div className='relative filter-container flex justify-between items-center w-56 h-10 pr-6 pl-7 gap-3'>
+        <div className={`relative filter-container flex justify-between items-center w-56 h-10 pr-6 pl-7 gap-3 ${searchTerm ? 'border-[2px]' : ''}`}>
           {/* Search icon */}
           <MagGlassIcon />
           

@@ -21,8 +21,6 @@ const Home = () => {
         setFlip(num);
         }
     };
-    console.log(isDropdownOpen);
-
 
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
@@ -64,7 +62,7 @@ const Home = () => {
                     <RoleSearch setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Industry Filter */}
-                    <IndustryFilter setMentorIndexes={setMentorIndexes} />
+                    <IndustryFilter setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Core Values */}
                     <div className='filter-container flex justify-between items-center w-[12.25rem] h-10 py-3 pr-6 pl-7 gap-3'
