@@ -14,7 +14,6 @@ const IndustryFilter = (props) => {
             selectedIndustries.includes(mentor.industry)
         );
         const indexes = results.map(mentor => MentorData.indexOf(mentor));
-        props.setMentorIndexes(indexes);
     }, [selectedIndustries]);
 
     const toggleIndustry = (event, industry) => {

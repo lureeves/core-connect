@@ -10,7 +10,8 @@ import '../../Home/Home.css'
  * It features a search input field and a dropdown that displays
  * matching roles based on the user's input.
  */
-const RoleSearch = (props) => {
+const RoleSearch = ({ setMentorIndexes, setIsDropdownOpen }) => {
+
     // State to hold the current search term
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -31,9 +32,10 @@ const RoleSearch = (props) => {
             mentor.role.toLowerCase().includes(searchTerm.toLowerCase())
         );
         const indexes = results.map(mentor => MentorData.indexOf(mentor));
-        props.setMentorIndexes(indexes);
-    }, [searchTerm]);
-
+        setMentorIndexes(indexes);
+        setIsDropdownOpen(showDropdown);
+    }, [searchTerm, showDropdown]);
+    
     return (
         <div className='relative filter-container flex justify-between items-center w-56 h-10 pr-6 pl-7 gap-3'>
           {/* Search icon */}
@@ -54,7 +56,7 @@ const RoleSearch = (props) => {
 
           {/* Dropdown menu for search suggestions */}
           {showDropdown && (
-            <div className="dropdown absolute top-full left-0 w-56 filter-container bg-white text-[#6B6C70] font-semibold py-[0.56rem]">
+            <div className="dropdown absolute top-full left-0 w-56 filter-container bg-white text-[#6B6C70] font-semibold py-[0.56rem] z-10">
                 {filteredRoles.map((role, index) => (
                 <div 
                     key={index} 

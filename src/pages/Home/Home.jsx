@@ -8,6 +8,8 @@ import '../Home/Home.css'
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
     const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
 
     // Flips arrow on search filter
@@ -19,6 +21,8 @@ const Home = () => {
         setFlip(num);
         }
     };
+    console.log(isDropdownOpen);
+
 
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
@@ -57,7 +61,7 @@ const Home = () => {
                 <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
 
                     {/* Role Search */}
-                    <RoleSearch setMentorIndexes={setMentorIndexes} />
+                    <RoleSearch setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Industry Filter */}
                     <IndustryFilter setMentorIndexes={setMentorIndexes} />
@@ -90,7 +94,7 @@ const Home = () => {
             {/* End Filtering Mentor Section */}
 
             {/* Mentor Cards Section*/}
-            <div className='flex flex-col items-center'>
+            <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-auto`}>
                 <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>
                 {/* Design mentors */}
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
