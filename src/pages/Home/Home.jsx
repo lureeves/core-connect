@@ -3,6 +3,7 @@ import { MagGlass, arrow, filter } from '../../assets';
 import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
+import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
 const Home = () => {
@@ -11,6 +12,10 @@ const Home = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
+
+    const [roleSearchResults, setRoleSearchResults] = useState([]);
+    const [industryFilterResults, setIndustryFilterResults] = useState([]);
+    
 
     // Flips arrow on search filter
     const Flipping = (num)=>{
@@ -21,6 +26,31 @@ const Home = () => {
         setFlip(num);
         }
     };
+
+    useEffect(() => {
+        let intersection = [];
+    
+        if (roleSearchResults.length > 0 && industryFilterResults.length > 0) {
+            // Find intersection when both filters have values
+            intersection = roleSearchResults.filter(index => industryFilterResults.includes(index));
+        } else if (roleSearchResults.length > 0) {
+            // Use roleSearchResults when industryFilter is not applied
+            intersection = roleSearchResults;
+        } else if (industryFilterResults.length > 0) {
+            // Use industryFilterResults when roleSearch is not applied
+            intersection = industryFilterResults;
+        } else {
+            // Case when neither filter is applied: Show all mentors
+            // intersection = MentorData
+        }
+
+        console.log (`length: ${mentorIndexes.length}`);
+        console.log (`array ${mentorIndexes}`)
+    
+        setMentorIndexes(intersection);
+        // console.log(mentorIndexes);
+    }, [roleSearchResults, industryFilterResults]);
+    
 
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
@@ -58,11 +88,9 @@ const Home = () => {
                 {/* Filtering Input Field */}
                 <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
 
-                    {/* Role Search */}
-                    <RoleSearch setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
-
-                    {/* Industry Filter */}
-                    <IndustryFilter setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
+                    <RoleSearch setMentorIndexes={setRoleSearchResults} setIsDropdownOpen={setIsDropdownOpen} />
+                    
+                    <IndustryFilter setMentorIndexes={setIndustryFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Core Values */}
                     <div className='filter-container flex justify-between items-center w-[12.25rem] h-10 py-3 pr-6 pl-7 gap-3'
@@ -92,17 +120,29 @@ const Home = () => {
             {/* End Filtering Mentor Section */}
 
             {/* Mentor Cards Section*/}
-            <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-auto`}>
-                <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>
-                {/* Design mentors */}
+            {mentorIndexes.length > 0 ? (
+                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-auto`}>
+                    
+                    {MentorData.length - 1 <= mentorIndexes.length ? (
+                        <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>
+                    ) : (
+                        <p></p>
+                    )}
+                    
+                    
+                    {/* Design mentors */}
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
                         {mentorIndexes.length > 0 ? (
                             mentorIndexes.slice(0, 12).map((index) => <MentorCard key={index} id={index} />)
                         ) : (
                             Array.from({ length: 12 }, (_, index) => <MentorCard key={index} id={index} />)
                         )}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <p>No mentors found.</p>
+            )}
+            
             {/* End Mentor Card Section */}
 
         </div>

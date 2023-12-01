@@ -56,7 +56,7 @@ const RoleSearch = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
           {/* Dropdown menu for search suggestions */}
           {showDropdown && (
-            <div className="dropdown absolute top-full left-0 w-56 filter-container bg-white text-[#6B6C70] font-semibold py-[0.56rem] z-10">
+            <div className="dropdown absolute top-full left-0 w-56 filter-container bg-white text-[#6B6C70] font-semibold py-[0.56rem] z-10 max-h-[17.7rem] overflow-auto">
                 {filteredRoles.map((role, index) => (
                 <div 
                     key={index} 
