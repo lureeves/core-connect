@@ -11,19 +11,13 @@ function App() {
   return (
     
     <Router>
-        
-
       <Header />
-      
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/CoreValueTest" element={<CoreValuesTest/>} />
-        <Route path="/MentorProfile" element={<MentorProfile/>} />
-      </Routes>
-     
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/CoreValueTest" element={<CoreValuesTest/>} />
+          <Route path="/MentorProfile/:id" Component={MentorProfile} />
+        </Routes>
       <Footer />
-
-
     </Router>
   );
 }
