@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../CoreValueTest.css';
 import { ActionButton }  from './subComponents/Buttons.jsx'
+import { coreValues } from '../../../data/CoreValues.jsx'
 import { StartTest, InitialValues, TenValues, FiveValues, ThreeValues, FinalValues } from './subComponents/ValueGridRender.jsx';
 
 // TestCard component handles the core values test
 const TestCard = () => {
-    const coreValues = [
-    "Acheivement", "Discipline", "Generosity", "Knowledge", "Respect",
-    "Adaptability", "Empathy", "Hard work", "Leadership", "Responsibility",
-    "Collaboration", "Excitement", "Honesty", "Loyalty", "Security",
-    "Compassionate", "Excellence", "Impact", "Passion", "Skill/Mastery",
-    "Courage", "Flexibility", "Innovation", "Patience", "Trust",
-    "Creativity", "Fairness", "Integrity", "Persistence", "Unity",
-    "Curiosity", "Freedom", "Kindness", "Recognition", "Wisdom"
-    ];
 
     // State for storing selected values at each step
     const [testStarted, setTestStarted] = useState(false);
