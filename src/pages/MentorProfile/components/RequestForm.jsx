@@ -7,12 +7,45 @@ const RequestForm = (props) => {
   const [submit, setSubmit]= useState(false);
   const [workStyle,setWorkStyle] = useState(0);
   const [saveStyle,setSaveStyle] = useState(null);
+  const [values, setValues]= useState([]);
 
+  const [form, setForm] = useState(null);
+
+  
   const submitting = ()=>{
-    setSubmit(true);
-    setTimeout(()=>{
-      props.onClosed();
-    }, 5000)
+    let bgX = document.getElementById('bgX').value;
+    let focus = document.getElementById('focus').value;
+    if(bgX && focus && saveStyle){
+      let final = {
+        time: localStorage.getItem(`${props.id} day`) + " " + localStorage.getItem(`${props.id} time`),
+        values: [],
+        Style: saveStyle,
+        bgX: bgX,
+        focus: focus
+      }
+      setForm(final);
+      setSubmit(true);
+      setTimeout(()=>{
+        console.log(final);
+        props.onClosed();
+      }, 5000)
+    }
+    else if (!saveStyle){
+      alert('Please select a work style')
+    }
+    else if (!bgX){
+      alert('Please fill out background experience')
+    }
+    else if (!focus){
+      alert('Please fill out what you want to focus on')
+    }
+    else{
+      alert("Something went wrong")
+    }
+    
+  
+
+    
   }
   const decideStyle = (num)=>{
     setWorkStyle(num);
@@ -51,8 +84,8 @@ const RequestForm = (props) => {
                     </div>
                     <div className='flex bg-[#E1E4EE] w-fit px-[0.75rem] py-[0.375rem] gap-[.4375rem] rounded-md mb-[2.0625rem]'>
                       <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>Selected Date</h2>
-                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>11/14/2023</h2>
-                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>3:00 PM</h2>
+                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} day`)}</h2>
+                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} time`)}</h2>
                       <h2 className='font-semibold text-[#393939]'>PST</h2>
                     </div>
 
@@ -79,7 +112,7 @@ const RequestForm = (props) => {
                           
                         </div>
 
-                        {/* Work Style */}
+                    {/* Work Style */}
                         <div className='border rounded-lg border-[#C7CBDA] w-[30.8125rem] justify-center py-[1.8125rem] px-[1.25rem]'>
                           <h2 className='w-full flex justify-center mb-[1.875rem] font-semibold '>What is your working style?<em className='text-red-500'>*</em></h2>
                           <div className='flex flex-wrap justify-center items-center'>
@@ -108,11 +141,11 @@ const RequestForm = (props) => {
                       <div className='flex flex-col items-start mt-[1.31rem] border border-[#C7CBDA] rounded-lg p-5 gap-5 mb-10'>
                         <div className='w-full flex flex-col gap-3'>
                           <h2 className='font-semibold'>Tell me a little bit about your professional background?<em className='text-red-500'>*</em></h2>
-                          <textarea id='bgX' type="textarea" className='border flex justify-start w-full h-[5.5rem] rounded-lg border-[#C7CBDA] ' />
+                          <textarea id='bgX' type="textarea" className='border flex justify-start w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]  ' />
                         </div>
                         <div className='w-full flex flex-col gap-3'>
                           <h2 className='font-semibold'>What do you need help with? List the top 3 things you would like to focus on during this session.<em className='text-red-500'>*</em></h2>
-                          <textarea id='focus' type="textarea" className='border w-full h-[5.5rem] rounded-lg  border-[#C7CBDA]' />
+                          <textarea id='focus' type="textarea" className='border w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]' />
                         </div>
                       </div>
 

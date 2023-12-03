@@ -18,10 +18,10 @@ const Footer = () => {
             <div className="right-content text-[0.875rem]">
                 <nav>
                     <ul className="flex gap-x-[3.75rem] pr-[3.75rem]">
-                        <li><a href="/contact" className="footer-option">Contact Us</a></li>
-                        <li><a href="/privacy-policy" className="footer-option">Privacy policy</a></li>
-                        <li><a href="/terms-of-use" className="footer-option">Terms of use</a></li>
-                        <li><a href="/career" className="footer-option">Career</a></li>
+                        <li><a href="/ContactUs" className="footer-option">Contact Us</a></li>
+                        <li><a href="" className="footer-option">Privacy policy</a></li>
+                        <li><a href="" className="footer-option">Terms of use</a></li>
+                        <li><a href="" className="footer-option">Career</a></li>
                     </ul>
                 </nav>
             </div>
