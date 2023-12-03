@@ -5,7 +5,7 @@ import computer from '../../../assets/computer.svg';
 import clipboard from '../../../assets/clipboard.svg';
 import line from '../../../assets/line.svg';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
-
+import { Availability } from '../../../data/FakeAvailability.jsx';
 /**
  * MentorCard Component
  * 
@@ -20,6 +20,7 @@ import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 const MentorCard = (props) => {
     // Constructs the full name of the mentor
     const name = MentorData[props.id].first_name + " " + MentorData[props.id].last_name;
+    
 
     /**
      * Generates a background color for the mentor's profile picture.
@@ -28,6 +29,10 @@ const MentorCard = (props) => {
      * @param {number} index - The index of the mentor.
      * @returns {string} The hex code of the background color.
      */
+
+    const getAvailability = (index) =>{
+        return Availability[index % Availability.length];
+    }
     const getBackgroundColor = (index) => {
         const colors = ["6BD4B1", "B1A6D4", "D4B16B", "D46BB1", "B1D46B", "6BB1D4"];
         return colors[index % colors.length];
@@ -42,12 +47,15 @@ const MentorCard = (props) => {
         MentorData[props.id].core_value_2.toUpperCase(),
         MentorData[props.id].core_value_3.toUpperCase()
     ];
+    
 
     // Splits the string of areas the mentor can help with into an array
     const help_with = MentorData[props.id].help_with.split(",");
 
     return (
-        <div className='w-[16rem] h-[25rem] rounded-[0.5rem] pt-[0.81rem] bg-[#FBFCFF] shadow-[1px_1px_15px_1px_rgba(0,0,0,0.1)]'>
+        <div className='w-[16rem] h-[25rem] rounded-[0.5rem] pt-[0.81rem] bg-[#FBFCFF] shadow-[1px_1px_15px_1px_rgba(0,0,0,0.1)]'
+            onClick={()=>window.open(`/MentorProfile/${props.id}`,'_blank')}
+        >
             {/* Section for profile picture and core values */}
             <div className='flex gap-3 pl-[0.81rem]'>
                 <img className="w-20 rounded-md" src={profilePicture} alt="Profile" />
