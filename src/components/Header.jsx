@@ -17,7 +17,7 @@ const Header = () => {
         <div className='flex justify-end w-6/12 items-center nav-links mr-8'>
             <a href="/CoreValueTest">Core Value Test</a>
             <a href="/">Find My Mentor</a>
-            <a href="/MentorProfile">
+            <a href="/MyProfile">
                 <div className='flex gap-2'>
                     <img className="pfp" src={pfp} alt="" />
                     <h2>Sean</h2>

@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import dayjs, { Dayjs } from 'dayjs';
 import {   DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { FakeAvailability } from '../../../data/FakeAvailability';
+import { FakeAvailability, Availability } from '../../../data/FakeAvailability';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import arrow from '../../../assets/arrow.svg'
 
@@ -22,7 +22,6 @@ const theme = createTheme({
             justifyContent: '', // Center content horizontally
             alignItems: 'center',
             width:'27.5rem',
-            height:'26.125rem', 
             borderRadius:"0.625"    
           }
         },
@@ -106,26 +105,61 @@ const theme = createTheme({
    */
 
 const Calendar = (props) => {
-  const [date, setDate] = useState(dayjs);
+  const [date, setDate] = useState(null);
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(null);
-
+  const [aval,setAval] = useState([]);
+  const schedule = props.id % Availability.length;
+  let day=null;
   // Handles the time (X:XX) selected.
   // Chooses which index so it can pass through to the request form
   const handleTimeSelection = (x) =>{
     setTime(x); 
     console.log(x);
   }
+  let actual=null;
+  const handleOpeningTimes= ()=>{
+    
+    if(actual){
+      day=actual.$d.toString().split(" ")[0];
+      console.log(Availability[schedule][day])
+      setAval(Availability[schedule][day]);
+      setOpen(true);
+    }
+  }
+
+  const handleDateChange = (newDate)=>{
+    actual = newDate;
+    setDate(newDate);
+    console.log(actual);
+  }
+
+  const handleFormOpen = ()=>{
+    console.log(`${date} and ${time}`)
+    if(time){
+      localStorage.setItem(`${props.id} day`,`${date.$M+1}\/${date.$D}\/${date.$y}`);
+      localStorage.setItem(`${props.id} time`,`${time}`)
+      console.log(localStorage.getItem(`${props.id} day`))
+      console.log(localStorage.getItem(`${props.id} time`))
+      setOpen(false); 
+      props.onOpen();
+    }
+    else{
+      alert('Something went wrong')
+    }
+  }
+ 
+
   return (
     <div className=' flex flex-col items-start '>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ThemeProvider theme={theme}>
 
-                <div onClick={()=>{setOpen(true)}}>
+                <div onClick={()=>handleOpeningTimes()}>
                     <DateCalendar className='border border-slate-200 rounded-md w-32'
                         value={date}
                         views={['day']}
-                        onChange={(newDate)=>{setDate(newDate); console.log(`${date.$D} ${date.$M +1} ${date.$y}`)}}
+                        onChange={handleDateChange}
                         dayOfWeekFormatter={(_day, weekday) => `${weekday.format('ddd')}`}
                         disablePast={true}
                         sx={{
@@ -147,13 +181,19 @@ const Calendar = (props) => {
           </div>
            
             <div className='flex flex-wrap w-full mb-5 mx-1'>
-                {FakeAvailability[1].map((times, index)=>{
-                    return <button key={index} onClick={()=>{handleTimeSelection(index)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===index?'bg-[#6F789A] text-white': ''} `}>
-                      {times}
-                      </button>
-                })}
+                {
+                  aval.length>0?(
+                    aval.map((times, index)=>{
+                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#6F789A] text-white': ''} `}>
+                        {times}
+                        </button>
+                    })
+                  ):(
+                    <div className='font-semibold flex justify-center w-full'> No Times Available </div> 
+                  )
+                }
             </div>
-            <button onClick={()=>{setOpen(false); props.onOpen();}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
+            <button onClick={()=>{handleFormOpen()}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
         </div>
         
     </div>

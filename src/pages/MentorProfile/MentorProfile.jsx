@@ -10,7 +10,7 @@ import { FakeReviews } from '../../data/FakeAvailability.jsx';
 
 /** */
 
-const randomLocations = ["Chicago, IL","Los Angeles, CA","New York, NY","Dallas, TX","Minneapolis, MN"]
+const randomLocations = ["Chicago, IL","Los Angeles, CA","New York, NY","Dallas, TX","Minneapolis, MN", "Honolulu, HI", "Denver, CO", "Tuscon, AZ"]
 const MentorProfile = (props) => {
 
   
@@ -57,7 +57,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                         
                         <div className='flex gap-1 '>
                             <img className='w-4' src={Marker} alt="" />
-                            <p className='font-semibold '>{randomLocations[id]}</p>
+                            <p className='font-semibold '>{randomLocations[id%randomLocations.length]}</p>
                         </div>
                         <div className='flex gap-[.625rem]'>
                             <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
@@ -104,8 +104,8 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                         <div className='flex flex-col w-[33.25rem] h-[8.375rem] gap-[1.69rem] border border-slate-200 py-[1.69rem] px-[1.44rem] rounded-md'>
                             <h3 className='font-bold text-lg'>What I can help with</h3>
                             <div className='flex mx-4 gap-[0.625rem] font-medium'>
-                                {help_with.map((val)=>{
-                                    return <div className='font-sans text-[0.9375rem] font-semibold'>{val}</div>
+                                {help_with.map((val, index)=>{
+                                    return <div key={index} className='font-sans text-[0.9375rem] font-semibold'>{val}</div>
                                 })}
                             </div>
                         </div>
@@ -115,7 +115,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                     <div className='flex flex-col gap-4 w-full '>
                         <h2 className='font-bold'>My Availability</h2>
                         <div className='flex w-fulljustify-start '>
-                            <Calendar open={openForm} onOpen={openedForm}/>
+                            <Calendar open={openForm} onOpen={openedForm} id={id}/>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
         {/* Request form section */}
        
             {
-                openForm && <RequestForm open={openForm} onClosed={closeForm} />
+                openForm && <RequestForm open={openForm} onClosed={closeForm} id={id} />
             }
             
         
