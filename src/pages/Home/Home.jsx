@@ -4,6 +4,7 @@ import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
 import ValueFilter from './components/ValueFilter.jsx';
+import ValueFilter from './components/ValueFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
@@ -16,6 +17,7 @@ const Home = () => {
 
     const [roleSearchResults, setRoleSearchResults] = useState([]);
     const [industryFilterResults, setIndustryFilterResults] = useState([]);
+    const [valueFilterResults, setValueFilterResults] = useState([]);
     const [valueFilterResults, setValueFilterResults] = useState([]);
     
 
@@ -91,7 +93,7 @@ const Home = () => {
                     
                     <IndustryFilter setMentorIndexes={setIndustryFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
-                    <ValueFilter setMentorIndexes={setMentorIndexes} setIsDropdownOpen={setIsDropdownOpen} />
+                    <ValueFilter setMentorIndexes={setValueFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Availability */}
                     <div className='filter-container flex justify-between items-center w-[15.5rem] h-10 py-3 pr-6 pl-7 gap-3'
