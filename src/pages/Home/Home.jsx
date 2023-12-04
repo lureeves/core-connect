@@ -4,6 +4,7 @@ import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
 import ValueFilter from './components/ValueFilter.jsx';
+import AvailabilityFilter from './components/AvailabilityFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
@@ -17,6 +18,7 @@ const Home = () => {
     const [roleSearchResults, setRoleSearchResults] = useState([]);
     const [industryFilterResults, setIndustryFilterResults] = useState([]);
     const [valueFilterResults, setValueFilterResults] = useState([]);
+    const [availabilityFilterResults, setAvailabilityFilterResults] = useState([]);
     
 
     // Flips arrow on search filter
@@ -40,7 +42,7 @@ const Home = () => {
             );
         };
 
-        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults]);
+        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]);
         // Include additional filter results in the combineFilters call as needed
 
         setMentorIndexes(combinedIndexes);
@@ -48,7 +50,7 @@ const Home = () => {
         // console.log("Role Search Results:", roleSearchResults);
         // console.log("Industry Filter Results:", industryFilterResults);
         // console.log("Value Filter Results:", valueFilterResults);
-    }, [roleSearchResults, industryFilterResults, valueFilterResults]); // Add dependencies for additional filters here
+    }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]); 
     
 
     return (
@@ -82,10 +84,10 @@ const Home = () => {
             {/* End Intro Section */}
 
             {/* Filter Mentor Section */}
-            <div className='flex flex-col items-start mt-[7.5rem] w-9/12'>
-                <h2 className='flex flex-col items-start text-[1.5rem] font-semibold '>Find your mentor today!</h2>
+            <div className='mt-[7.5rem] mx-auto w-[68rem]'>
+                <h2 className='text-[1.5rem] font-semibold text-left'>Find your mentor today!</h2>
                 {/* Filtering Input Field */}
-                <div className='search-input flex gap-x-[0.44rem] my-[2.19rem]'>
+                <div className='flex  gap-x-[0.44rem] my-[2.19rem]'>
 
                     <RoleSearch setMentorIndexes={setRoleSearchResults} setIsDropdownOpen={setIsDropdownOpen} />
                     
@@ -93,16 +95,10 @@ const Home = () => {
 
                     <ValueFilter setMentorIndexes={setValueFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
-                    {/* Availability */}
-                    <div className='filter-container flex justify-between items-center w-[15.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                        onClick={()=>Flipping(4)}
-                        >
-                        <button className='filters-dropdown'>Availability</button>
-                        <img src={arrow} alt="" className={flip==4?``:`rotate-180`} />
-                    </div>
+                    <AvailabilityFilter setMentorIndexes={setAvailabilityFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
                     {/* Filters */}
-                    <div className='filter-container filter-box flex justify-center items-center w-[8.5rem] h-10 py-3 pr-6 pl-7 gap-3'
+                    <div className='filter-container filter-box flex justify-center items-center w-[9.5rem] h-10 py-3 pr-6 pl-7 gap-3'
                         onClick={()=>Flipping(5)}
                         >
                         <img src={filter} alt="" />
