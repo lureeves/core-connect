@@ -17,12 +17,11 @@ import '../../Home/Home.css';
  */
 const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     // State for storing the selected core values, initially loaded from local storage if available
-    const [selectedValues, setSelectedValues] = useState([]
-    //     () => {
-    //     const storedValues = localStorage.getItem('selectedValues');
-    //     return storedValues ? JSON.parse(storedValues) : [];
-    // }
-    );
+    const [selectedValues, setSelectedValues] = useState(
+        () => {
+        const storedValues = localStorage.getItem('selectedValues');
+        return storedValues ? JSON.parse(storedValues) : [];
+    });
     const [showDropdown, setShowDropdown] = useState(false); // State to control the visibility of the dropdown
     const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
 
@@ -30,20 +29,17 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const coreValueList = [...new Set(coreValues)].sort();
 
     useEffect(() => {
-        console.log("MentorData:", MentorData);
-        console.log("Selected Values for Filtering:", selectedValues);
+
         // Effect for filtering mentors based on selected core values
         if (selectedValues.length > 0) {
             const results = MentorData.filter((mentor) =>
-                mentor.coreValues?.some(value => selectedValues.includes(value))
-            );
+            [mentor.core_value_1, mentor.core_value_2, mentor.core_value_3].some(value => selectedValues.includes(value))
+        );
             const indexes = results.map(mentor => MentorData.indexOf(mentor));
             setMentorIndexes(indexes);
-            console.log("Filtered Mentor Indexes:", indexes);
         } else {
             // Show all mentors if no values are selected
             setMentorIndexes(MentorData.map((_, index) => index));
-            console.log("Filtered Mentor Indexes:", setMentorIndexes);
         }
 
         setIsDropdownOpen(showDropdown);

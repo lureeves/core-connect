@@ -47,9 +47,9 @@ const Home = () => {
 
         setMentorIndexes(combinedIndexes);
 
-        console.log("Role Search Results:", roleSearchResults);
-        console.log("Industry Filter Results:", industryFilterResults);
-        console.log("Value Filter Results:", valueFilterResults);
+        // console.log("Role Search Results:", roleSearchResults);
+        // console.log("Industry Filter Results:", industryFilterResults);
+        // console.log("Value Filter Results:", valueFilterResults);
     }, [roleSearchResults, industryFilterResults, valueFilterResults]); // Add dependencies for additional filters here
     
 
