@@ -4,7 +4,6 @@ import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
 import ValueFilter from './components/ValueFilter.jsx';
-import ValueFilter from './components/ValueFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
@@ -17,7 +16,6 @@ const Home = () => {
 
     const [roleSearchResults, setRoleSearchResults] = useState([]);
     const [industryFilterResults, setIndustryFilterResults] = useState([]);
-    const [valueFilterResults, setValueFilterResults] = useState([]);
     const [valueFilterResults, setValueFilterResults] = useState([]);
     
 
