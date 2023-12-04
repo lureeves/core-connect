@@ -1,53 +1,81 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
-import { coreValues } from '../../../data/CoreValues.jsx'
+import { coreValues } from '../../../data/CoreValues.jsx';
 import { arrow } from '../../../assets';
-import '../../Home/Home.css'
+import '../../Home/Home.css';
 
+/**
+ * ValueFilter Component
+ *
+ * This component allows users to filter mentors based on core values. It features a dropdown
+ * that enables the selection of multiple core values. These values are sourced from the CoreValues data.
+ * The component also incorporates outside click detection to close the dropdown.
+ *
+ * Props:
+ * - setMentorIndexes (function): A function to update the state in the parent component with filtered mentor indexes.
+ * - setIsDropdownOpen (function): A function to update the state in the parent component about the dropdown's visibility.
+ */
 const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
-    const [selectedValues, setSelectedValues] = useState(() => {
-        // Retrieve selected values from local storage
-        const storedValues = localStorage.getItem('selectedValues');
-        return storedValues ? JSON.parse(storedValues) : [];
-    });
-    const [showDropdown, setShowDropdown] = useState(false);
-    const dropdownRef = useRef(null);
+    // State for storing the selected core values, initially loaded from local storage if available
+    const [selectedValues, setSelectedValues] = useState([]
+    //     () => {
+    //     const storedValues = localStorage.getItem('selectedValues');
+    //     return storedValues ? JSON.parse(storedValues) : [];
+    // }
+    );
+    const [showDropdown, setShowDropdown] = useState(false); // State to control the visibility of the dropdown
+    const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
 
+    // List of unique and sorted core values
     const coreValueList = [...new Set(coreValues)].sort();
 
     useEffect(() => {
+        console.log("MentorData:", MentorData);
+        console.log("Selected Values for Filtering:", selectedValues);
+        // Effect for filtering mentors based on selected core values
         if (selectedValues.length > 0) {
             const results = MentorData.filter((mentor) =>
-                mentor.coreValues.some(value => selectedValues.includes(value))
+                mentor.coreValues?.some(value => selectedValues.includes(value))
             );
-    
             const indexes = results.map(mentor => MentorData.indexOf(mentor));
             setMentorIndexes(indexes);
+            console.log("Filtered Mentor Indexes:", indexes);
         } else {
-            // If no values are selected, show all mentors
+            // Show all mentors if no values are selected
             setMentorIndexes(MentorData.map((_, index) => index));
+            console.log("Filtered Mentor Indexes:", setMentorIndexes);
         }
-    
+
         setIsDropdownOpen(showDropdown);
-    
+
+        // Function to handle outside clicks to close the dropdown
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setShowDropdown(false);
             }
         }
-    
+
+        // Event listeners for outside click detection
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [selectedValues, showDropdown]);
 
+    /**
+     * Toggles the selection state of a core value.
+     * 
+     * @param {Object} event - The click event object.
+     * @param {string} value - The core value to toggle.
+     */
     const toggleValue = (event, value) => {
-        event.stopPropagation();
+        event.stopPropagation(); // Prevents event from bubbling up to parent elements
         setSelectedValues(prev => {
             if (prev.includes(value)) {
+                // Remove value if already selected
                 return prev.filter(i => i !== value);
             } else {
+                // Add value if not already selected
                 return [...prev, value];
             }
         });
@@ -64,8 +92,10 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                 {selectedValues.length > 0 && <span className="bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-[0.8125rem]">{selectedValues.length}</span>}
             </button>
 
+            {/* Arrow SVG icon, rotates based on dropdown state */}
             <img src={arrow} alt="Dropdown Arrow" className={showDropdown ? `` : `rotate-180`} />
 
+            {/* Dropdown for selecting core values */}
             {showDropdown && (
                 <div className="dropdown absolute top-full left-0 w-[13.5rem] filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-[17.7rem] overflow-auto">
                     {coreValueList.map((value, index) => (
@@ -78,6 +108,7 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                                 {value}
                             </span>
                             
+                            {/* Horizontal divider for all except the last item in dropdown */}
                             {index !== coreValueList.length - 1 && <div className="border-b border-[#C7CBDA] w-full my-[0.44rem]"></div>}
                         </div>
                     ))}

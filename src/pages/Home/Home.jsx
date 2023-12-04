@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { MagGlass, arrow, filter } from '../../assets';
+import { arrow, filter } from '../../assets';
 import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
@@ -30,25 +30,25 @@ const Home = () => {
     };
 
     useEffect(() => {
-        let intersection = [];
-    
-        if (roleSearchResults.length > 0 && industryFilterResults.length > 0) {
-            // Find intersection when both filters have values
-            intersection = roleSearchResults.filter(index => industryFilterResults.includes(index));
-        } else if (roleSearchResults.length > 0) {
-            // Use roleSearchResults when industryFilter is not applied
-            intersection = roleSearchResults;
-        } else if (industryFilterResults.length > 0) {
-            // Use industryFilterResults when roleSearch is not applied
-            intersection = industryFilterResults;
-        } else {
-            // Case when neither filter is applied: Show all mentors
-            // intersection = MentorData
-        }
+        const combineFilters = (filters) => {
+            if (filters.every(filter => filter.length === 0)) {
+                return MentorData.map((_, index) => index);
+            }
+            const activeFilters = filters.filter(filter => filter.length > 0);
+            return activeFilters.reduce((accumulator, current) => 
+                accumulator.filter(index => current.includes(index))
+            );
+        };
 
-        console.log(intersection);
-        setMentorIndexes(intersection);
-    }, [roleSearchResults, industryFilterResults]);
+        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults]);
+        // Include additional filter results in the combineFilters call as needed
+
+        setMentorIndexes(combinedIndexes);
+
+        console.log("Role Search Results:", roleSearchResults);
+        console.log("Industry Filter Results:", industryFilterResults);
+        console.log("Value Filter Results:", valueFilterResults);
+    }, [roleSearchResults, industryFilterResults, valueFilterResults]); // Add dependencies for additional filters here
     
 
     return (

@@ -1,6 +1,6 @@
 export const coreValues = [
-    "Acheivement", "Discipline", "Generosity", "Knowledge", "Respect",
-    "Adaptability", "Empathy", "Hard work", "Leadership", "Responsibility",
+    "Achievement", "Discipline", "Generosity", "Knowledge", "Respect",
+    "Adaptability", "Empathy", "Hard Work", "Leadership", "Responsibility",
     "Collaboration", "Excitement", "Honesty", "Loyalty", "Security",
     "Compassionate", "Excellence", "Impact", "Passion", "Skill/Mastery",
     "Courage", "Flexibility", "Innovation", "Patience", "Trust",
