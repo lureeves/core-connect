@@ -56,7 +56,7 @@ const Home = () => {
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
             {/* Intro Section */}
-            <div className='flex flex-col items-center w-9/12'>
+            <div className='flex flex-col items-center w-[68rem]'>
                 {/* Welcome Section */}
                 <div className="flex flex-col text-[2.5rem] font-bold mt-[4.96rem] mb-[3.1875rem]">
                     <h1 className="text-[2.5rem] font-['Poppins'] mb-[0.75rem]">Welcome!</h1>
@@ -64,8 +64,8 @@ const Home = () => {
                 </div>
 
                 {/* Questions Section */}
-                <div className='flex'>
-                    <div className='border border-t-[1px] border-[#C7CBDA] rounded-[0.625rem] py-[2.5rem] px-[2.12rem] mr-[1.25rem]'>
+                <div className='w-[68rem] grid grid-cols-2 gap-x-[1.25rem]'>
+                    <div className='border border-t-[1px] border-[#C7CBDA] rounded-[0.625rem] py-[2.5rem] px-[2.12rem]'>
                         <h3 className="text-[1.25rem] font-semibold mb-[3.75rem]">What are Core Values?</h3>
                         <p className="text-[1.125rem]">Core values are fundamental beliefs and priorities that guide a person's or organization's behavior. They can be thought of as an internal compass of principles that drive decisions and help to standout from others. Not only do they help you develop and achieve personal goals, they can help you with professional goals.</p>
                     </div>

@@ -93,7 +93,7 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting core values */}
             {showDropdown && (
-                <div className="dropdown absolute top-full left-0 w-[13.5rem] filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-[17.7rem] overflow-auto">
+                <div className="dropdown absolute top-full right-[-5rem] w-[27rem] filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-[17.7rem] overflow-auto grid grid-cols-3 gap-x-4">
                     {coreValueList.map((value, index) => (
                         <div 
                             key={index} 

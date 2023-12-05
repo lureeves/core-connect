@@ -1,0 +1,47 @@
+/* Overriding react-calendar styles to make all text black */
+.react-calendar,
+.react-calendar__tile,
+.react-calendar__navigation button,
+.react-calendar__month-view__days__day--weekend,
+.react-calendar__month-view__days__day--neighboringMonth,
+.react-calendar__tile--active {
+  color: black !important; /* Making text color black */
+  font-family: 'Open Sans', sans-serif
+}
+
+.react-calendar__month-view__weekdays abbr[title],
+.react-calendar__tile abbr[title] {
+    text-decoration: none !important; /* Removing dotted underline from abbr elements */
+}
+
+.react-calendar__navigation button {
+    font-weight: bold !important; /* Making month label bold */
+    text-transform: uppercase !important; /* Converting month label to uppercase */
+  }
+
+
+.react-calendar__tile--active {
+  background: #F0F2FA !important; /* Your desired background color for active tile */
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #F0F2FA !important; /* Your desired background color for active tile on hover/focus */
+}
+
+.custom-rounded-right {
+    background-color: black !important;
+    border-top-right-radius: 0.5rem !important; /* Adjust the radius as needed */
+    border-bottom-right-radius: 0.5rem !important; /* Adjust the radius as needed */
+}
+
+.react-calendar__month-view__days__day:last-child {
+border-top-right-radius: 0.5rem;
+border-bottom-right-radius: 0.5rem;
+}
+
+.rounded-r-full.bg-black {
+    background-color: black !important;
+    border-top-right-radius: 0.5rem !important; /* Adjust the radius as needed */
+    border-bottom-right-radius: 0.5rem !important; /* Adjust the radius as needed */
+}
