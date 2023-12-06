@@ -29,19 +29,44 @@
   background: #F0F2FA !important; /* Your desired background color for active tile on hover/focus */
 }
 
-.custom-rounded-right {
+
+
+
+.rounded-l-full {
+    border-top-left-radius: 0.5rem !important; /* Adjust the radius as needed */
+    border-bottom-left-radius: 0.5rem !important; /* Adjust the radius as needed */
+}
+
+
+
+.bg-black {
     background-color: black !important;
+}
+
+.react-calendar__tile--rangeEnd {
     border-top-right-radius: 0.5rem !important; /* Adjust the radius as needed */
     border-bottom-right-radius: 0.5rem !important; /* Adjust the radius as needed */
 }
 
-.react-calendar__month-view__days__day:last-child {
-border-top-right-radius: 0.5rem;
-border-bottom-right-radius: 0.5rem;
-}
-
-.rounded-r-full.bg-black {
-    background-color: black !important;
+.react-calendar__tile--rangeBegining {
     border-top-right-radius: 0.5rem !important; /* Adjust the radius as needed */
     border-bottom-right-radius: 0.5rem !important; /* Adjust the radius as needed */
+}
+
+
+.start-date-circle, .end-date-circle {
+    position: relative !important;
+}
+
+.start-date-circle::before, .end-date-circle::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 100% !important; /* Adjust the size of the circle */
+    height: 100% !important; /* Adjust the size of the circle */
+    background-color: blue !important;
+    border-radius: 50% !important;
+    z-index: -1 !important;
 }
