@@ -100,12 +100,14 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                             onClick={(event) => toggleValue(event, value)}
                             className={`cursor-pointer`}
                         >
+                            <input 
+                                type="checkbox" 
+                                checked={selectedValues.includes(value)} 
+                                onChange={() => {}} // This is required to avoid a read-only field warning in React. The real functionality is handled by the onClick on the div.
+                            />
                             <span className={`${selectedValues.includes(value) ? 'bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-black' : 'bg-transparent'}`}>
                                 {value}
                             </span>
-                            
-                            {/* Horizontal divider for all except the last item in dropdown */}
-                            {index !== coreValueList.length - 1 && <div className="border-b border-[#C7CBDA] w-full my-[0.44rem]"></div>}
                         </div>
                     ))}
                 </div>
