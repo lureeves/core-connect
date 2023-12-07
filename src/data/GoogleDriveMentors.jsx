@@ -21,7 +21,8 @@ export const MentorData=[
             "industry": "AI",
             "software": "WordPress, MySQL, Python",
             "company_size": 100,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -45,7 +46,8 @@ export const MentorData=[
             "industry": "Automotive",
             "software": "Figma",
             "company_size": 1000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Wed", "Thu", "Fri", "Sat", "Sun"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -69,7 +71,8 @@ export const MentorData=[
             "industry": "B2B",
             "software": "MySQL, Python",
             "company_size": 5,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -93,7 +96,8 @@ export const MentorData=[
             "industry": "Manufacturing",
             "software": "Mailchimp",
             "company_size": 100,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -115,7 +119,8 @@ export const MentorData=[
             "industry": "Aerospace",
             "software": "Mailchimp",
             "company_size": 140000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -137,7 +142,8 @@ export const MentorData=[
             "industry": "Finance",
             "software": "Python",
             "company_size": 75000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Wed", "Thu", "Fri", "Sat", "Sun"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -161,7 +167,8 @@ export const MentorData=[
             "industry": "B2C",
             "software": "Balsamiq",
             "company_size": 10,
-            "career_pivoted": "yes "
+            "career_pivoted": "yes ",
+            "availability": ["Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -185,7 +192,8 @@ export const MentorData=[
             "industry": "Biotech",
             "software": "Mailchimp",
             "company_size": 25,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -207,7 +215,8 @@ export const MentorData=[
             "industry": "Consumer Goods",
             "software": "Figma",
             "company_size": 130000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -229,7 +238,8 @@ export const MentorData=[
             "industry": "Retail",
             "software": "Balsamiq",
             "company_size": 400000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -253,7 +263,8 @@ export const MentorData=[
             "industry": "Fintech",
             "software": "WordPress, MySQL, Python",
             "company_size": 10,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
            },
            {
             "Starts appearing on page": "Homepage\/01",
@@ -277,7 +288,8 @@ export const MentorData=[
             "industry": "Gaming",
             "software": "Figma",
             "company_size": 25,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -299,7 +311,8 @@ export const MentorData=[
             "industry": "Tech",
             "software": "Figma",
             "company_size": 12000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -321,7 +334,8 @@ export const MentorData=[
             "industry": "Tech",
             "software": "Balsamiq",
             "company_size": 1500000,
-            "career_pivoted": "yes "
+            "career_pivoted": "yes ",
+            "availability": ["Fri", "Sat", "Sun"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -343,7 +357,8 @@ export const MentorData=[
             "industry": "Construction",
             "software": "MySQL",
             "company_size": 100000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/09",
@@ -361,7 +376,8 @@ export const MentorData=[
             "last_active": "24 hrs ago",
             "sessions_completed": 46,
             "industry": "IT\/AI",
-            "company_size": "10,000+"
+            "company_size": "10,000+",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -379,7 +395,8 @@ export const MentorData=[
             "last_active": "9 hrs ago",
             "sessions_completed": 31,
             "industry": "SaaS",
-            "company_size": "500-10,000"
+            "company_size": "500-10,000",
+            "availability": ["Wed", "Thu", "Fri", "Sat"]
            },
            {
             "Starts appearing on page": "Homepage\/09",
@@ -398,7 +415,8 @@ export const MentorData=[
             "sessions_completed": 23,
             "industry": "SaaS",
             "company_size": "10,000+",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Tue", "Wed", "Thu", "Fri"]
            },
            {
             "first_name": "Mia",
@@ -419,7 +437,8 @@ export const MentorData=[
             "industry": "Tech",
             "software": "Mailchimp, Salesforce",
             "company_size": 75000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "first_name": "Bob",
@@ -440,7 +459,8 @@ export const MentorData=[
             "industry": "Tech",
             "software": "WordPress, MySQL, Python",
             "company_size": 150000,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "first_name": "Patricia",
@@ -461,7 +481,8 @@ export const MentorData=[
             "industry": "Tech",
             "software": "MySQL, Python",
             "company_size": 160000,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed"]
            },
            {
             "first_name": "Emma",
@@ -484,7 +505,8 @@ export const MentorData=[
             "industry": "Aerospace",
             "software": "Mailchimp, Salesforce",
             "company_size": 50,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Wed", "Thu", "Fri", "Sat", "Sun"]
            },
            {
             "first_name": "Sophia",
@@ -507,7 +529,8 @@ export const MentorData=[
             "industry": "C2C",
             "software": "MySQL",
             "company_size": 250,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Tue", "Wed", "Thu"]
            },
            {
             "first_name": "James",
@@ -530,7 +553,8 @@ export const MentorData=[
             "industry": "Consulting",
             "software": "Python",
             "company_size": 50,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "first_name": "Isabella",
@@ -553,7 +577,8 @@ export const MentorData=[
             "industry": "Creative",
             "software": "Figma",
             "company_size": 100,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Fri", "Sat", "Sun"]
            },
            {
             "first_name": "Elijah",
@@ -576,7 +601,8 @@ export const MentorData=[
             "industry": "E-Commerce",
             "software": "Balsamiq",
             "company_size": 1000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "first_name": "Charlotte",
@@ -599,7 +625,8 @@ export const MentorData=[
             "industry": "Education",
             "software": "Mailchimp, Salesforce",
             "company_size": 5,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Wed", "Thu", "Fri", "Sat"]
            },
            {
             "first_name": "Lucas",
@@ -622,7 +649,8 @@ export const MentorData=[
             "industry": "Healthcare",
             "software": "MySQL, Python",
             "company_size": 250,
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Tue", "Wed", "Thu"]
            },
            {
             "first_name": "Mia",
@@ -645,7 +673,8 @@ export const MentorData=[
             "industry": "Legal",
             "software": "Balsamiq",
             "company_size": 50,
-            "career_pivoted": "yes "
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "first_name": "Harper",
@@ -668,7 +697,8 @@ export const MentorData=[
             "industry": "Media",
             "software": "MySQL",
             "company_size": 1000,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Fri", "Sat", "Sun"]
            },
            {
             "first_name": "Ethan",
@@ -691,7 +721,8 @@ export const MentorData=[
             "industry": "Retail",
             "software": "Python",
             "company_size": 5,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -715,7 +746,8 @@ export const MentorData=[
             "industry": "SaaS",
             "software": "Figma",
             "company_size": 10,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Tue", "Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -739,7 +771,8 @@ export const MentorData=[
             "industry": "Social Media",
             "software": "Balsamiq",
             "company_size": 25,
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage 14",
@@ -758,7 +791,8 @@ export const MentorData=[
             "sessions_completed": 22,
             "industry": "AI",
             "company_size": "50-500",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -778,7 +812,8 @@ export const MentorData=[
             "industry": "AI",
             "software": "Figma, Miro",
             "company_size": "10,000+",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -798,7 +833,8 @@ export const MentorData=[
             "industry": "SaaS",
             "software": "Sketch",
             "company_size": "501-10,000",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -818,7 +854,8 @@ export const MentorData=[
             "industry": "SaaS",
             "software": "Sketch",
             "company_size": "501-10,000",
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Fri", "Sat", "Sun"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -838,7 +875,8 @@ export const MentorData=[
             "industry": "SaaS",
             "software": "Figma, Miro",
             "company_size": "501-10,000",
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -858,7 +896,8 @@ export const MentorData=[
             "industry": "AI",
             "software": "Figma, Photoshop",
             "company_size": "501-10,000",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Wed", "Thu", "Fri"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -878,7 +917,8 @@ export const MentorData=[
             "industry": "AI",
             "software": "Sketch",
             "company_size": "501-10,000",
-            "career_pivoted": "no"
+            "career_pivoted": "no",
+            "availability": ["Mon", "Tue", "Wed", "Thu"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -898,7 +938,8 @@ export const MentorData=[
             "industry": "SaaS",
             "software": "Figma",
             "company_size": "501-10,000",
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Fri", "Sat", "Sun"]
            },
            {
             "Starts appearing on page": "Homepage\/04",
@@ -918,7 +959,8 @@ export const MentorData=[
             "industry": "AI",
             "software": "Figma, Photoshop",
             "company_size": "10,000+",
-            "career_pivoted": "yes"
+            "career_pivoted": "yes",
+            "availability": ["Mon", "Tue", "Wed", "Thu", "Fri"]
            }
           ]
 
