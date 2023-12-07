@@ -13,8 +13,39 @@
     background: #FFF;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10) inset;
 }
-/* flex justify-between items-center w-64 h-10 py-3 pr-6 pl-7 gap-3*/
 
 .filter-box{
     width: 9rem;
+}
+
+
+/* Custom checkbox styles */
+/* Styles for the unchecked checkbox */
+.custom-checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #6B6C70; /* Grey border color */
+    border-radius: 0.1rem; /* Slightly rounded borders */
+    width: 2.75rem; /* Width and height of the checkbox */
+    height: 2.75rem;
+    background-color: #fff; /* White background color */
+    cursor: pointer;
+}
+
+/* Styles when the checkbox is checked */
+.custom-checkbox:checked {
+    background-color: #3A2A9B; /* Dark purple background color */
+    border-color: #3A2A9B; /* Dark purple border color */
+}
+
+/* Adding a white checkmark icon when checked */
+.custom-checkbox:checked:after {
+    content: '✓';
+    color: #fff; /* White color for the checkmark */
+    position: relative; 
+    top: -30%;
+    /* left: 50%; */
+    transform: translate(-50%, -50%);
+    font-size: 2.75rem; /* Adjust size as needed */
 }

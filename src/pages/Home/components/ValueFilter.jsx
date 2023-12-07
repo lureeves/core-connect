@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 import { coreValues } from '../../../data/CoreValues.jsx';
-import { arrow } from '../../../assets';
-import '../../Home/Home.css';
+import { arrow, CheckBox } from '../../../assets';
+import '../Home.css';
 
 /**
  * ValueFilter Component
@@ -79,7 +79,7 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${selectedValues.length > 0 ? 'border-[2px]' : ''}`}
+            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
         >
@@ -93,21 +93,28 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting core values */}
             {showDropdown && (
-                <div className="dropdown absolute top-full right-[-5rem] w-[27rem] filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-[17.7rem] overflow-auto grid grid-cols-3 gap-x-4">
+                <div 
+                    className="filter-container dropdown absolute 
+                    top-[45px] right-[0rem] w-[40rem] h-[31.7rem] py-[3.25rem] px-[3.5rem] text-[#6B6C70] 
+                    border-[#3A2A9B] overflow-auto grid grid-cols-3 gap-x-4 " 
+                    style={{boxShadow: 'inset 0 0 0 16px #fff, inset 0 0 0 11px #C7CBDA'}}
+                    >
                     {coreValueList.map((value, index) => (
                         <div 
                             key={index} 
                             onClick={(event) => toggleValue(event, value)}
                             className={`cursor-pointer`}
                         >
-                            <input 
-                                type="checkbox" 
-                                checked={selectedValues.includes(value)} 
-                                onChange={() => {}} // This is required to avoid a read-only field warning in React. The real functionality is handled by the onClick on the div.
-                            />
-                            <span className={`${selectedValues.includes(value) ? 'bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-black' : 'bg-transparent'}`}>
-                                {value}
-                            </span>
+                            <div className="flex items-center">
+                                {selectedValues.includes(value) ? (
+                                    <img src={CheckBox} alt="Checkbox" className={'h-[11px] w-[12px] border-[1px] border-[#3A2A9B] rounded-[3px]'} />
+                                ) : (
+                                    <div className="h-[0.75rem] w-[0.75rem] border-[1px] border-[#6B6C70]rounded-[0.5px]"></div>
+                                )}
+                                <span className={`px-[0.56rem] ${selectedValues.includes(value) ? 'text-[#3A2A9B] ' : 'bg-transparent'}`}>
+                                    {value}
+                                </span>
+                            </div>
                         </div>
                     ))}
                 </div>
