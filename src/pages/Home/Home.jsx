@@ -50,6 +50,7 @@ const Home = () => {
         // console.log("Role Search Results:", roleSearchResults);
         // console.log("Industry Filter Results:", industryFilterResults);
         // console.log("Value Filter Results:", valueFilterResults);
+        // console.log("Availability Filter Results: ", availabilityFilterResults);
     }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]); 
     
 
@@ -121,10 +122,10 @@ const Home = () => {
                     
                     {/* Design mentors */}
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
-                        {mentorIndexes.length > 0 ? (
-                            mentorIndexes.slice(0, 12).map((index) => <MentorCard key={index} id={index} />)
+                        {mentorIndexes.length < 41 ? (
+                            mentorIndexes.slice(0, 16).map((index) => <MentorCard key={index} id={index} />)
                         ) : (
-                            Array.from({ length: 12 }, (_, index) => <MentorCard key={index} id={index} />)
+                            mentorIndexes.slice(0, 12).map((index) => <MentorCard key={index} id={index} />)
                         )}
                     </div>
                 </div>
