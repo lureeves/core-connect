@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 import { coreValues } from '../../../data/CoreValues.jsx';
 import { arrow, CheckBox } from '../../../assets';
-import '../Home.css';
 
 /**
  * ValueFilter Component
@@ -93,30 +92,43 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting core values */}
             {showDropdown && (
-                <div 
-                    className="filter-container dropdown absolute 
-                    top-[45px] right-[0rem] w-[40rem] h-[31.7rem] py-[3.25rem] px-[3.5rem] text-[#6B6C70] 
-                    border-[#3A2A9B] overflow-auto grid grid-cols-3 gap-x-4 " 
-                    style={{boxShadow: 'inset 0 0 0 16px #fff, inset 0 0 0 11px #C7CBDA'}}
-                    >
-                    {coreValueList.map((value, index) => (
-                        <div 
-                            key={index} 
-                            onClick={(event) => toggleValue(event, value)}
-                            className={`cursor-pointer`}
+                <div className="filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[40rem] h-[31.7rem]">
+                    <div 
+                        className="filter-container dropdown absolute py-[2.25rem] px-[2.5rem] text-[#6B6C70] border-[#C7CBDA] gap-x-[2.8rem] gap-y-[0.65rem] w-[37.8rem] h-[29.5rem] " 
+                        style={{
+                            display: 'grid',
+                            gridTemplateColumns: '155px 155px 155px', // Fixed width for 3 columns
+                            gridAutoRows: 'minmax(min-content, max-content)' // Auto-adjust row height
+                        }}
                         >
-                            <div className="flex items-center">
-                                {selectedValues.includes(value) ? (
-                                    <img src={CheckBox} alt="Checkbox" className={'h-[11px] w-[12px] border-[1px] border-[#3A2A9B] rounded-[3px]'} />
-                                ) : (
-                                    <div className="h-[0.75rem] w-[0.75rem] border-[1px] border-[#6B6C70]rounded-[0.5px]"></div>
-                                )}
-                                <span className={`px-[0.56rem] ${selectedValues.includes(value) ? 'text-[#3A2A9B] ' : 'bg-transparent'}`}>
-                                    {value}
-                                </span>
+                        {coreValueList.map((value, index) => (
+                            <div 
+                                key={index} 
+                                onClick={(event) => toggleValue(event, value)}
+                                style={{
+                                    gridColumn: Math.floor(index / 12) + 1, // Determine the column based on index
+                                    gridRow: (index % 12) + 1 // Determine the row in that column
+                                }}
+                                className="cursor-pointer "
+                            >
+                                <div className="flex items-center">
+                                    {selectedValues.includes(value) ? (
+                                        <img 
+                                        src={CheckBox} 
+                                        alt="Checkbox" 
+                                        className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem]'} 
+                                        style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
+                                        />                                
+                                    ) : (
+                                        <div className=" h-[0.75rem] w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
+                                    )}
+                                    <span className={`px-[0.56rem] ${selectedValues.includes(value) ? 'text-[#3A2A9B] ' : 'bg-transparent'}`}>
+                                        {value}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
