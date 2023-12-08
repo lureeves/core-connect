@@ -5,6 +5,7 @@ import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
 import ValueFilter from './components/ValueFilter.jsx';
 import AvailabilityFilter from './components/AvailabilityFilter.jsx';
+import MultiFilter from './components/MultiFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
@@ -19,6 +20,7 @@ const Home = () => {
     const [industryFilterResults, setIndustryFilterResults] = useState([]);
     const [valueFilterResults, setValueFilterResults] = useState([]);
     const [availabilityFilterResults, setAvailabilityFilterResults] = useState([]);
+    const [multiFilterResults, setMultiFilterResults] = useState([]);
     
 
     // Flips arrow on search filter
@@ -42,7 +44,7 @@ const Home = () => {
             );
         };
 
-        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]);
+        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]);
         // Include additional filter results in the combineFilters call as needed
 
         setMentorIndexes(combinedIndexes);
@@ -51,7 +53,7 @@ const Home = () => {
         // console.log("Industry Filter Results:", industryFilterResults);
         // console.log("Value Filter Results:", valueFilterResults);
         // console.log("Availability Filter Results: ", availabilityFilterResults);
-    }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]); 
+    }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]); 
     
 
     return (
@@ -98,13 +100,8 @@ const Home = () => {
 
                     <AvailabilityFilter setMentorIndexes={setAvailabilityFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
-                    {/* Filters */}
-                    <div className='filter-container filter-box flex justify-center items-center w-[9.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                        onClick={()=>Flipping(5)}
-                        >
-                        <img src={filter} alt="" />
-                        <button className='filters-dropdown'>Filters</button>
-                    </div>
+                    <MultiFilter setMentorIndexes={setMultiFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
+                    
                 </div>
             </div>
             {/* End Filtering Mentor Section */}
