@@ -9,6 +9,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
+    const companySizes = ['< 50', '50-500', '501-10,000', '10,000+'];
     const dropdownRef = useRef(null);
 
     // Function to handle outside clicks to close the dropdown
@@ -39,13 +40,13 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     }, []);
 
     // Function to toggle selection state of a filter value
-    const toggleFilter = (event, value, setter, currentValues) => {
-        event.stopPropagation();
-        setter(prev => {
-            if (prev.includes(value)) {
-                return prev.filter(i => i !== value);
+    const toggleCompanySize = (event, size) => {
+        event.stopPropagation(); // Prevents event from bubbling up to parent elements
+        setSelectedCompanySizes(prev => {
+            if (prev.includes(size)) {
+                return prev.filter(i => i !== size);
             } else {
-                return [...prev, value];
+                return [...prev, size];
             }
         });
     };
@@ -81,8 +82,34 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                     <LevelFilter setSelectedLevels={handleSetSelectedLevels} />
 
                     {/* Company Size Filter */}
-                    <div className="border-black border-2 ">
+                    <div className="border-[#C7CBDA] border-[1px] rounded-[1.25rem] w-[13.5rem] h-[14rem] pt-[0.94rem] text-center text-[0.9375rem] text-semibold">
                         Company Size
+                        <div className="flex flex-col justify-around">
+                            {companySizes.map((size) => (
+                                <button 
+                                    key={size} 
+                                    className={`text-[0.875rem] border-[#3A2A9B] border-[1px] rounded-[0.3125rem] mx-[3.02rem] mt-[0.75rem] pl-[0.75rem] h-[1.8125rem] flex items-center 
+                                                ${selectedCompanySizes.includes(size) ? 'bg-[#3A2A9B]' : 'bg-transparent'}`}
+                                    onClick={(event) => toggleCompanySize(event, size)}>
+                                    {selectedCompanySizes.includes(size) ? (
+                                        // Checkbox (selected)
+                                        <img 
+                                            src={CheckBox} 
+                                            alt="Checkbox" 
+                                            className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem] '} 
+                                            style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
+                                        />
+                                    ) : (
+                                        // Grey box (unselected)
+                                        <div className="h-[0.75rem] w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
+                                    )}
+                                    {/* Company size */}
+                                    <span className={`px-[0.56rem] text-clip overflow-hidden ${selectedCompanySizes.includes(size) ? 'text-white' : 'bg-transparent'}`} >
+                                        {size}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
