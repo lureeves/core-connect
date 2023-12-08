@@ -12,7 +12,7 @@ import '../Home/Home.css'
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Used in opacity of background for dropdown
 
     const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
 
@@ -108,7 +108,7 @@ const Home = () => {
 
             {/* Mentor Cards Section*/}
             {mentorIndexes.length > 0 ? (
-                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-auto`}>
+                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-0`}>
                     
                     {MentorData.length - 1 <= mentorIndexes.length ? (
                         <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>

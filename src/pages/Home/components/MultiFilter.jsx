@@ -5,6 +5,8 @@ import LevelFilter from './subComponents/LevelFilter.jsx';
 import { CheckBox, filter } from '../../../assets';
 
 const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
+    const [isDisciplineDropdownOpen, setIsDisciplineDropdownOpen] = useState(false); // Used in opacity of background for dropdown
+    const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false);
     const [selectedDisciplines, setSelectedDisciplines] = useState([]);
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
@@ -33,15 +35,15 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     // Event listeners for outside click detection
     useEffect(() => {
+        setIsDropdownOpen(showDropdown)
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, [showDropdown]);
 
     // Function to toggle selection state of a filter value
     const toggleCompanySize = (event, size) => {
-        event.stopPropagation(); // Prevents event from bubbling up to parent elements
         setSelectedCompanySizes(prev => {
             if (prev.includes(size)) {
                 return prev.filter(i => i !== size);
@@ -51,15 +53,11 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
         });
     };
 
-    // Function to filter mentors
-    useEffect(() => {
-        // Implement filtering logic here based on selected disciplines, levels, and company sizes
-        // Update setMentorIndexes based on the filtered results
-    }, [selectedDisciplines, selectedLevels, selectedCompanySizes]);
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold z-10 ${showDropdown ? `border-[#3A2A9B]` : ``}`}
+            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold z-10 
+                        ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
             >
@@ -74,15 +72,23 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting filter values */}
             {showDropdown && (
-                <div className="filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem]">
+                <div 
+                    className={`filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem] z-10`}
+                    // {Prevents dropdown from closing when clicked inside}
+                    onClick={(event) => event.stopPropagation()}> 
                     {/* Discipline Dropdown */}
-                    <DisciplineFilter handleSetSelectedDisciplines={handleSetSelectedDisciplines} />
+                    <div className={`${isLevelDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
+                        <DisciplineFilter handleSetSelectedDisciplines={handleSetSelectedDisciplines} setIsDisciplineDropdownOpen={setIsDisciplineDropdownOpen} />
+                    </div>
 
                     {/* Level Dropdown */}
-                    <LevelFilter setSelectedLevels={handleSetSelectedLevels} />
+                    <div className={`${isDisciplineDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
+                        <LevelFilter setSelectedLevels={handleSetSelectedLevels} />
+                    </div>
 
                     {/* Company Size Filter */}
-                    <div className="border-[#C7CBDA] border-[1px] rounded-[1.25rem] w-[13.5rem] h-[14rem] pt-[0.94rem] text-center text-[0.9375rem] text-semibold">
+                    <div className={`border-[#C7CBDA] border-[1px] rounded-[1.25rem] w-[13.5rem] h-[14rem] pt-[0.94rem] text-center text-[0.9375rem] text-semibold
+                                    ${isDisciplineDropdownOpen || isLevelDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
                         Company Size
                         <div className="flex flex-col justify-around">
                             {companySizes.map((size) => (
@@ -96,7 +102,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                                         <img 
                                             src={CheckBox} 
                                             alt="Checkbox" 
-                                            className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem] '} 
+                                            className={`h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem] ${selectedCompanySizes.includes(size) ? 'h-[12px] border-white p-[0.07rem]' : 'bg-transparent'}`} 
                                             style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
                                         />
                                     ) : (
