@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox } from '../../../../assets';
+import MagGlassIcon from '../subComponents/MagGlassIcon.jsx';
+import { MentorData } from '../../../../data/GoogleDriveMentors';
 
 const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdownOpen }) => {
     const [showDisciplineDropdown, setShowDisciplineDropdown] = useState(false);
-    const disciplines = ['1-2 years', '3-5 years', '6-8 years', '9+ years'];
+    const disciplines = [...new Set(MentorData.map(mentor => mentor.disciplines))];
     const [selectedDisciplines, setSelectedDisciplines] = useState([]);
     const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         // Call the handleSetSelectedDisciplines function passed as prop
@@ -39,6 +42,7 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                 return prev.filter(i => i !== discipline);
             } else {
                 // Add discipline if not already selected
+                setSearchTerm(''); // Clear the search box
                 return [...prev, discipline];
             }
         });
@@ -56,18 +60,24 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
             </button>
 
             {showDisciplineDropdown && (
-                <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.4rem]`}>
-                    {disciplines.map((discipline, index) => (
+                <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.4rem] overflow-auto`}>
+                    <div className="search-input relative">
+                        <MagGlassIcon className="absolute top-1/2 left-2 transform -translate-y-1/2" />
+                        <input 
+                            type="text" 
+                            value={searchTerm} 
+                            onChange={e => setSearchTerm(e.target.value)} 
+                            onClick={e => e.stopPropagation()}
+                            placeholder="Search disciplines" 
+                            className={`border-[1px] border-[#C7CBDA] rounded-[0.3125rem] h-[2.25rem] w-[11.625rem]`}
+                        />
+                    </div>
+                    {disciplines.filter(discipline => discipline.toLowerCase().includes(searchTerm.toLowerCase())).map((discipline, index) => (
                         <div 
                             key={index} 
                             onClick={(event) => toggleDiscipline(event, discipline)}
-                            style={{
-                                gridColumn: Math.floor(index / 12) + 1, // Determine the column based on index
-                                gridRow: (index % 12) + 1 // Determine the row in that column
-                            }}
-                            className="cursor-pointer "
                         >
-                            <div className="flex items-center">
+                            <div className="flex items-center whitespace-nowrap">
                                 {selectedDisciplines.includes(discipline) ? (
                                     <img 
                                     src={CheckBox} 
@@ -76,11 +86,13 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                                     style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
                                     />                                
                                 ) : (
-                                    <div className=" h-[0.75rem] w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
+                                    <div className=" h-[0.75rem] min-w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
                                 )}
-                                <span className={`px-[0.56rem] ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : ''}`}>
+                                <span className={`px-[0.56rem] py-[0.44rem] font-semibold text-ellipsis overflow-hidden ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : 'text-[#6B6C70]'}`}>
                                     {discipline}
                                 </span>
+
+                                {index !== disciplines.length - 1 && <div className="absolute border-b border-[#C7CBDA] w-[10.563rem] py-[1.25rem]"></div>}
                             </div>
                         </div>
                     ))}
