@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 import DisciplineFilter from './subComponents/DisciplineFilter.jsx';
 import LevelFilter from './subComponents/LevelFilter.jsx';
-import { arrow, CheckBox } from '../../../assets';
+import { CheckBox, filter } from '../../../assets';
 
 const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const [selectedDisciplines, setSelectedDisciplines] = useState([]);
@@ -58,12 +58,18 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${showDropdown ? `border-[#3A2A9B]` : ``}`}
+            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold z-10 ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
-        >
+            >
             {/* Dropdown trigger button */}
-            {/* ... */}
+            <span className='flex flex-nowrap'>
+                <img src={filter} alt="Filter Icon" className="pr-3" />
+
+                <button className="text-[#6B6C70]">
+                    Filter
+                </button>
+            </span>
 
             {/* Dropdown for selecting filter values */}
             {showDropdown && (
@@ -75,7 +81,9 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                     <LevelFilter setSelectedLevels={handleSetSelectedLevels} />
 
                     {/* Company Size Filter */}
-
+                    <div className="border-black border-2 ">
+                        Company Size
+                    </div>
                 </div>
             )}
         </div>
