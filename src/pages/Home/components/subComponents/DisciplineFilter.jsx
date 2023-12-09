@@ -61,23 +61,23 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
 
             {showDisciplineDropdown && (
                 <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.4rem] overflow-auto`}>
-                    <div className="search-input relative">
-                        <MagGlassIcon className="absolute top-1/2 left-2 transform -translate-y-1/2" />
-                        <input 
-                            type="text" 
-                            value={searchTerm} 
-                            onChange={e => setSearchTerm(e.target.value)} 
-                            onClick={e => e.stopPropagation()}
-                            placeholder="Search disciplines" 
-                            className={`border-[1px] border-[#C7CBDA] rounded-[0.3125rem] h-[2.25rem] w-[11.625rem]`}
-                        />
-                    </div>
+                    {/* Search Box */}
+                    <div className="absolute left-[1.6rem] top-[2.15rem] transform -translate-y-1/2 z-10 text-[1rem]"><MagGlassIcon /></div>
+                    <input 
+                        type="text" 
+                        value={searchTerm} 
+                        onChange={e => setSearchTerm(e.target.value)} 
+                        onClick={e => e.stopPropagation()}
+                        placeholder="Search disciplines" 
+                        className=" bg-transparent pl-8 border-[1px] border-[#C7CBDA] rounded-[0.3125rem] text-[#6B6C70] w-[11.625rem] h-[2.25rem]"
+                    />
                     {disciplines.filter(discipline => discipline.toLowerCase().includes(searchTerm.toLowerCase())).map((discipline, index) => (
                         <div 
                             key={index} 
                             onClick={(event) => toggleDiscipline(event, discipline)}
                         >
                             <div className="flex items-center whitespace-nowrap">
+                                {/* Checkbox for each discipline */}
                                 {selectedDisciplines.includes(discipline) ? (
                                     <img 
                                     src={CheckBox} 
@@ -88,10 +88,13 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                                 ) : (
                                     <div className=" h-[0.75rem] min-w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
                                 )}
-                                <span className={`px-[0.56rem] py-[0.44rem] font-semibold text-ellipsis overflow-hidden ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : 'text-[#6B6C70]'}`}>
+                                
+                                {/* Discipline */}
+                                <span className={`px-[0.56rem] py-[0.44rem] font-medium text-[0.9375rem] text-ellipsis overflow-hidden ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : 'text-[#6B6C70]'}`}>
                                     {discipline}
                                 </span>
-
+                                
+                                {/* Dividing Line */}
                                 {index !== disciplines.length - 1 && <div className="absolute border-b border-[#C7CBDA] w-[10.563rem] py-[1.25rem]"></div>}
                             </div>
                         </div>
