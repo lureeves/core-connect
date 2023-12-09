@@ -4,6 +4,8 @@ import Marker from '../../assets/locationMarker.svg';
 import Review from './components/Review.jsx'
 import Calendar from './components/Calendar.jsx';
 import RequestForm from './components/RequestForm.jsx';
+import linkedIn from '../../assets/linkedIn.svg';
+import website from '../../assets/website.svg';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx';
 import { MentorAboutMes } from '../../data/GoogleDriveAboutMes.jsx';
 import { FakeReviews } from '../../data/FakeAvailability.jsx';
@@ -80,7 +82,14 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
 
                         {/* About me Section */}
                         <div className='flex flex-col w-[31.8125rem] gap-4 mb-10 p-3 px-5'>
-                            <h3 className='font-bold'>About Me</h3>
+                            <div className='flex w-full justify-between border-b pb-2 border-b-slate-200'>
+                                <h3 className='font-bold text-[1.0625rem]'>About Me</h3>
+                                <div className='flex gap-2'>
+                                    <a href="https://www.linkedin.com/" target='_blank'><img src={linkedIn} alt="linked in link" /></a>
+                                    <a href="https://www.joincolab.io/" target='_blank'><img src={website} alt="website link" /></a>
+                                </div>
+                            </div>
+                            
                             <p>
                                {MentorAboutMes[id]['About Me ']}
                             </p>

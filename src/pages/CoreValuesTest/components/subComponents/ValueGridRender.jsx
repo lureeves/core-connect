@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { CoreValueButton, ActionButton } from './Buttons.jsx'
 
 /**
@@ -126,34 +126,103 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
  * @param {Object} props - The properties passed to the component.
  * @param {Array} props.finalValues - An array of the final three selected core values.
  */
+import ClipLoader from "react-spinners/ClipLoader";
+import API_KEY from '../../../../../openAikey.js'
 export const FinalValues = ({ finalValues }) => {
+    
+   
     // Calculates the width for a core value based on its character length.
     const calculateWidth = (value) => {
         const baseWidth = 20; // Base width
         const widthPerCharacter = 10; // Additional width per character
         return `${baseWidth + (value.length * widthPerCharacter)}px`;
     };
+    let coreValues = finalValues.join(' ');
+    const [image, setImage] = useState('/');
+    const [loading, setLoading] =useState(false);
+    
+    const imageGenerator = async ()=>{
+        setLoading(true);
+        const response = await fetch(
+            "https://api.openai.com/v1/images/generations",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    Authorization:
+                    `Bearer ${API_KEY}`,
+                    "User-Agent": "Chrome",
+            
+                },
+                body:JSON.stringify({
+                    prompt: `Art that expresses ${coreValues} in a creative way`,
+                    n:1,
+                    size:"512x512",
 
+                }),
+            }
+        );
+        let data = await response.json();
+        let data_array = data.data;
+        setImage(data_array[0].url);
+        setLoading(false);
+        console.log(data);
+        console.log(coreValues);
+    }
+    
     return (
         <div className=''>
             <div className="flex flex-col justify-center items-center">
                 <h3 className='mb-[47px] font-lg font-bold'>Congratulations on taking the time to learn more about yourself!</h3>
                 <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
-                <div className='flex'>
-                    <img src="https://via.placeholder.com/150" alt="Placeholder" className="mr-[25px] rounded-[10px]" />
-                    <div className='flex flex-col'>
-                        {finalValues.map(value => (
-                            <div 
-                                key={value} 
-                                className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] bg-[#D7E0FF] text-center"
-                                style={{ width: calculateWidth(value) }}
+                <div className='flex flex-col'> 
+                    <div className='flex'>
+                        <div className='flex flex-col items-center'>
+                            {
+                                loading?(
+                                    <div className='mr-[2rem] h-full w-full flex justify-center items-center'>
+                                        <ClipLoader
+                                        color={"#2C4193"}
+                                        loading={loading}
+                                        size={50}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                        />
+                                    </div>
+                                    
+                                ):(
+                                    <img src={image==='/'?"https://via.placeholder.com/150":image} alt="Generated" className="mr-[25px] rounded-[10px] w-[150px]" /> 
+                                )
+                            }
+                            
+                            
+                            
+                        </div> 
+        
+                        <div className='flex flex-col'>
+                            {finalValues.map(value => (
+                                <div 
+                                    key={value} 
+                                    className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] w-fit bg-[#D7E0FF] text-center"
+                                >
+                                    {value}
+                                </div>
+                            ))}
+                            
+                        </div>
+                    </div>  
+                    <div className='flex w-full justify-center'>
+                        <button className='mr-[1.5rem] bg-[#2C4193] w-fit text-white font-semibold px-2 mt-[1rem] rounded-lg'
+                                onClick={()=>imageGenerator()}
                             >
-                                {value}
-                            </div>
-                        ))}
+                                Generate
+                        </button>
                     </div>
+                    
+                    
                 </div>
             </div>
         </div>
     );
 };
+// ? image:"https://via.placeholder.com/150"
