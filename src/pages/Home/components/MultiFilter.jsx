@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 import DisciplineFilter from './subComponents/DisciplineFilter.jsx';
 import LevelFilter from './subComponents/LevelFilter.jsx';
-import { CheckBox, filter } from '../../../assets';
+import { CheckBox, filter, arrow } from '../../../assets';
 
 const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const [isDisciplineDropdownOpen, setIsDisciplineDropdownOpen] = useState(false); // Used in opacity of background for dropdown
@@ -24,13 +24,11 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     // Function to set selected levels
     const handleSetSelectedLevels = (levels) => {
         setSelectedLevels(levels);
-        // Add any additional logic if needed
     };
     
     // Function to set selected disciplines
     const handleSetSelectedDisciplines = (disciplines) => {
         setSelectedDisciplines(disciplines);
-        // Add any additional logic if needed
     };
 
     // Event listeners for outside click detection
@@ -56,7 +54,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold z-10 
+            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold  
                         ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
@@ -83,7 +81,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
                     {/* Level Dropdown */}
                     <div className={`${isDisciplineDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
-                        <LevelFilter setSelectedLevels={handleSetSelectedLevels} />
+                        <LevelFilter handleSetSelectedLevels={handleSetSelectedLevels} setIsLevelDropdownOpen={setIsLevelDropdownOpen} />
                     </div>
 
                     {/* Company Size Filter */}
@@ -118,7 +116,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
                         </div>
                     </div>
                 </div>
-            )}
+            )}  
         </div>
     );
 };

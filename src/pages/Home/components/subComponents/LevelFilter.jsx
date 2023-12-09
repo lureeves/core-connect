@@ -1,24 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox } from '../../../../assets';
 
-const LevelFilter = ({ setSelectedLevels }) => {
-    const [showDropdown, setShowDropdown] = useState(false);
+const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
+    const [showLevelDropdown, setShowLevelDropdown] = useState(false);
     const levels = ['1-2 years', '3-5 years', '6-8 years', '9+ years'];
-    const [checkedLevels, setCheckedLevels] = useState([]);
+    const [selectedLevels, setSelectedLevels] = useState([]);
+    const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
 
     useEffect(() => {
-        // Call the setSelectedLevels function passed as prop
-        setSelectedLevels(checkedLevels);
-    }, [checkedLevels, setSelectedLevels]);
+        setIsLevelDropdownOpen(showLevelDropdown);
+        handleSetSelectedLevels(selectedLevels);
+    }, [selectedLevels, showLevelDropdown]);
 
     // Toggle the visibility of the dropdown
     const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
+        setShowLevelDropdown(!showLevelDropdown);
     };
 
     // Handle checkbox change
     const handleCheckboxChange = (level) => {
-        setCheckedLevels(prev => {
+        setSelectedLevels(prev => {
             if (prev.includes(level)) {
                 return prev.filter(l => l !== level);
             } else {
@@ -28,19 +29,23 @@ const LevelFilter = ({ setSelectedLevels }) => {
     };
 
     return (
-        <div className="level-filter-container">
+        <div 
+            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 ${showLevelDropdown ? `border-[#3A2A9B]` : ``}`}
+            onClick={() => setShowLevelDropdown(!showLevelDropdown)}
+            ref={dropdownRef}
+        >
             <button onClick={toggleDropdown} className="level-filter-button">
-                Level {checkedLevels.length > 0 && `(${checkedLevels.length})`}
+                Level {selectedLevels.length > 0 && `(${selectedLevels.length})`}
             </button>
 
-            {showDropdown && (
+            {showLevelDropdown && (
                 <div className="level-dropdown">
                     {levels.map((level, index) => (
                         <div key={index} className="checkbox-container">
                             <input
                                 type="checkbox"
                                 id={`level-${index}`}
-                                checked={checkedLevels.includes(level)}
+                                checked={selectedLevels.includes(level)}
                                 onChange={() => handleCheckboxChange(level)}
                             />
                             <label htmlFor={`level-${index}`}>{level}</label>

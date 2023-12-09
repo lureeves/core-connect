@@ -27,13 +27,6 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
         });
     };
 
-    // Function to handle outside clicks to close the dropdown
-    // const handleClickOutside = (event) => {
-    //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-    //         setShowDisciplineDropdown(false);
-    //     }
-    // }
-
     const toggleDiscipline = (event, discipline) => {
         event.stopPropagation(); // Prevents event from bubbling up to parent elements
         setSelectedDisciplines(prev => {
@@ -82,11 +75,12 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                                     <img 
                                     src={CheckBox} 
                                     alt="Checkbox" 
-                                    className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem]'} 
+                                    className={'h-[11px] w-[12px] border-
+                                    [#3A2A9B] border-[1px] rounded-[0.1rem]'} 
                                     style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
                                     />                                
                                 ) : (
-                                    <div className=" h-[0.75rem] min-w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
+                                    <div className="h-[0.75rem] min-w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
                                 )}
                                 
                                 {/* Discipline */}
@@ -101,6 +95,8 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                     ))}
                 </div>
             )}
+            {/* Dropdown arrow, rotates based on dropdown state */}
+            <img src={arrow} alt="Dropdown Arrow" className={showDropdown ? `` : `rotate-180`} />
         </div>
     );
 };
