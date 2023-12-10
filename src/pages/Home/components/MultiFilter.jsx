@@ -71,16 +71,17 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             {/* Dropdown for selecting filter values */}
             {showDropdown && (
                 <div 
-                    className={`filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem] z-10`}
-                    // {Prevents dropdown from closing when clicked inside}
-                    onClick={(event) => event.stopPropagation()}> 
+                className={`filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem] z-10`}
+                // {Prevents dropdown from closing when clicked inside}
+                onClick={(event) => event.stopPropagation()}> 
+
                     {/* Discipline Dropdown */}
-                    <div className={`${isLevelDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
+                    <div className={`pb-[1.06rem] ${isLevelDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
                         <DisciplineFilter handleSetSelectedDisciplines={handleSetSelectedDisciplines} setIsDisciplineDropdownOpen={setIsDisciplineDropdownOpen} />
                     </div>
 
                     {/* Level Dropdown */}
-                    <div className={`${isDisciplineDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
+                    <div className={`pb-[1.06rem]${isDisciplineDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
                         <LevelFilter handleSetSelectedLevels={handleSetSelectedLevels} setIsLevelDropdownOpen={setIsLevelDropdownOpen} />
                     </div>
 

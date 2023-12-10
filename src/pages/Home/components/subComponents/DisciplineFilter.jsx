@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { CheckBox } from '../../../../assets';
+import { CheckBox, arrow } from '../../../../assets';
 import MagGlassIcon from '../subComponents/MagGlassIcon.jsx';
 import { MentorData } from '../../../../data/GoogleDriveMentors';
 
@@ -17,18 +17,18 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
     }, [selectedDisciplines, showDisciplineDropdown]);
 
     // Handle checkbox change
-    const handleCheckboxClick = (discipline) => {
-        setSelectedDisciplines(prev => {
-            if (prev.includes(discipline)) {
-                return prev.filter(l => l !== discipline);
-            } else {
-                return [...prev, discipline];
-            }
-        });
-    };
+    // const handleCheckboxClick = (discipline) => {
+    //     setSelectedDisciplines(prev => {
+    //         if (prev.includes(discipline)) {
+    //             return prev.filter(l => l !== discipline);
+    //         } else {
+    //             return [...prev, discipline];
+    //         }
+    //     });
+    // };
 
-    const toggleDiscipline = (event, discipline) => {
-        event.stopPropagation(); // Prevents event from bubbling up to parent elements
+    const handleDisciplineSelection = (event, discipline) => {
+        event.stopPropagation(); // Prevents dropdown from closing
         setSelectedDisciplines(prev => {
             if (prev.includes(discipline)) {
                 // Remove discipline if already selected
@@ -43,13 +43,19 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 ${showDisciplineDropdown ? `border-[#3A2A9B]` : ``}`}
+            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 
+            ${showDisciplineDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDisciplineDropdown(!showDisciplineDropdown)}
             ref={dropdownRef}
         >
-            <button className={`filters-dropdown text-[#6B6C70] ${selectedDisciplines.length > 0 ? 'text-black' : ''}`}>
+            <button 
+                className={`filters-dropdown text-[#6B6C70] 
+                ${selectedDisciplines.length > 0 ? 'text-black' : ''}`}>
                 Discipline {` `}
-                {selectedDisciplines.length > 0 && <span className="bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-[0.8125rem]">{selectedDisciplines.length}</span>}
+                {selectedDisciplines.length > 0 && 
+                    <span className="bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-[0.8125rem]">
+                        {selectedDisciplines.length}
+                    </span>}
             </button>
 
             {showDisciplineDropdown && (
@@ -66,17 +72,15 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                     />
                     {disciplines.filter(discipline => discipline.toLowerCase().includes(searchTerm.toLowerCase())).map((discipline, index) => (
                         <div 
-                            key={index} 
-                            onClick={(event) => toggleDiscipline(event, discipline)}
-                        >
+                            onClick={(event) => handleDisciplineSelection(event, discipline)}
+                            >
                             <div className="flex items-center whitespace-nowrap">
                                 {/* Checkbox for each discipline */}
                                 {selectedDisciplines.includes(discipline) ? (
                                     <img 
                                     src={CheckBox} 
                                     alt="Checkbox" 
-                                    className={'h-[11px] w-[12px] border-
-                                    [#3A2A9B] border-[1px] rounded-[0.1rem]'} 
+                                    className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem]'} 
                                     style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
                                     />                                
                                 ) : (
@@ -84,7 +88,9 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                                 )}
                                 
                                 {/* Discipline */}
-                                <span className={`px-[0.56rem] py-[0.44rem] font-medium text-[0.9375rem] text-ellipsis overflow-hidden ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : 'text-[#6B6C70]'}`}>
+                                <span 
+                                className={`px-[0.56rem] py-[0.44rem] font-medium text-[0.9375rem] text-ellipsis overflow-hidden 
+                                ${selectedDisciplines.includes(discipline) ? 'text-[#3A2A9B] ' : 'text-[#6B6C70]'}`}>
                                     {discipline}
                                 </span>
                                 
@@ -96,7 +102,7 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                 </div>
             )}
             {/* Dropdown arrow, rotates based on dropdown state */}
-            <img src={arrow} alt="Dropdown Arrow" className={showDropdown ? `` : `rotate-180`} />
+            <img src={arrow} alt="Dropdown Arrow" className={showDisciplineDropdown ? `` : `rotate-180`} />
         </div>
     );
 };
