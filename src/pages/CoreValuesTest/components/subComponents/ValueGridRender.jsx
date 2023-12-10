@@ -174,9 +174,6 @@ export const FinalValues = ({ finalValues }) => {
             console.log(data);
             console.log(coreValues);
         }
-        else if (API_KEY){
-            console.log(`The api key saved from netlify ${API_KEY}`)
-        }
         else{
             console.log(`Neither API key worked... env = ${api} and API_KEY = ${API_KEY}`)
         }
