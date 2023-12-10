@@ -146,32 +146,40 @@ export const FinalValues = ({ finalValues }) => {
   
     const imageGenerator = async ()=>{
         setLoading(true);
-        const response = await fetch(
-            "https://api.openai.com/v1/images/generations",
-            {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json",
-                    Authorization:
-                    `Bearer ${api}`,
-                    "User-Agent": "Chrome",
-            
-                },
-                body:JSON.stringify({
-                    prompt: `Art that expresses ${coreValues} in a creative way`,
-                    n:1,
-                    size:"512x512",
+        if(api){
+                const response = await fetch(
+                "https://api.openai.com/v1/images/generations",
+                {
+                    method:"POST",
+                    headers:{
+                        "Content-Type":"application/json",
+                        Authorization:
+                        `Bearer ${api}`,
+                        "User-Agent": "Chrome",
+                
+                    },
+                    body:JSON.stringify({
+                        prompt: `Art that expresses ${coreValues} in a creative way`,
+                        n:1,
+                        size:"512x512",
 
-                }),
-            }
-        );
-        let data = await response.json();
-        console.log(data);
-        let data_array = data.data;
-        setImage(data_array[0].url);
-        setLoading(false);
-        console.log(data);
-        console.log(coreValues);
+                    }),
+                }
+            );
+            let data = await response.json();
+            console.log(data);
+            let data_array = data.data;
+            setImage(data_array[0].url);
+            setLoading(false);
+            console.log(data);
+            console.log(coreValues);
+        }
+        else if (API_KEY){
+            console.log(`The api key saved from netlify ${API_KEY}`)
+        }
+        else{
+            console.log(`Neither API key worked... env = ${api} and API_KEY = ${API_KEY}`)
+        }
     }
     
     return (
