@@ -8,14 +8,23 @@ const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
     const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
 
     useEffect(() => {
+        // Closes dropdown when clicked outside of dropdown
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowLevelDropdown(false);
+            }
+        };
+
+        // Call the handleSetSelectedDisciplines function passed as prop
         setIsLevelDropdownOpen(showLevelDropdown);
         handleSetSelectedLevels(selectedLevels);
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
     }, [selectedLevels, showLevelDropdown]);
 
-    // // Toggle the visibility of the dropdown
-    // const toggleDropdown = () => {
-    //     setShowLevelDropdown(!showLevelDropdown);
-    // };
 
     const handleLevelSelection = (event, level) => {
         event.stopPropagation(); // Prevents dropdown from closing
@@ -49,6 +58,7 @@ const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
                 <div className="absolute border-[#3A2A9B] border-[1px] top-[2.4rem] right-0 w-[13.5rem] h-[9.375rem] px-[1.41rem] pt-[0.18rem] rounded-[1.25rem] bg-white ">
                     {levels.map((level, index) => (
                         <div 
+                            key={index} // Unique key for each level
                             onClick={(event) => handleLevelSelection(event, level)}
                             className="flex items-center whitespace-nowrap h-[1.1875rem] my-[0.88rem]">
                             {/* Checkbox for each level */}

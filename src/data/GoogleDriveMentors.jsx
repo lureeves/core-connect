@@ -23,7 +23,8 @@ export const MentorData=[
         "company_size": "100",
         "career_pivoted": "no",
         "disciplines": "Branding / Identity Design",
-        "availability": "Mon, Tue, Wed"
+        "availability": "Mon, Tue, Wed",
+        "years_experience": "5"
     },
     {
         "page": "Homepage/01",
@@ -49,7 +50,8 @@ export const MentorData=[
         "company_size": "1000",
         "career_pivoted": "yes",
         "disciplines": "Game Design",
-        "availability": "Wed, Thu, Fri, Sat, Sun"
+        "availability": "Wed, Thu, Fri, Sat, Sun",
+        "years_experience": "6"
     },
     {
         "page": "Homepage/01",
@@ -75,7 +77,8 @@ export const MentorData=[
         "company_size": "5",
         "career_pivoted": "no",
         "disciplines": "Graphic Design",
-        "availability": "Wed, Thu, Fri"
+        "availability": "Wed, Thu, Fri",
+        "years_experience": "9"
     },
     {
         "page": "Homepage/01",
@@ -101,7 +104,8 @@ export const MentorData=[
         "company_size": "100",
         "career_pivoted": "yes",
         "disciplines": "Industrial Design",
-        "availability": "Mon, Tue, Wed Thu, Fri"
+        "availability": "Mon, Tue, Wed Thu, Fri",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/01",
@@ -127,7 +131,8 @@ export const MentorData=[
         "company_size": "140,000",
         "career_pivoted": "yes",
         "disciplines": "Generalist Product Management",
-        "availability": "Mon, Tue, Wed"
+        "availability": "Mon, Tue, Wed",
+        "years_experience": "6"
     },
     {
         "page": "Homepage/01",
@@ -153,7 +158,8 @@ export const MentorData=[
         "company_size": "75,000",
         "career_pivoted": "yes",
         "disciplines": "Technical Product Management",
-        "availability": "Fri, Sat"
+        "availability": "Fri, Sat",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/01",
@@ -179,7 +185,8 @@ export const MentorData=[
         "company_size": "10",
         "career_pivoted": "yes",
         "disciplines": "Data Product Management",
-        "availability": "Fri, Wed"
+        "availability": "Fri, Wed",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/01",
@@ -205,7 +212,8 @@ export const MentorData=[
         "company_size": "25",
         "career_pivoted": "yes",
         "disciplines": "Generalist Product Management",
-        "availability": "Sun, Thu, Mon, Wed"
+        "availability": "Sun, Thu, Mon, Wed",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/01",
@@ -231,7 +239,8 @@ export const MentorData=[
         "company_size": "130,000",
         "career_pivoted": "yes",
         "disciplines": "Data Engineering",
-        "availability": "Wed, Thu, Sat, Mon, Sun"
+        "availability": "Wed, Thu, Sat, Mon, Sun",
+        "years_experience": "5"
     },
     {
         "page": "Homepage/01",
@@ -257,7 +266,8 @@ export const MentorData=[
         "company_size": "400,000",
         "career_pivoted": "yes",
         "disciplines": "Back-end",
-        "availability": "Wed, Sun"
+        "availability": "Wed, Sun",
+        "years_experience": "5"
     },
     {
         "page": "Homepage/01",
@@ -283,7 +293,8 @@ export const MentorData=[
         "company_size": "10",
         "career_pivoted": "no",
         "disciplines": "Data Engineering",
-        "availability": "Mon, Thu, Fri, Sat, Tue"
+        "availability": "Mon, Thu, Fri, Sat, Tue",
+        "years_experience": "9"
     },
     {
         "page": "Homepage/01",
@@ -309,7 +320,8 @@ export const MentorData=[
         "company_size": "25",
         "career_pivoted": "yes",
         "disciplines": "Back-end",
-        "availability": "Wed, Mon, Sat, Fri"
+        "availability": "Wed, Mon, Sat, Fri",
+        "years_experience": "2"
     },
     {
         "page": "Homepage/04",
@@ -335,7 +347,8 @@ export const MentorData=[
         "company_size": "12,000",
         "career_pivoted": "yes",
         "disciplines": "Interaction Design",
-        "availability": "Tue, Sun"
+        "availability": "Tue, Sun",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/04",
@@ -361,7 +374,8 @@ export const MentorData=[
         "company_size": "1,500,000",
         "career_pivoted": "yes",
         "disciplines": "Product Design",
-        "availability": "Thu, Sun, Wed"
+        "availability": "Thu, Sun, Wed",
+        "years_experience": "8"
     },
     {
         "page": "Homepage/04",
@@ -387,7 +401,8 @@ export const MentorData=[
         "company_size": "100,000",
         "career_pivoted": "yes",
         "disciplines": "UI / Visual Design",
-        "availability": "Fri, Sun, Tue, Sat"
+        "availability": "Fri, Sun, Tue, Sat",
+        "years_experience": "2"
     },
     {
         "page": "Homepage/09",
@@ -410,10 +425,11 @@ export const MentorData=[
         "tools": null,
         "industry": "IT/AI",
         "software": null,
-        "company_size": "10,000+",
+        "company_size": "20,000",
         "career_pivoted": null,
         "disciplines": "UX Design",
-        "availability": "Tue, Wed, Fri, Sat, Thu"
+        "availability": "Tue, Wed, Fri, Sat, Thu",
+        "years_experience": "8"
     },
     {
         "page": "Homepage/04",
@@ -436,10 +452,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": null,
-        "company_size": "500-10,000",
+        "company_size": "750",
         "career_pivoted": null,
         "disciplines": "UX Research",
-        "availability": "Tue, Sun, Fri"
+        "availability": "Tue, Sun, Fri",
+        "years_experience": "8"
     },
     {
         "page": "Homepage/09",
@@ -462,10 +479,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": null,
-        "company_size": "10,000+",
+        "company_size": "100,000",
         "career_pivoted": "no",
         "disciplines": "Interaction Design",
-        "availability": "Mon, Wed, Sat"
+        "availability": "Mon, Wed, Sat",
+        "years_experience": "9"
     },
     {
         "page": null,
@@ -491,7 +509,8 @@ export const MentorData=[
         "company_size": "75,000",
         "career_pivoted": "yes",
         "disciplines": "Generalist Product Management",
-        "availability": "Mon, Thu, Wed"
+        "availability": "Mon, Thu, Wed",
+        "years_experience": "4"
     },
     {
         "page": null,
@@ -517,7 +536,8 @@ export const MentorData=[
         "company_size": "150,000",
         "career_pivoted": "no",
         "disciplines": "Technical Product Management",
-        "availability": "Wed, Thu, Mon, Tue, Sat"
+        "availability": "Wed, Thu, Mon, Tue, Sat",
+        "years_experience": "7"
     },
     {
         "page": null,
@@ -543,7 +563,8 @@ export const MentorData=[
         "company_size": "160,000",
         "career_pivoted": "no",
         "disciplines": "Data Engineering",
-        "availability": "Wed, Mon, Tue, Sun"
+        "availability": "Wed, Mon, Tue, Sun",
+        "years_experience": "1"
     },
     {
         "page": null,
@@ -569,7 +590,8 @@ export const MentorData=[
         "company_size": "50",
         "career_pivoted": "yes",
         "disciplines": "Data Product Management",
-        "availability": "Sat, Fri"
+        "availability": "Sat, Fri",
+        "years_experience": "8"
     },
     {
         "page": null,
@@ -595,7 +617,8 @@ export const MentorData=[
         "company_size": "250",
         "career_pivoted": "yes",
         "disciplines": "Technical Product Management",
-        "availability": "Tue, Mon, Wed, Sun, Fri"
+        "availability": "Tue, Mon, Wed, Sun, Fri",
+        "years_experience": "6"
     },
     {
         "page": null,
@@ -621,7 +644,8 @@ export const MentorData=[
         "company_size": "50",
         "career_pivoted": "yes",
         "disciplines": "Data Product Management",
-        "availability": "Thu, Mon, Tue, Fri"
+        "availability": "Thu, Mon, Tue, Fri",
+        "years_experience": "3"
     },
     {
         "page": null,
@@ -647,7 +671,8 @@ export const MentorData=[
         "company_size": "100",
         "career_pivoted": "yes",
         "disciplines": "Generalist Product Management",
-        "availability": "Fri, Tue, Sat"
+        "availability": "Fri, Tue, Sat",
+        "years_experience": "1"
     },
     {
         "page": null,
@@ -673,7 +698,8 @@ export const MentorData=[
         "company_size": "1000",
         "career_pivoted": "yes",
         "disciplines": "Technical Product Management",
-        "availability": "Sat, Mon, Fri, Thu, Tue"
+        "availability": "Sat, Mon, Fri, Thu, Tue",
+        "years_experience": "7"
     },
     {
         "page": null,
@@ -699,7 +725,8 @@ export const MentorData=[
         "company_size": "5",
         "career_pivoted": "yes",
         "disciplines": "Data Product Management",
-        "availability": "Wed, Fri, Mon, Sat"
+        "availability": "Wed, Fri, Mon, Sat",
+        "years_experience": "5"
     },
     {
         "page": null,
@@ -725,7 +752,8 @@ export const MentorData=[
         "company_size": "250",
         "career_pivoted": "no",
         "disciplines": "Data Engineering",
-        "availability": "Sat, Fri, Thu, Wed"
+        "availability": "Sat, Fri, Thu, Wed",
+        "years_experience": "3"
     },
     {
         "page": null,
@@ -751,7 +779,8 @@ export const MentorData=[
         "company_size": "50",
         "career_pivoted": "yes",
         "disciplines": "Back-end",
-        "availability": "Thu, Mon, Tue, Wed, Fri, Sat"
+        "availability": "Thu, Mon, Tue, Wed, Fri, Sat",
+        "years_experience": "1"
     },
     {
         "page": null,
@@ -777,7 +806,8 @@ export const MentorData=[
         "company_size": "1000",
         "career_pivoted": "yes",
         "disciplines": "Graphic Design",
-        "availability": "Fri, Tue, Mon, Sat, Wed, Thu"
+        "availability": "Fri, Tue, Mon, Sat, Wed, Thu",
+        "years_experience": "3"
     },
     {
         "page": null,
@@ -803,7 +833,8 @@ export const MentorData=[
         "company_size": "5",
         "career_pivoted": "yes",
         "disciplines": "Industrial Design",
-        "availability": "Wed, Fri, Thu, Mon"
+        "availability": "Wed, Fri, Thu, Mon",
+        "years_experience": "3"
     },
     {
         "page": "Homepage/04",
@@ -829,7 +860,8 @@ export const MentorData=[
         "company_size": "10",
         "career_pivoted": "yes",
         "disciplines": "Branding / Identity Design",
-        "availability": "Sat, Thu, Mon, Tue"
+        "availability": "Sat, Thu, Mon, Tue",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/04",
@@ -855,7 +887,8 @@ export const MentorData=[
         "company_size": "25",
         "career_pivoted": "yes",
         "disciplines": "Game Design",
-        "availability": "Mon, Sun, Thu"
+        "availability": "Mon, Sun, Thu",
+        "years_experience": "3"
     },
     {
         "page": "Homepage 14",
@@ -878,10 +911,11 @@ export const MentorData=[
         "tools": null,
         "industry": "AI",
         "software": null,
-        "company_size": "50-500",
+        "company_size": "250",
         "career_pivoted": "no",
         "disciplines": "Graphic Design",
-        "availability": "Mon, Thu"
+        "availability": "Mon, Thu",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/04",
@@ -904,10 +938,11 @@ export const MentorData=[
         "tools": null,
         "industry": "AI",
         "software": "Figma, Miro",
-        "company_size": "10,000+",
+        "company_size": "186,000",
         "career_pivoted": "no",
         "disciplines": "Industrial Design",
-        "availability": "Thu, Fri"
+        "availability": "Thu, Fri",
+        "years_experience": "6"
     },
     {
         "page": "Homepage/04",
@@ -930,10 +965,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": "Sketch",
-        "company_size": "501-10,000",
+        "company_size": "2,000",
         "career_pivoted": "no",
         "disciplines": "Interaction Design",
-        "availability": "Sun, Sat, Fri, Thu"
+        "availability": "Sun, Sat, Fri, Thu",
+        "years_experience": "3"
     },
     {
         "page": "Homepage/04",
@@ -956,10 +992,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": "Sketch",
-        "company_size": "501-10,000",
+        "company_size": "550",
         "career_pivoted": "yes",
         "disciplines": "Product Design",
-        "availability": "Wed, Sat"
+        "availability": "Wed, Sat",
+        "years_experience": "2"
     },
     {
         "page": "Homepage/04",
@@ -982,10 +1019,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": "Figma, Miro",
-        "company_size": "501-10,000",
+        "company_size": "9,500",
         "career_pivoted": "yes",
         "disciplines": "UI / Visual Design",
-        "availability": "Tue, Fri, Mon, Sat, Sun"
+        "availability": "Tue, Fri, Mon, Sat, Sun",
+        "years_experience": "4"
     },
     {
         "page": "Homepage/04",
@@ -1008,10 +1046,11 @@ export const MentorData=[
         "tools": null,
         "industry": "AI",
         "software": "Figma, Photoshop",
-        "company_size": "501-10,000",
+        "company_size": "2,000",
         "career_pivoted": "no",
         "disciplines": "UX Design",
-        "availability": "Sun, Thu, Mon"
+        "availability": "Sun, Thu, Mon",
+        "years_experience": "5"
     },
     {
         "page": "Homepage/04",
@@ -1034,10 +1073,11 @@ export const MentorData=[
         "tools": null,
         "industry": "AI",
         "software": "Sketch",
-        "company_size": "501-10,000",
+        "company_size": "800",
         "career_pivoted": "no",
         "disciplines": "UX Research",
-        "availability": "Mon, Tue, Fri, Wed"
+        "availability": "Mon, Tue, Fri, Wed",
+        "years_experience": "2"
     },
     {
         "page": "Homepage/04",
@@ -1060,10 +1100,11 @@ export const MentorData=[
         "tools": null,
         "industry": "SaaS",
         "software": "Figma",
-        "company_size": "501-10,000",
+        "company_size": "8,000",
         "career_pivoted": "yes",
         "disciplines": "Branding / Identity Design",
-        "availability": "Mon, Wed, Tue"
+        "availability": "Mon, Wed, Tue",
+        "years_experience": "7"
     },
     {
         "page": "Homepage/04",
@@ -1086,10 +1127,10 @@ export const MentorData=[
         "tools": null,
         "industry": "AI",
         "software": "Figma, Photoshop",
-        "company_size": "10,000+",
+        "company_size": "70,000",
         "career_pivoted": "yes",
         "disciplines": "Game Design",
-        "availability": "Thu, Mon, Fri, Wed"
+        "availability": "Thu, Mon, Fri, Wed",
+        "years_experience": "1"
     }
 ]
-

@@ -53,6 +53,7 @@ const Home = () => {
         // console.log("Industry Filter Results:", industryFilterResults);
         // console.log("Value Filter Results:", valueFilterResults);
         // console.log("Availability Filter Results: ", availabilityFilterResults);
+        // console.log("Multi Filter Results: ", multiFilterResults);
     }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]); 
     
 
@@ -81,7 +82,7 @@ const Home = () => {
                 {/* Take Test Section */}
                 <div className='test flex flex-col items-center mt-[3.19rem] gap-6'>
                     <h3>Do you know your Core Values? Take a simple test to find out!</h3>
-                    <a href="/CoreValueTest"><button className="bg-[#2C4193] text-white text-[0.9375rem] font-semibold rounded-[4px] w-40 h-11">Take My Test</button></a>
+                    <a href="/CoreValueTest"><button className="bg-[#2C4193] text-white text-[0.9375rem] font-semibold rounded-[4px] w-40 h-11">Take my test</button></a>
                 </div>
             </div>
             {/* End Intro Section */}

@@ -10,6 +10,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const [selectedDisciplines, setSelectedDisciplines] = useState([]);
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
+    const [totalSelected, setTotalSelected] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const companySizes = ['< 50', '50-500', '501-10,000', '10,000+'];
     const dropdownRef = useRef(null);
@@ -25,20 +26,84 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const handleSetSelectedLevels = (levels) => {
         setSelectedLevels(levels);
     };
-    
     // Function to set selected disciplines
     const handleSetSelectedDisciplines = (disciplines) => {
         setSelectedDisciplines(disciplines);
     };
 
-    // Event listeners for outside click detection
+
+    // Helper function to check if a mentor's experience level is within 1-2, 3-5, 6-8, or 9
+    const formatLevelsData = (mentorExperience) => {
+        if (mentorExperience == (1 || 2)) {
+            return '1-2 years';
+        } else if (mentorExperience == (3 || 5)) {
+            return '3-5 years';
+        } else if (mentorExperience == (6 || 8)) {
+            return '6-8 years';
+        } else  {
+            return '9 years';
+        }
+    };
+
+    // Helper function to map a company size to one of the predefined categories
+    const formatCompanyData = (size) => {
+        if (size < 50) {
+            return '< 50';
+        } else if (size >= 50 && size <= 500) {
+            return '50-500';
+        } else if (size > 500 && size <= 10000) {
+            return '501-10,000';
+        } else {
+            return '10,000+';
+        }
+    };
+
+    // Main filter function
+    const filterMentors = () => {
+        const filteredMentorIndexes = 
+            MentorData.map((mentor, index) => {
+            // Disciplines - split mentor disciplines into an array and trim whitespace
+            const mentorDisciplineArray = mentor.disciplines.split(',').map(discipline => discipline.trim());
+            // Check if any of the selected disciplines are included in the mentor's disciplines
+            const meetsDisciplineCriteria = selectedDisciplines.some(selectedDiscipline => 
+                mentorDisciplineArray.includes(selectedDiscipline)
+            );
+
+            // Levels
+            const levelCategory = formatLevelsData(mentor.years_experience);
+            const meetsLevelCriteria = selectedLevels.includes(levelCategory);
+           
+            // Company Size
+            const companySizeCategory = formatCompanyData(mentor.company_size);
+            const meetsCompanySizeCriteria = selectedCompanySizes.includes(companySizeCategory);
+
+            return meetsDisciplineCriteria || meetsLevelCriteria || meetsCompanySizeCriteria ? index : null;
+            })
+            .filter(index => index !== null);
+
+        // console.log("filteredMentorIndexes: ", filteredMentorIndexes);
+        setMentorIndexes(filteredMentorIndexes);
+    };
+
+        
     useEffect(() => {
+        // Event listeners for outside click detection
         setIsDropdownOpen(showDropdown)
         document.addEventListener('mousedown', handleClickOutside);
+
+        setTotalSelected(selectedDisciplines.length + selectedLevels.length + selectedCompanySizes.length);
+    
+        filterMentors();
+
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showDropdown]);
+    }, [showDropdown, selectedDisciplines, selectedLevels, selectedCompanySizes]);
+
+    // console.log('selectedDisciplines: ' + selectedDisciplines + '\n]');
+    // console.log('selectedLevels: ' +  selectedLevels + '\n]');
+    // console.log('selectedCompanySizes: ' + selectedCompanySizes + '\n]');
+    // console.log('totalSelected: ' + totalSelected);
 
     // Function to toggle selection state of a filter value
     const toggleCompanySize = (event, size) => {
@@ -51,7 +116,6 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
         });
     };
 
-
     return (
         <div 
             className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold  
@@ -63,8 +127,14 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             <span className='flex flex-nowrap'>
                 <img src={filter} alt="Filter Icon" className="pr-3" />
 
-                <button className="text-[#6B6C70]">
-                    Filter
+                <button 
+                    className={`filters-dropdown text-[#6B6C70] 
+                    ${totalSelected > 0 ? 'text-black' : ''}`}>
+                    Filter {` `}
+                    {totalSelected > 0 && 
+                        <span className="bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-[0.8125rem]">
+                            {totalSelected}
+                        </span>}
                 </button>
             </span>
 

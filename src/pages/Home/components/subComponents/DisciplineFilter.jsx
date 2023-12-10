@@ -11,35 +11,41 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        // Call the handleSetSelectedDisciplines function passed as prop
+        // Closes dropdown when clicked outside of dropdown
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDisciplineDropdown(false);
+            }
+        };
+        
         setIsDisciplineDropdownOpen(showDisciplineDropdown);
-        handleSetSelectedDisciplines(selectedDisciplines);
-    }, [selectedDisciplines, showDisciplineDropdown]);
 
-    // Handle checkbox change
-    // const handleCheckboxClick = (discipline) => {
-    //     setSelectedDisciplines(prev => {
-    //         if (prev.includes(discipline)) {
-    //             return prev.filter(l => l !== discipline);
-    //         } else {
-    //             return [...prev, discipline];
-    //         }
-    //     });
-    // };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [selectedDisciplines, showDisciplineDropdown]);
+ 
 
     const handleDisciplineSelection = (event, discipline) => {
         event.stopPropagation(); // Prevents dropdown from closing
         setSelectedDisciplines(prev => {
+            let updatedDisciplines;
             if (prev.includes(discipline)) {
-                // Remove discipline if already selected
-                return prev.filter(i => i !== discipline);
+                updatedDisciplines = prev.filter(i => i !== discipline);
             } else {
-                // Add discipline if not already selected
-                setSearchTerm(''); // Clear the search box
-                return [...prev, discipline];
+                updatedDisciplines = [...prev, discipline];
             }
+    
+            // Update parent's state immediately after updating local state
+            handleSetSelectedDisciplines(updatedDisciplines);
+    
+            setSearchTerm(''); // Clear the search box
+            return updatedDisciplines;
         });
     };
+
+    
 
     return (
         <div 
@@ -59,7 +65,7 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
             </button>
 
             {showDisciplineDropdown && (
-                <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.4rem] overflow-auto`}>
+                <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.65rem] overflow-auto`}>
                     {/* Search Box */}
                     <div className="absolute left-[1.6rem] top-[2.15rem] transform -translate-y-1/2 z-10 text-[1rem]"><MagGlassIcon /></div>
                     <input 
@@ -72,6 +78,7 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
                     />
                     {disciplines.filter(discipline => discipline.toLowerCase().includes(searchTerm.toLowerCase())).map((discipline, index) => (
                         <div 
+                            key={discipline} 
                             onClick={(event) => handleDisciplineSelection(event, discipline)}
                             >
                             <div className="flex items-center whitespace-nowrap">
