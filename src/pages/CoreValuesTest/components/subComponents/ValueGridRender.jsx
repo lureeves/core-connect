@@ -127,7 +127,9 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
  * @param {Array} props.finalValues - An array of the final three selected core values.
  */
 import ClipLoader from "react-spinners/ClipLoader";
-import API_KEY from '../../../../../openAikey.js'
+const api = import.meta.env.VITE_AI_API_KEY;
+
+
 export const FinalValues = ({ finalValues }) => {
     
    
@@ -141,6 +143,7 @@ export const FinalValues = ({ finalValues }) => {
     const [image, setImage] = useState('/');
     const [loading, setLoading] =useState(false);
     
+  
     const imageGenerator = async ()=>{
         setLoading(true);
         const response = await fetch(
@@ -150,7 +153,7 @@ export const FinalValues = ({ finalValues }) => {
                 headers:{
                     "Content-Type":"application/json",
                     Authorization:
-                    `Bearer ${API_KEY}`,
+                    `Bearer ${api}`,
                     "User-Agent": "Chrome",
             
                 },
@@ -163,6 +166,7 @@ export const FinalValues = ({ finalValues }) => {
             }
         );
         let data = await response.json();
+        console.log(data);
         let data_array = data.data;
         setImage(data_array[0].url);
         setLoading(false);
