@@ -175,7 +175,7 @@ export const FinalValues = ({ finalValues }) => {
             console.log(coreValues);
         }
         else{
-            console.log(`Neither API key worked... env = ${api} and API_KEY = ${API_KEY}`)
+            console.log(`Neither API key worked... env = ${api}`)
         }
     }
     
