@@ -3,10 +3,21 @@ import { CheckBox, arrow } from '../../../../assets';
 import MagGlassIcon from '../subComponents/MagGlassIcon.jsx';
 import { MentorData } from '../../../../data/GoogleDriveMentors';
 
-const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdownOpen }) => {
+/**
+ * DisciplineFilter Component
+ *
+ * This component allows users to filter mentors based on their disciplines. It features a dropdown
+ * that enables the selection of multiple disciplines, sourced from the MentorData. 
+ * This component also handles outside click detection to close the dropdown.
+ *
+ * Props:
+ * - selectedDisciplines (array): An array of currently selected disciplines.
+ * - handleSetSelectedDisciplines (function): A function to update the selected disciplines in the parent component.
+ * - setIsDisciplineDropdownOpen (function): A function to update the state in the parent component about the dropdown's visibility.
+ */
+const DisciplineFilter = ({ selectedDisciplines, handleSetSelectedDisciplines, setIsDisciplineDropdownOpen }) => {
     const [showDisciplineDropdown, setShowDisciplineDropdown] = useState(false);
     const disciplines = [...new Set(MentorData.map(mentor => mentor.disciplines))];
-    const [selectedDisciplines, setSelectedDisciplines] = useState([]);
     const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -26,27 +37,24 @@ const DisciplineFilter = ({ handleSetSelectedDisciplines, setIsDisciplineDropdow
         };
     }, [selectedDisciplines, showDisciplineDropdown]);
  
-
+    /**
+     * Handles the selection of a discipline.
+     * 
+     * @param {Object} event - The click event object.
+     * @param {string} discipline - The discipline to toggle in the selection.
+     */
     const handleDisciplineSelection = (event, discipline) => {
-        event.stopPropagation(); // Prevents dropdown from closing
-        setSelectedDisciplines(prev => {
-            let updatedDisciplines;
-            if (prev.includes(discipline)) {
-                updatedDisciplines = prev.filter(i => i !== discipline);
-            } else {
-                updatedDisciplines = [...prev, discipline];
-            }
-    
-            // Update parent's state immediately after updating local state
-            handleSetSelectedDisciplines(updatedDisciplines);
-    
-            setSearchTerm(''); // Clear the search box
-            return updatedDisciplines;
-        });
+        event.stopPropagation();
+        let updatedDisciplines;
+        if (selectedDisciplines.includes(discipline)) {
+            updatedDisciplines = selectedDisciplines.filter(i => i !== discipline);
+        } else {
+            updatedDisciplines = [...selectedDisciplines, discipline];
+        }
+
+        handleSetSelectedDisciplines(updatedDisciplines);
+        setSearchTerm('');
     };
-
-    
-
     return (
         <div 
             className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 

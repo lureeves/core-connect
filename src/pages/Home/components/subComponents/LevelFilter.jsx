@@ -1,10 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox, arrow } from '../../../../assets';
 
-const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
+/**
+ * LevelFilter Component
+ *
+ * This component allows users to filter mentors based on their experience levels. It features a dropdown
+ * that enables the selection of multiple experience levels, predefined in an array. 
+ * This component also handles outside click detection to close the dropdown.
+ *
+ * Props:
+ * - selectedLevels (array): An array of currently selected levels.
+ * - handleSetSelectedLevels (function): A function to update the selected levels in the parent component.
+ * - setIsLevelDropdownOpen (function): A function to update the state in the parent component about the dropdown's visibility.
+ */
+const LevelFilter = ({ selectedLevels, handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
     const [showLevelDropdown, setShowLevelDropdown] = useState(false);
     const levels = ['1-2 years', '3-5 years', '6-8 years', '9 years'];
-    const [selectedLevels, setSelectedLevels] = useState([]);
     const dropdownRef = useRef(null); // Ref to the dropdown for handling outside clicks
 
     useEffect(() => {
@@ -15,7 +26,6 @@ const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
             }
         };
 
-        // Call the handleSetSelectedDisciplines function passed as prop
         setIsLevelDropdownOpen(showLevelDropdown);
         handleSetSelectedLevels(selectedLevels);
 
@@ -26,15 +36,22 @@ const LevelFilter = ({ handleSetSelectedLevels, setIsLevelDropdownOpen }) => {
     }, [selectedLevels, showLevelDropdown]);
 
 
+    /**
+     * Handles the selection of an experience level.
+     * 
+     * @param {Object} event - The click event object.
+     * @param {string} level - The experience level to toggle in the selection.
+     */
     const handleLevelSelection = (event, level) => {
         event.stopPropagation(); // Prevents dropdown from closing
-        setSelectedLevels(prev => {
-            if (prev.includes(level)) {
-                return prev.filter(l => l !== level);
-            } else {
-                return [...prev, level];
-            }
-        });
+        let updatedLevels;
+        if (selectedLevels.includes(level)) {
+            updatedLevels = selectedLevels.filter(l => l !== level);
+        } else {
+            updatedLevels = [...selectedLevels, level];
+        }
+
+        handleSetSelectedLevels(updatedLevels);
     };
 
     return (

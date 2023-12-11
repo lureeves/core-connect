@@ -2,16 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
 import DisciplineFilter from './subComponents/DisciplineFilter.jsx';
 import LevelFilter from './subComponents/LevelFilter.jsx';
-import { CheckBox, filter, arrow } from '../../../assets';
+import { CheckBox, filter } from '../../../assets';
 
+/**
+ * MultiFilter Component
+ *
+ * This component is a comprehensive filter interface for mentors, allowing users to filter
+ * mentors based on disciplines, experience levels, and company sizes. It integrates the DisciplineFilter
+ * and LevelFilter components and also provides its own filter for company sizes.
+ * The component also handles outside click detection to close the dropdown.
+ *
+ * Props:
+ * - setMentorIndexes (function): A function to update the state in the parent component with filtered mentor indexes.
+ * - setIsDropdownOpen (function): A function to update the state in the parent component about the dropdown's visibility.
+ */
 const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const [isDisciplineDropdownOpen, setIsDisciplineDropdownOpen] = useState(false); // Used in opacity of background for dropdown
     const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+
     const [selectedDisciplines, setSelectedDisciplines] = useState([]);
     const [selectedLevels, setSelectedLevels] = useState([]);
     const [selectedCompanySizes, setSelectedCompanySizes] = useState([]);
     const [totalSelected, setTotalSelected] = useState([]);
-    const [showDropdown, setShowDropdown] = useState(false);
     const companySizes = ['< 50', '50-500', '501-10,000', '10,000+'];
     const dropdownRef = useRef(null);
 
@@ -30,7 +43,6 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
     const handleSetSelectedDisciplines = (disciplines) => {
         setSelectedDisciplines(disciplines);
     };
-
 
     // Helper function to check if a mentor's experience level is within 1-2, 3-5, 6-8, or 9
     const formatLevelsData = (mentorExperience) => {
@@ -58,7 +70,10 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
         }
     };
 
-    // Main filter function
+    /**
+     * Filters mentors based on selected disciplines, levels, and company sizes.
+     * Updates the parent component with the filtered mentor indexes.
+     */
     const filterMentors = () => {
         const filteredMentorIndexes = 
             MentorData.map((mentor, index) => {
@@ -85,7 +100,6 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
         setMentorIndexes(filteredMentorIndexes);
     };
 
-        
     useEffect(() => {
         // Event listeners for outside click detection
         setIsDropdownOpen(showDropdown)
@@ -99,11 +113,6 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [showDropdown, selectedDisciplines, selectedLevels, selectedCompanySizes]);
-
-    // console.log('selectedDisciplines: ' + selectedDisciplines + '\n]');
-    // console.log('selectedLevels: ' +  selectedLevels + '\n]');
-    // console.log('selectedCompanySizes: ' + selectedCompanySizes + '\n]');
-    // console.log('totalSelected: ' + totalSelected);
 
     // Function to toggle selection state of a filter value
     const toggleCompanySize = (event, size) => {
@@ -147,12 +156,18 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
                     {/* Discipline Dropdown */}
                     <div className={`pb-[1.06rem] ${isLevelDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
-                        <DisciplineFilter handleSetSelectedDisciplines={handleSetSelectedDisciplines} setIsDisciplineDropdownOpen={setIsDisciplineDropdownOpen} />
+                        <DisciplineFilter 
+                            selectedDisciplines={selectedDisciplines} 
+                            handleSetSelectedDisciplines={handleSetSelectedDisciplines} 
+                            setIsDisciplineDropdownOpen={setIsDisciplineDropdownOpen} />
                     </div>
 
                     {/* Level Dropdown */}
                     <div className={`pb-[1.06rem]${isDisciplineDropdownOpen ? `border-[#3A2A9B] opacity-20` : ``}`}>
-                        <LevelFilter handleSetSelectedLevels={handleSetSelectedLevels} setIsLevelDropdownOpen={setIsLevelDropdownOpen} />
+                        <LevelFilter 
+                        selectedLevels={selectedLevels}
+                        handleSetSelectedLevels={handleSetSelectedLevels} 
+                        setIsLevelDropdownOpen={setIsLevelDropdownOpen} />
                     </div>
 
                     {/* Company Size Filter */}
