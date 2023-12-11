@@ -5,13 +5,14 @@ import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
 import ValueFilter from './components/ValueFilter.jsx';
 import AvailabilityFilter from './components/AvailabilityFilter.jsx';
+import MultiFilter from './components/MultiFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Used in opacity of background for dropdown
 
     const [mentorIndexes, setMentorIndexes] = useState([]); // Indexes of mentors being searched for
 
@@ -19,6 +20,7 @@ const Home = () => {
     const [industryFilterResults, setIndustryFilterResults] = useState([]);
     const [valueFilterResults, setValueFilterResults] = useState([]);
     const [availabilityFilterResults, setAvailabilityFilterResults] = useState([]);
+    const [multiFilterResults, setMultiFilterResults] = useState([]);
     
 
     // Flips arrow on search filter
@@ -42,7 +44,7 @@ const Home = () => {
             );
         };
 
-        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]);
+        const combinedIndexes = combineFilters([roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]);
         // Include additional filter results in the combineFilters call as needed
 
         setMentorIndexes(combinedIndexes);
@@ -51,7 +53,8 @@ const Home = () => {
         // console.log("Industry Filter Results:", industryFilterResults);
         // console.log("Value Filter Results:", valueFilterResults);
         // console.log("Availability Filter Results: ", availabilityFilterResults);
-    }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults]); 
+        // console.log("Multi Filter Results: ", multiFilterResults);
+    }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]); 
     
 
     return (
@@ -79,7 +82,7 @@ const Home = () => {
                 {/* Take Test Section */}
                 <div className='test flex flex-col items-center mt-[3.19rem] gap-6'>
                     <h3>Do you know your Core Values? Take a simple test to find out!</h3>
-                    <a href="/CoreValueTest"><button className="bg-[#2C4193] text-white text-[0.9375rem] font-semibold rounded-[4px] w-40 h-11">Take My Test</button></a>
+                    <a href="/CoreValueTest"><button className="bg-[#2C4193] text-white text-[0.9375rem] font-semibold rounded-[4px] w-40 h-11">Take my test</button></a>
                 </div>
             </div>
             {/* End Intro Section */}
@@ -98,20 +101,15 @@ const Home = () => {
 
                     <AvailabilityFilter setMentorIndexes={setAvailabilityFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
 
-                    {/* Filters */}
-                    <div className='filter-container filter-box flex justify-center items-center w-[9.5rem] h-10 py-3 pr-6 pl-7 gap-3'
-                        onClick={()=>Flipping(5)}
-                        >
-                        <img src={filter} alt="" />
-                        <button className='filters-dropdown'>Filters</button>
-                    </div>
+                    <MultiFilter setMentorIndexes={setMultiFilterResults} setIsDropdownOpen={setIsDropdownOpen} />
+                    
                 </div>
             </div>
             {/* End Filtering Mentor Section */}
 
             {/* Mentor Cards Section*/}
             {mentorIndexes.length > 0 ? (
-                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-auto`}>
+                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-0`}>
                     
                     {MentorData.length - 1 <= mentorIndexes.length ? (
                         <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>

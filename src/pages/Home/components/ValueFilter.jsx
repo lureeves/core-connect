@@ -94,7 +94,7 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             {showDropdown && (
                 <div className="filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[40rem] h-[31.7rem]">
                     <div 
-                        className="filter-container dropdown absolute py-[2.25rem] px-[2.5rem] text-[#6B6C70] border-[#C7CBDA] gap-x-[2.8rem] gap-y-[0.65rem] w-[37.8rem] h-[29.5rem] " 
+                        className="filter-container absolute py-[2.25rem] px-[2.5rem] text-[#6B6C70] border-[#C7CBDA] gap-x-[2.8rem] gap-y-[0.65rem] w-[37.8rem] h-[29.5rem] " 
                         style={{
                             display: 'grid',
                             gridTemplateColumns: '155px 155px 155px', // Fixed width for 3 columns
