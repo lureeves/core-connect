@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { CoreValueButton, ActionButton } from './Buttons.jsx'
+import ClipLoader from "react-spinners/ClipLoader";
 
 /**
  * StartTest component renders the page before inital test to see if user wants to enter the page or not.
@@ -126,7 +127,6 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
  * @param {Object} props - The properties passed to the component.
  * @param {Array} props.finalValues - An array of the final three selected core values.
  */
-import ClipLoader from "react-spinners/ClipLoader";
 const api = import.meta.env.VITE_AI_API_KEY;
 
 
