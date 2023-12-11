@@ -52,9 +52,9 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                     <div className='flex flex-col justify-end gap-2'>
                         <h2 className='font-bold text-[1.5625rem] leading-none'>{name=="undefined undefined"? "Name": name}</h2>
                         <div className='flex gap-1 font-sans text-[1.3125rem]'>
-                            <h3 className='font-semibold'>{MentorData[id].role}</h3>
+                            <h3 className='font-semibold'>{MentorData[id].role? MentorData[id].role: "Role"}</h3>
                             <h3>at</h3>
-                            <h3 className='font-semibold'>{MentorData[id].company}</h3>
+                            <h3 className='font-semibold'>{MentorData[id].company? MentorData[id].company: "Company"}</h3>
                         </div>
                         
                         <div className='flex gap-1 '>
@@ -63,13 +63,13 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                         </div>
                         <div className='flex gap-[.625rem]'>
                             <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
-                                {MentorData[id].core_value_1}
+                                {MentorData[id].core_value_1? MentorData[id].core_value_1: "Compassionate"}
                             </p>
                             <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
-                                {MentorData[id].core_value_2}
+                                {MentorData[id].core_value_2? MentorData[id].core_value_2: "Respect"}
                             </p>
                             <p className='font-semibold text-[0.9375rem] bg-[#D7E0FF] py-[0.3125rem] px-[0.5rem] rounded-md uppercase'>
-                                {MentorData[id].core_value_3}
+                                {MentorData[id].core_value_3? MentorData[id].core_value_3: "Responsible"}
                             </p>
                         </div>
                     </div>
@@ -91,22 +91,22 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                             </div>
                             
                             <p>
-                               {MentorAboutMes[id]['About Me ']}
+                               {MentorAboutMes[id]? MentorAboutMes[id]['About Me ']:"This category is not filled out yet"}
                             </p>
                         </div>
                         <div className='mb-10 flex flex-col border border-slate-200 p-3 px-5 rounded-md w-[33.25rem]'>
                             <div className='flex w-full justify-between font-bold mb-5 text-lg'>
                                 <h3>Experience</h3>
-                                <h3>{MentorData[id].years_of_experience} Years</h3>
+                                <h3>{MentorData[id]? MentorData[id].years_of_experience: "0"} Years</h3>
                             </div>
                             <div className='flex flex-col gap-2 mx-2'>
                                 <div className='flex w-full justify-between m-2 '>
-                                    <p className='font-semibold '>{MentorAboutMes[id].experience_1}</p>
-                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id].period_1}</p>
+                                    <p className='font-semibold '>{MentorAboutMes[id]?MentorAboutMes[id].experience_1: "Nothing"}</p>
+                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_1: "Mon XXXX - Mon XXXX"}</p>
                                 </div>
                                 <div className='flex w-full justify-between m-2'>
-                                    <p className='font-semibold'>{MentorAboutMes[id].experience_2}</p>
-                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id].period_2}</p>
+                                    <p className='font-semibold'>{MentorAboutMes[id]?MentorAboutMes[id].experience_2: "Nothing"}</p>
+                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_2: "Mon XXXX - Mon XXXX"}</p>
                                 </div>
                             </div>
                         </div>
