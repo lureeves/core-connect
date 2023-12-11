@@ -1,13 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import close from '../../../assets/close.svg'
 import check from '../../../assets/check.svg'
 import arrow from '../../../assets/arrow.svg'
+import { CheckBox } from '../../../assets'
+import { coreValues } from '../../../data/CoreValues'
+
 
 const RequestForm = (props) => {
   const [submit, setSubmit]= useState(false);
   const [workStyle,setWorkStyle] = useState(0);
   const [saveStyle,setSaveStyle] = useState(null);
-  const [values, setValues]= useState([]);
+  const [selectedValues, setSelectedValues] = useState(
+    () => {
+    const storedValues = localStorage.getItem('selectedValues');
+    return storedValues ? JSON.parse(storedValues) : [];
+  });
+  const [dropdown, setDropDown] = useState(0);
+  let [options, setOptions] = useState(coreValues.sort()) ;
 
   const [form, setForm] = useState(null);
 
@@ -15,10 +24,10 @@ const RequestForm = (props) => {
   const submitting = ()=>{
     let bgX = document.getElementById('bgX').value;
     let focus = document.getElementById('focus').value;
-    if(bgX && focus && saveStyle){
+    if(bgX && focus && saveStyle &&selectedValues){
       let final = {
         time: localStorage.getItem(`${props.id} day`) + " " + localStorage.getItem(`${props.id} time`),
-        values: [],
+        values: selectedValues,
         Style: saveStyle,
         bgX: bgX,
         focus: focus
@@ -29,6 +38,9 @@ const RequestForm = (props) => {
         console.log(final);
         props.onClosed();
       }, 5000)
+    }
+    else if (!selectedValues){
+      alert('Please select your 3 core values or take the test')
     }
     else if (!saveStyle){
       alert('Please select a work style')
@@ -62,6 +74,39 @@ const RequestForm = (props) => {
       setSaveStyle("LOGIC-ORIENTED")
     }
   }
+
+  const toggleValue = (index, value) => {
+    
+    let temp;
+    if(selectedValues){
+      temp = selectedValues;
+    }
+    else{
+      temp = ["","",""]
+    }
+ 
+    temp[index] = value;
+    setSelectedValues(temp);
+    setDropDown(0);
+    filteringValues()
+  };
+
+  const toggleDrop = (num)=>{
+    if(num == dropdown){
+      setDropDown(0)
+    }
+    else{
+      setDropDown(num)
+    }
+  }
+  const filteringValues = ()=>{
+    let filtered=coreValues.sort().filter((option)=> !selectedValues.includes(option))
+    setOptions(filtered)
+  }
+  useEffect(()=>{
+    
+  }, [selectedValues])
+
   return (
     <>
       {
@@ -91,23 +136,68 @@ const RequestForm = (props) => {
 
                     {/* Core Values */}
                     <div className='flex flex-col'>
-                      <div className='flex gap-[1.875rem]'>
-                        <div className='flex flex-col border rounded-lg border-[#C7CBDA] mr-[1.31rem] min-w-[19.375rem] py-[2.12rem] px-[1.75rem] gap-[2.4375rem]'>
-                          <h2 className='font-semibold flex justify-center text-center w-[120%] ml-[-15px]'>What are your top 3 core values? <em className='text-red-500'>*</em></h2>
+                      <div className='flex gap-[1.475rem]'>
+                        <div className='flex flex-col border rounded-lg border-[#C7CBDA] mr-[1.31rem] min-w-[20rem] py-[2.12rem] px-[1.75rem] gap-[2.4375rem]'>
+                          <h2 className='font-semibold flex justify-center text-center w-[100%] '>What are your top 3 core values? <em className='text-red-500'>*</em></h2>
                           <div className='flex flex-col h-full justify-around '>
                             
-                            <button className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5]'>
-                              Compassionate 
-                              <img src={arrow} alt="" />
+                            {/* DropDown one */}
+                            <button 
+                            onClick={()=>toggleDrop(1)}
+                            
+                            className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5]'>
+                              {selectedValues? selectedValues[0]: "Compassionate"} 
+                              <img className={dropdown===1?`rotate-180`:''} src={arrow} alt="" />
                             </button>
-                            <button className='border flex justify-between items-center rounded-3xl py-[5px] border-[#9EA6C5] pl-[2.56rem] pr-[1.81rem]'>
-                              Loyalty 
-                              <img src={arrow} alt="" />
+                            {dropdown==1&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[21.8rem] border border-[#9EA6C5] rounded-lg items-center '>
+                                  {options.map((option,index)=>{
+                                    return <div 
+                                    onClick={()=>{
+                                      toggleValue(0,option)
+                                    }}
+                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
+                                  })}
+                              </div>}
+
+                            {/* Dropdown 2 */}
+                            <button 
+                              onClick={()=>toggleDrop(2)}
+                              
+                              className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5]'>
+
+                              {selectedValues? selectedValues[1]: "Loyalty"} 
+                              <img className={dropdown===2?`rotate-180`:''} src={arrow} alt="" />
                             </button>
-                            <button className='border flex justify-between items-center rounded-3xl py-[5px] border-[#9EA6C5] pl-[2.56rem] pr-[1.81rem]'>
-                              Responsibility 
-                              <img src={arrow} alt="" />
+
+                            {dropdown==2&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[25.3rem] border border-[#9EA6C5] rounded-lg items-center '>
+                                  {options.map((option,index)=>{
+                                    return <div 
+                                    onClick={()=>{
+                                      toggleValue(1,option)
+                                    }}
+                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
+                                  })}
+                              </div>}
+
+                            {/* Dropdown 3 */}
+                            <button 
+                              onClick={()=>toggleDrop(3)}
+                              
+                              className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5]'>
+
+                              {selectedValues? selectedValues[2]: "Loyalty"} 
+                              <img className={dropdown===3?`rotate-180`:''} src={arrow} alt="" />
                             </button>
+
+                            {dropdown==3&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[28.8rem] border border-[#9EA6C5] rounded-lg items-center '>
+                                  {options.map((option,index)=>{
+                                    return <div 
+                                    onClick={()=>{
+                                      toggleValue(2,option)
+                                    }}
+                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
+                                  })}
+                              </div>}
                           </div>
                           
                         </div>
