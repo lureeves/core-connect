@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '/public/logo.png';
+import { CoreConnectLogo } from '../assets';
 import '../styles/global.css';
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
             {/* Left side container */}
                 <div className="flex logo justify-center items-center ml-3 whitespace-nowrap">
                     <a href="/" className='flex gap-2'>
-                        <img className="logo-img" src={Logo} alt="Core Connect Logo" />
+                        <img className="logo-img" src={CoreConnectLogo} alt="Core Connect Logo" />
                         <h2 className="font-['Poppins'] font-[24px] tracking-[-1.08] text-[#1B2033]">Core Connect</h2>
                     </a> 
                 </div>

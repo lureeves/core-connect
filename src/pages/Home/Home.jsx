@@ -66,7 +66,7 @@ const Home = () => {
     return (
         <div className='text-black flex flex-col items-center mb-[6rem] w-screen'>
             {/* Intro Section */}
-            <div className='flex flex-col items-center w-[68rem]'>
+            <div className='flex flex-col items-center w-[67.75rem]'>
                 {/* Welcome Section */}
                 <div className="flex flex-col text-[2.5rem] font-bold mt-[4.96rem] mb-[3.1875rem]">
                     <h1 className="text-[2.5rem] font-['Poppins'] mb-[0.75rem]">Welcome!</h1>
@@ -119,22 +119,31 @@ const Home = () => {
 
             {/* Mentor Cards Section*/}
             {mentorIndexes.length > 0 ? (
-                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-0`}>
-                    
+                <div className={`flex flex-col items-center ${isDropdownOpen ? 'opacity-20' : ''} z-0`}>                    
                     {MentorData.length - 1 <= mentorIndexes.length ? (
-                        <h2 className='text-[1.1875rem] font-semibold self-start pb-7'>Featured Mentors</h2>
-                    ) : (
-                        <p></p>
-                    )}
-                    
-                    {/* Design mentors */}
-                    <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
-                        {mentorIndexes.length < 41 ? (
-                            mentorIndexes.slice(0, 16).map((index) => <MentorCard key={index} id={index} />)
+                            // Featured Mentors Display
+                            <>
+                            <h2 className='text-[1.1875rem] font-semibold self-start pb-[1rem]'>Featured Mentors</h2>
+                            <h3 className='text-[1rem] font-semibold self-start pb-[2.19rem]'>DESIGN</h3>
+                            <div className='grid grid-cols-4 gap-x-[1.25rem]'>
+                                {mentorIndexes.slice(0, 4).map((index) => <MentorCard key={index} id={index} />)}
+                            </div>
+                            <h3 className='text-[1rem] font-semibold self-start py-[2.19rem]'>PRODUCT</h3>
+                            <div className='grid grid-cols-4 gap-x-[1.25rem]'>
+                                {mentorIndexes.slice(4, 8).map((index) => <MentorCard key={index} id={index} />)}
+                            </div>
+                            <h3 className='text-[1rem] font-semibold self-start py-[2.19rem]'>DEVELOPER</h3>
+                            <div className='grid grid-cols-4 gap-x-[1.25rem]'>
+                                {mentorIndexes.slice(8, 12).map((index) => <MentorCard key={index} id={index} />)}
+                            </div>
+                            </>
                         ) : (
-                            mentorIndexes.slice(0, 12).map((index) => <MentorCard key={index} id={index} />)
+                            // Filtered Mentors Display
+                            <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>  
+                                {mentorIndexes.slice(0, 16).map((index) => <MentorCard key={index} id={index} />)}
+                            </div>
                         )}
-                    </div>
+                    
                 </div>
             ) : (
                 <p>No mentors found.</p>

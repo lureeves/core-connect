@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from '/public/logo.png';
+import { CoreConnectLogo } from '../assets';
 import pfp from '../assets/SeanPfp.png'
 import '../styles/global.css'
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
         {/*Logo Container */}
         <div className='flex logo w-6/12 justify-start items-center'>
             <a href="/" className='flex gap-2'>
-                <img className="logo-img" src={Logo} alt="" />
+                <img className="logo-img" src={CoreConnectLogo} alt="" />
                 <h2 className="font-['Poppins'] font-[24px] tracking-[-1.08] text-[#1B2033]">Core Connect</h2>
             </a>    
         </div>
@@ -20,7 +20,7 @@ const Header = () => {
             <a href="/MyProfile">
                 <div className='flex gap-2'>
                     <img className="pfp" src={pfp} alt="" />
-                    <h2>Sean</h2>
+                    <h2>SEAN</h2>
                 </div>
             </a>
             

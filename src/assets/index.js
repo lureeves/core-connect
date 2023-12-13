@@ -14,3 +14,4 @@ export {default as Lukas} from './LukasPfp.jpg';
 export {default as Anisa} from './AnisaPfp.jpg';
 export {default as Katie} from './KatiePfp.jpg';
 export {default as CheckBox} from './CheckBox.svg';
+export {default as CoreConnectLogo} from './CoreConnectLogo.svg';
