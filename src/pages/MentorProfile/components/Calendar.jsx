@@ -109,6 +109,7 @@ const Calendar = (props) => {
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(null);
   const [aval,setAval] = useState([]);
+  const [ready, setReady]=useState(false);
   const schedule = props.id % Availability.length;
   let day=null;
   // Handles the time (X:XX) selected.
@@ -163,7 +164,13 @@ const Calendar = (props) => {
                         dayOfWeekFormatter={(_day, weekday) => `${weekday.format('ddd')}`}
                         disablePast={true}
                         sx={{
-                          
+                          '.MuiPickersDay-root.Mui-selected': {
+                            backgroundColor: '#3A2A9B', // Change the color of the selected date
+                            
+                          },
+                          '.MuiDateCalendar-root':{
+                            height: "50px",
+                          }
                         }}
                         
                     />
@@ -184,7 +191,7 @@ const Calendar = (props) => {
                 {
                   aval.length>0?(
                     aval.map((times, index)=>{
-                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#6F789A] text-white': ''} `}>
+                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#3A2A9B] text-white': ''} `}>
                         {times}
                         </button>
                     })
@@ -193,7 +200,7 @@ const Calendar = (props) => {
                   )
                 }
             </div>
-            <button onClick={()=>{handleFormOpen()}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
+            <button onClick={()=>{handleFormOpen()}} className={`${time?'bg-[#3A2A9B]':'bg-[#6F789A]'}  text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]`}>Start Mentorship Request</button>
         </div>
         
     </div>
