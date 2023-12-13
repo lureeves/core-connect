@@ -22,7 +22,8 @@ const theme = createTheme({
             justifyContent: '', // Center content horizontally
             alignItems: 'center',
             width:'27.5rem',
-            borderRadius:"0.625"    
+            borderRadius:"0.625rem" ,
+            height:"21rem"   
           }
         },
       },
@@ -33,22 +34,20 @@ const theme = createTheme({
             padding:'1.2rem',
             marginRight:'.5rem',
             marginLeft:'.6rem',
-            marginBottom:'.2rem',
-            fontFamily:'Open sans'
-            
+            marginBottom:'',
+            fontFamily:'Open sans',    
           }
         }
       },
       MuiDayCalendar:{
         styleOverrides:{
-          root:{
-            width:'27rem'
-          },
           header:{
-            fontWeight:'600',
             gap:'1rem',
+            height:"auto",
+           
           
           }
+          
         }
       },
       MuiPickersCalendarHeader:{
@@ -109,6 +108,7 @@ const Calendar = (props) => {
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(null);
   const [aval,setAval] = useState([]);
+  const [ready, setReady]=useState(false);
   const schedule = props.id % Availability.length;
   let day=null;
   // Handles the time (X:XX) selected.
@@ -156,14 +156,26 @@ const Calendar = (props) => {
             <ThemeProvider theme={theme}>
 
                 <div onClick={()=>handleOpeningTimes()}>
-                    <DateCalendar className='border border-slate-200 rounded-md w-32'
+                    <DateCalendar className='border border-[#C7CBDA]'
                         value={date}
                         views={['day']}
                         onChange={handleDateChange}
                         dayOfWeekFormatter={(_day, weekday) => `${weekday.format('ddd')}`}
                         disablePast={true}
                         sx={{
-                          
+                          '.MuiPickersDay-root.Mui-selected': {
+                            backgroundColor: '#3A2A9B', // Change the color of the selected date
+                            
+                          },
+                          '.MuiPickersSlideTransition-root':{
+                            overflow:"hidden",
+                            height: '20rem'
+                          },
+                          '.MuiDateCalendar':{
+                            height:"20px",
+                            border:"1px solid blue"
+                          }
+
                         }}
                         
                     />
@@ -184,7 +196,7 @@ const Calendar = (props) => {
                 {
                   aval.length>0?(
                     aval.map((times, index)=>{
-                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#6F789A] text-white': ''} `}>
+                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-[#C7CBDA] text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#3A2A9B] text-white': ''} `}>
                         {times}
                         </button>
                     })
@@ -193,7 +205,7 @@ const Calendar = (props) => {
                   )
                 }
             </div>
-            <button onClick={()=>{handleFormOpen()}} className='bg-[#6F789A] text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]'>Start Mentorship Request</button>
+            <button onClick={()=>{handleFormOpen()}} className={`${time?'bg-[#3A2A9B]':'bg-[#6F789A]'}  text-white px-[1.6875rem] py-[0.5625rem] rounded-md text-[0.9375rem]`}>Start Mentorship Request</button>
         </div>
         
     </div>

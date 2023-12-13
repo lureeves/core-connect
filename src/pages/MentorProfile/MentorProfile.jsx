@@ -41,7 +41,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
   return (
     <>
         <div className='w-full flex justify-center'>
-            <div className={`w-[90rem]  flex flex-col items-center justify-center mt-24 ml-[15rem] z-0 ${openForm?'filter blur-md':''} `}>
+            <div className={`w-[90rem]  flex flex-col items-center justify-center mt-24 ml-[15rem] z-0 ${openForm?'opacity-30':''} `}>
                 {/* Profile Picture and header */}
               
                 <div className='w-[90rem] flex gap-6'>
@@ -78,45 +78,59 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                 {/* Mid Section */}
                 <div className='grid grid-cols-2 justify-center gap-[7rem] w-[90rem] mt-24'>
                     {/* Left column  */}
-                    <div className='mr-20'>
+                    <div className=''>
 
                         {/* About me Section */}
-                        <div className='flex flex-col w-[31.8125rem] gap-4 mb-10 p-3 px-5'>
-                            <div className='flex w-full justify-between border-b pb-2 border-b-slate-200'>
-                                <h3 className='font-bold text-[1.0625rem]'>About Me</h3>
-                                <div className='flex gap-2'>
-                                    <a href="https://www.linkedin.com/" target='_blank'><img src={linkedIn} alt="linked in link" /></a>
-                                    <a href="https://www.joincolab.io/" target='_blank'><img src={website} alt="website link" /></a>
+                        <div className='flex flex-col w-[33.25rem]  mb-10 '>
+                            <div className='flex flex-col items-end w-full '>
+                                <div className='flex w-[33.25rem] justify-center border-b pb-1 border-b-[#C7CBDA] mb-[1.25rem]'>
+                                    <div className='flex w-[31.8125rem] justify-between '>
+                                        <h3 className='font-bold text-[1.0625rem] ml-[10px]'>About Me</h3>
+                                        <div className='flex gap-2'>
+                                            <a href="https://www.linkedin.com/" target='_blank'><img src={linkedIn} alt="linked in link" /></a>
+                                            <a href="https://www.joincolab.io/" target='_blank'><img src={website} alt="website link" /></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                <p className='w-[31.8125rem]'>
+                                    {MentorAboutMes[id]? MentorAboutMes[id]['About Me ']:"This category is not filled out yet"}
+                                </p>
+                            </div>
+                            
+                        </div>
+                        {/* Experience Section */}
+                        <div className='mb-10 flex flex-col text-black border  border-[#C7CBDA] py-[1.69rem] px-[0.81rem] rounded-[0.625rem] w-[33.25rem]'>
+                            <div className='w-[31.625rem]'>
+                                <div className='flex w-full justify-between font-bold mb-[1.69rem] '>
+                                    <h3 className='text-[1.0625rem] ml-[10px]'>Experience</h3>
+                                    <h3 className='text-[1rem] mr-[10px]'>{MentorData[id]? MentorData[id].years_of_experience: "0"} Years</h3>
+                                </div>
+                                <div className='flex flex-col '>
+                                    <div className='flex w-full justify-between items-center  bg-[#F6F6F6] py-[0.75rem] px-[1.5rem] rounded-[0.4375rem]'>
+                                        <p className='font-semibold w-[20.125rem] '>{MentorAboutMes[id]?MentorAboutMes[id].experience_1: "Nothing"}</p>
+                                        <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_1: "Mon XXXX - Mon XXXX"}</p>
+                                    </div>
+                                    <div className='flex w-full justify-between py-[0.75rem] px-[1.5rem] rounded-[0.4375rem]'>
+                                        <p className='font-semibold w-[20.125rem] overflow-ellipsis'>{MentorAboutMes[id]?MentorAboutMes[id].experience_2: "Nothing"}</p>
+                                        <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_2: "Mon XXXX - Mon XXXX"}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Help With Section */}
+                        <div className='flex flex-col w-[33.25rem] h-[8.375rem]  border border-[#C7CBDA] py-[1.69rem] px-[1.44rem] rounded-[0.625rem]'>
+                            <div className=''>
+                                <h3 className='font-bold text-[1.065rem] mb-[1.69rem]'>What I can help with</h3>
+                                <div className='flex gap-[0.5rem] '>
+                                    {help_with.map((val, index)=>{
+                                        return <div key={index} className='font-sans w-fit text-[0.9375rem] font-semibold bg-[#F3F3F3] rounded-[0.25rem] py-[0.3125rem] px-[0.5rem] capitalize'>{val}</div>
+                                    })}
                                 </div>
                             </div>
                             
-                            <p>
-                               {MentorAboutMes[id]? MentorAboutMes[id]['About Me ']:"This category is not filled out yet"}
-                            </p>
-                        </div>
-                        <div className='mb-10 flex flex-col border border-slate-200 p-3 px-5 rounded-md w-[33.25rem]'>
-                            <div className='flex w-full justify-between font-bold mb-5 text-lg'>
-                                <h3>Experience</h3>
-                                <h3>{MentorData[id]? MentorData[id].years_of_experience: "0"} Years</h3>
-                            </div>
-                            <div className='flex flex-col gap-2 mx-2'>
-                                <div className='flex w-full justify-between m-2 '>
-                                    <p className='font-semibold '>{MentorAboutMes[id]?MentorAboutMes[id].experience_1: "Nothing"}</p>
-                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_1: "Mon XXXX - Mon XXXX"}</p>
-                                </div>
-                                <div className='flex w-full justify-between m-2'>
-                                    <p className='font-semibold'>{MentorAboutMes[id]?MentorAboutMes[id].experience_2: "Nothing"}</p>
-                                    <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_2: "Mon XXXX - Mon XXXX"}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='flex flex-col w-[33.25rem] h-[8.375rem] gap-[1.69rem] border border-slate-200 py-[1.69rem] px-[1.44rem] rounded-md'>
-                            <h3 className='font-bold text-lg'>What I can help with</h3>
-                            <div className='flex mx-4 gap-[0.625rem] font-medium'>
-                                {help_with.map((val, index)=>{
-                                    return <div key={index} className='font-sans text-[0.9375rem] font-semibold'>{val}</div>
-                                })}
-                            </div>
                         </div>
                     </div>
 
@@ -132,11 +146,14 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                 {/* Reviews Bottom Section */}
 
                 <div className='mt-10 w-[90rem] flex flex-col'>
-                    <h1 className='font-bold mb-5 ml-3 text-lg w-full border-b pb-2 border-slate-200 flex gap-[0.625rem] items-center'>
-                        Reviews 
-                    <em className='bg-black text-white normal-case p-1 text-[0.75rem] rounded-full px-2 not-italic font-semibold w-[1.1875rem] h-[1.1875rem] flex justify-center items-center'>3</em>
-                    </h1>
-                    <div className='flex flex-wrap gap-[2.69rem]'>
+                    <div className='w-[75rem] border-b  border-[#C7CBDA]'>
+                        <h1 className='font-bold mb-5 ml-5 text-[1.0625rem]  flex gap-[0.625rem] items-center'>
+                            Reviews 
+                        <em className='bg-black text-white normal-case text-[0.75rem] rounded-full px-2 not-italic font-semibold w-[1.1875rem] h-[1.1875rem] flex justify-center items-center'>3</em>
+                        </h1>
+                    </div>
+                    
+                    <div className='flex flex-wrap gap-[2.69rem] mb-[22.5rem]'>
                         <Review 
                         name={FakeReviews[1].name} 
                         date={FakeReviews[1].date}
