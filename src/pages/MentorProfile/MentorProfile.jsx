@@ -41,7 +41,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
   return (
     <>
         <div className='w-full flex justify-center'>
-            <div className={`w-[90rem]  flex flex-col items-center justify-center mt-24 ml-[15rem] z-0 ${openForm?'filter blur-md':''} `}>
+            <div className={`w-[90rem]  flex flex-col items-center justify-center mt-24 ml-[15rem] z-0 ${openForm?'opacity-30':''} `}>
                 {/* Profile Picture and header */}
               
                 <div className='w-[90rem] flex gap-6'>
@@ -85,7 +85,7 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                             <div className='flex flex-col items-end w-full '>
                                 <div className='flex w-[33.25rem] justify-center border-b pb-1 border-b-[#C7CBDA] mb-[1.25rem]'>
                                     <div className='flex w-[31.8125rem] justify-between '>
-                                        <h3 className='font-bold text-[1.0625rem]'>About Me</h3>
+                                        <h3 className='font-bold text-[1.0625rem] ml-[10px]'>About Me</h3>
                                         <div className='flex gap-2'>
                                             <a href="https://www.linkedin.com/" target='_blank'><img src={linkedIn} alt="linked in link" /></a>
                                             <a href="https://www.joincolab.io/" target='_blank'><img src={website} alt="website link" /></a>
@@ -109,11 +109,11 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                                 </div>
                                 <div className='flex flex-col '>
                                     <div className='flex w-full justify-between items-center  bg-[#F6F6F6] py-[0.75rem] px-[1.5rem] rounded-[0.4375rem]'>
-                                        <p className='font-semibold '>{MentorAboutMes[id]?MentorAboutMes[id].experience_1: "Nothing"}</p>
+                                        <p className='font-semibold w-[20.125rem] '>{MentorAboutMes[id]?MentorAboutMes[id].experience_1: "Nothing"}</p>
                                         <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_1: "Mon XXXX - Mon XXXX"}</p>
                                     </div>
                                     <div className='flex w-full justify-between py-[0.75rem] px-[1.5rem] rounded-[0.4375rem]'>
-                                        <p className='font-semibold'>{MentorAboutMes[id]?MentorAboutMes[id].experience_2: "Nothing"}</p>
+                                        <p className='font-semibold w-[20.125rem] overflow-ellipsis'>{MentorAboutMes[id]?MentorAboutMes[id].experience_2: "Nothing"}</p>
                                         <p className='font-semibold uppercase text-[0.8125rem]'>{MentorAboutMes[id]?MentorAboutMes[id].period_2: "Mon XXXX - Mon XXXX"}</p>
                                     </div>
                                 </div>
@@ -146,11 +146,14 @@ const profilePicture = `https://ui-avatars.com/api/?background=${getBackgroundCo
                 {/* Reviews Bottom Section */}
 
                 <div className='mt-10 w-[90rem] flex flex-col'>
-                    <h1 className='font-bold mb-5 ml-3 text-lg w-[90rem] border-b pb-2 border-[#C7CBDA] flex gap-[0.625rem] items-center'>
-                        Reviews 
-                    <em className='bg-black text-white normal-case p-1 text-[0.75rem] rounded-full px-2 not-italic font-semibold w-[1.1875rem] h-[1.1875rem] flex justify-center items-center'>3</em>
-                    </h1>
-                    <div className='flex flex-wrap gap-[2.69rem]'>
+                    <div className='w-[75rem] border-b  border-[#C7CBDA]'>
+                        <h1 className='font-bold mb-5 ml-5 text-[1.0625rem]  flex gap-[0.625rem] items-center'>
+                            Reviews 
+                        <em className='bg-black text-white normal-case text-[0.75rem] rounded-full px-2 not-italic font-semibold w-[1.1875rem] h-[1.1875rem] flex justify-center items-center'>3</em>
+                        </h1>
+                    </div>
+                    
+                    <div className='flex flex-wrap gap-[2.69rem] mb-[22.5rem]'>
                         <Review 
                         name={FakeReviews[1].name} 
                         date={FakeReviews[1].date}

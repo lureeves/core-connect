@@ -1,0 +1,9 @@
+.buttonShadow{
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+    
+
+}
+
+.submit{
+    box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.13);
+}

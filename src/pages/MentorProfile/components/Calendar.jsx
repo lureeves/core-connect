@@ -22,7 +22,8 @@ const theme = createTheme({
             justifyContent: '', // Center content horizontally
             alignItems: 'center',
             width:'27.5rem',
-            borderRadius:"0.625"    
+            borderRadius:"0.625rem" ,
+            height:"21rem"   
           }
         },
       },
@@ -33,22 +34,20 @@ const theme = createTheme({
             padding:'1.2rem',
             marginRight:'.5rem',
             marginLeft:'.6rem',
-            marginBottom:'.2rem',
-            fontFamily:'Open sans'
-            
+            marginBottom:'',
+            fontFamily:'Open sans',    
           }
         }
       },
       MuiDayCalendar:{
         styleOverrides:{
-          root:{
-            width:'27rem'
-          },
           header:{
-            fontWeight:'600',
             gap:'1rem',
+            height:"auto",
+           
           
           }
+          
         }
       },
       MuiPickersCalendarHeader:{
@@ -157,7 +156,7 @@ const Calendar = (props) => {
             <ThemeProvider theme={theme}>
 
                 <div onClick={()=>handleOpeningTimes()}>
-                    <DateCalendar className='border border-slate-200 rounded-md w-32'
+                    <DateCalendar className='border border-[#C7CBDA]'
                         value={date}
                         views={['day']}
                         onChange={handleDateChange}
@@ -168,9 +167,15 @@ const Calendar = (props) => {
                             backgroundColor: '#3A2A9B', // Change the color of the selected date
                             
                           },
-                          '.MuiDateCalendar-root':{
-                            height: "50px",
+                          '.MuiPickersSlideTransition-root':{
+                            overflow:"hidden",
+                            height: '20rem'
+                          },
+                          '.MuiDateCalendar':{
+                            height:"20px",
+                            border:"1px solid blue"
                           }
+
                         }}
                         
                     />
@@ -191,7 +196,7 @@ const Calendar = (props) => {
                 {
                   aval.length>0?(
                     aval.map((times, index)=>{
-                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-slate-200 text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#3A2A9B] text-white': ''} `}>
+                      return <button key={index} onClick={()=>{handleTimeSelection(times)}} className={`m-1 border border-[#C7CBDA] text-[0.9375rem] font-semibold shadow-md rounded-md w-[5.5rem] h-[2.25rem] ${time===times?'bg-[#3A2A9B] text-white': ''} `}>
                         {times}
                         </button>
                     })
