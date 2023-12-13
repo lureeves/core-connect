@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState } from 'react';
 import { CoreValueButton, ActionButton } from './Buttons.jsx'
 import ClipLoader from "react-spinners/ClipLoader";
-
 
 /**
  * StartTest component renders the page before inital test to see if user wants to enter the page or not.
@@ -131,7 +130,8 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
  * @param {Object} props - The properties passed to the component.
  * @param {Array} props.finalValues - An array of the final three selected core values.
  */
-const api = import.meta.env.VITE_AI_API_KEY;
+// const api = import.meta.env.VITE_AI_API_KEY;
+const apiKey = import.meta.env.VITE_CHATGPT_API_KEY;
 
 export const FinalValues = ({ finalValues }) => {
     // Calculates the width for a core value based on its character length.
@@ -143,42 +143,41 @@ export const FinalValues = ({ finalValues }) => {
     let coreValues = finalValues.join(' ');
     const [image, setImage] = useState('/');
     const [loading, setLoading] =useState(false);
-    
   
-    const imageGenerator = async ()=>{
+    const imageGenerator = async () => {
         setLoading(true);
-        if(api){
-                const response = await fetch(
-                "https://api.openai.com/v1/images/generations",
-                {
-                    method:"POST",
-                    headers:{
-                        "Content-Type":"application/json",
-                        Authorization:
-                        `Bearer ${api}`,
-                        "User-Agent": "Chrome",
-                
-                    },
-                    body:JSON.stringify({
-                        prompt: `Art that expresses ${coreValues} in a creative way`,
-                        n:1,
-                        size:"512x512",
-
-                    }),
-                }
-            );
+        try {
+            const response = await fetch("https://api.openai.com/v1/images/generations", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${apiKey}`,
+                    "User-Agent": "Chrome",
+                },
+                body: JSON.stringify({
+                    prompt: `Art that expresses ${coreValues} in a creative way`,
+                    n: 1,
+                    size: "512x512",
+                }),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`API call failed with status: ${response.status}`);
+            }
+    
             let data = await response.json();
-            console.log(data);
-            let data_array = data.data;
-            setImage(data_array[0].url);
+            if (data && data.data && data.data.length > 0) {
+                setImage(data.data[0].url);
+            } else {
+                console.error("No image data received");
+            }
+        } catch (error) {
+            console.error(`Error occurred: ${error.message}`);
+        } finally {
             setLoading(false);
-            console.log(data);
-            console.log(coreValues);
         }
-        else{
-            console.log(`Neither API key worked... env = ${api}`)
-        }
-    }
+    };
+    
     
     return (
         <div className=''>
@@ -199,22 +198,15 @@ export const FinalValues = ({ finalValues }) => {
                                         data-testid="loader"
                                         />
                                     </div>
-                                    
                                 ):(
                                     <img src={image==='/'?"https://via.placeholder.com/150":image} alt="Generated" className="mr-[25px] rounded-[10px] w-[150px]" /> 
                                 )
                             }
-                            
-                            
-                            
                         </div> 
-        
                         <div className='flex flex-col'>
                             {finalValues.map(value => (
-                                <div 
-                                    key={value} 
-                                    className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] w-fit bg-[#D7E0FF] text-center"
-                                >
+                                <div key={value} 
+                                    className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] w-fit bg-[#D7E0FF] text-center">
                                     {value}
                                 </div>
                             ))}
@@ -223,8 +215,7 @@ export const FinalValues = ({ finalValues }) => {
                     </div>  
                     <div className='flex w-full justify-center'>
                         <button className='mr-[1.5rem] bg-[#2C4193] w-fit text-white font-semibold px-2 mt-[1rem] rounded-lg'
-                                onClick={()=>imageGenerator()}
-                            >
+                            onClick={()=>imageGenerator()}>
                                 Generate
                         </button>
                     </div>

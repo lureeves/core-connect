@@ -27,14 +27,17 @@ const CoreValuesTest = () => {
             
                 {/* Description */}
                 <div className='flex justify-center gap-[1.25rem]'>
-                    <div className='flex flex-col  px-[2.87rem] py-[2.12rem] justify-between items-center border border-[#C7CBDA] rounded-[0.625rem] w-[33.25rem] h-[31.44rem]'>
+                    {/* Left Card */}
+                    <div className='flex flex-col px-[2.87rem] py-[2.12rem]  justify-between items-center border border-[#C7CBDA] rounded-[0.625rem] w-[33.25rem] h-[33rem]'>
                         <h2 className='font-semibold text-center text-[1.25rem]'>Sharing values with your mentor</h2>
                         <div>
-                            <img className='w-[8.68rem] h-[8.68rem] my-[1.38rem]' src={Left} alt="" />
+                            <img className='w-[8.68rem] h-[8.68rem]' src={Left} alt="" />
                         </div>
                         <p className='w-[27.5rem] text-left text-[1.125rem]'>A mentor that understands what matters most to you could provide more suitable guidance than a mentor matched based on professional background alone. Most of our mentees have reported that working with those that share aligned core values have helped increase their sense of belonging, personal growth, and motivation! We encourage you to find mentors that share similar values as you for a smoother connection.</p>
                     </div>
-                    <div className='flex flex-col  px-[2.87rem] py-[2.12rem] pb-[2.56rem] justify-between items-center border border-[#C7CBDA] rounded-[0.625rem] w-[33.25rem] h-[31.44rem]'>
+
+                    {/* Right Card */}
+                    <div className='flex flex-col px-[2.87rem] pt-[2.12rem] pb-[3.8rem] justify-between items-center border border-[#C7CBDA] rounded-[0.625rem] w-[33.25rem] h-[33rem]'>
                         <h2 className='font-semibold text-center text-[1.25rem]'>Mentor with differing values</h2>
                         <div>
                             <img className='w-[8.68rem] h-[8.68rem]' src={Right} alt="" />
