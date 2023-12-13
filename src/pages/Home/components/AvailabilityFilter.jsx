@@ -96,7 +96,8 @@ const AvailabilityFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${value ? 'border-[2px] ' : ''}`}
+            className={`relative flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 
+                ${showDropdown ? 'seleted-filter-button' : 'filter-styling'}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
         >
@@ -128,7 +129,7 @@ const AvailabilityFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             {/* Calendar dropdown for selecting date range */}
             {showDropdown && (
                 <div 
-                    className="dropdown absolute top-full right-0 w-auto filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-auto text-sm"
+                    className="seleted-filter-button absolute top-[3.065rem] right-0 w-auto filter-styling text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-auto text-sm"
                     onClick={(event) => event.stopPropagation()}
                 >
                     <Calendar 

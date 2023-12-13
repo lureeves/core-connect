@@ -78,7 +78,8 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${showDropdown ? `border-[#3A2A9B]` : ``}`}
+            className={`relative filter-styling flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 
+                ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
         >
@@ -92,9 +93,8 @@ const ValueFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting core values */}
             {showDropdown && (
-                <div className="filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[40rem] h-[31.7rem]">
-                    <div 
-                        className="filter-container absolute py-[2.25rem] px-[2.5rem] text-[#6B6C70] border-[#C7CBDA] gap-x-[2.8rem] gap-y-[0.65rem] w-[37.8rem] h-[29.5rem] " 
+                <div className="filter-styling absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[40rem] h-[31.7rem]">
+                    <div className="filter-styling absolute py-[2.25rem] px-[2.5rem] text-[#6B6C70] border-[#C7CBDA] gap-x-[2.8rem] gap-y-[0.65rem] w-[37.8rem] h-[29.5rem]" 
                         style={{
                             display: 'grid',
                             gridTemplateColumns: '155px 155px 155px', // Fixed width for 3 columns

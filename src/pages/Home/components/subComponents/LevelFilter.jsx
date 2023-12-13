@@ -56,7 +56,7 @@ const LevelFilter = ({ selectedLevels, handleSetSelectedLevels, setIsLevelDropdo
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 
+            className={`relative filter-styling flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 
             ${showLevelDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowLevelDropdown(!showLevelDropdown)}
             ref={dropdownRef}

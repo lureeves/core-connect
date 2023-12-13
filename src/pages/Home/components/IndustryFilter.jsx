@@ -1,6 +1,6 @@
     import React, { useState, useEffect, useRef } from 'react';
     import { MentorData } from '../../../data/GoogleDriveMentors.jsx';
-    import { arrow } from '../../../assets';
+    import { arrow,  CheckBox } from '../../../assets';
     import '../../Home/Home.css'
 
 /**
@@ -68,7 +68,8 @@ const IndustryFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 ${selectedIndustries.length > 0 ? 'border-[2px]' : ''}`}
+            className={`relative filter-styling flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold z-10 
+                ${showDropdown > 0 ? 'seleted-filter-button' : 'filter-styling'}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
         >
@@ -82,21 +83,35 @@ const IndustryFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
             {/* Dropdown for selecting industries */}
             {showDropdown && (
-                <div className="dropdown absolute top-full left-0 w-[13.5rem] filter-container text-[#6B6C70] py-[0.56rem] px-[1.41rem] h-[17.7rem] overflow-auto">
-                    {uniqueIndustries.map((industry, index) => (
-                        <div 
+                <div className="filter-styling absolute border-[#3A2A9B] top-[3.065rem] right-0 p-[1rem] w-[28.1875rem] h-[28.8175rem]">
+                    <div className="
+                        filter-styling absolute text-[#6B6C70] 
+                        py-[1.88rem] px-[2.19rem] 
+                        grid grid-cols-2 w-[26.1rem] h-[26.7rem] gap-x-[0.7rem]">
+                        {uniqueIndustries.map((industry, index) => (
+                            <div 
                             key={index} 
                             onClick={(event) => toggleIndustry(event, industry)}
-                            className={`cursor-pointer`}
+                            className="cursor-pointer "
                         >
-                            <span className={`${selectedIndustries.includes(industry) ? 'bg-[#E1E4EE] rounded-[0.25rem] px-[0.38rem] text-black' : 'bg-transparent'}`}>
-                                {industry}
-                            </span>
-                            
-                            {/* Horizontal divider for all except the last item in dropdown */}
-                            {index !== uniqueIndustries.length - 1 && <div className="border-b border-[#C7CBDA] w-full my-[0.44rem]"></div>}
+                            <div className="flex items-center">
+                                {selectedIndustries.includes(industry) ? (
+                                    <img 
+                                    src={CheckBox} 
+                                    alt="Checkbox" 
+                                    className={'h-[11px] w-[12px] border-[#3A2A9B] border-[1px] rounded-[0.1rem]'} 
+                                    style={{ boxShadow: 'inset 0 0 0 3px #3A2A9B' }}
+                                    />                                
+                                ) : (
+                                    <div className=" h-[0.75rem] w-[12px] border-[1px] border-[#6B6C70] rounded-[0.1rem]"></div>
+                                )}
+                                <span className={`px-[0.56rem] ${selectedIndustries.includes(industry) ? 'text-[#3A2A9B] ' : 'bg-transparent'}`}>
+                                    {industry}
+                                </span>
+                            </div>
                         </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

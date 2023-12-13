@@ -37,7 +37,9 @@ const RoleSearch = ({ setMentorIndexes, setIsDropdownOpen }) => {
     }, [searchTerm, showDropdown]);
     
     return (
-        <div className={`relative filter-container flex items-center w-[16rem] h-10 pr-6 pl-7 gap-3 ${searchTerm ? 'border-[2px]' : ''}`}>
+        <div 
+            className={`relative flex items-center w-[16rem] h-10 pr-6 pl-7 gap-3 
+            ${!showDropdown && searchTerm ? 'filter-styling' : `${showDropdown ? `seleted-filter-button` : `unselected-role-button`}`}`}>
           {/* Search icon */}
           <MagGlassIcon />
           
@@ -56,21 +58,25 @@ const RoleSearch = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
           {/* Dropdown menu for search suggestions */}
           {showDropdown && (
-            <div className="dropdown absolute top-full left-0 w-[16rem] filter-container bg-white text-[#6B6C70] font-semibold py-[0.56rem] z-10 max-h-[17.7rem] overflow-auto">
-                {filteredRoles.map((role, index) => (
-                <div 
-                    key={index} 
-                    onClick={() => {
-                        setSearchTerm(role);
-                        setShowDropdown(false);
-                    }}
-                    className="px-[1.81rem] cursor-pointer hover:text-black"
-                >
-                    {role}
-                    {/* Horizontal divider for all except last drop down */}
-                    {index !== filteredRoles.length - 1 && <div className="border-b border-[#C7CBDA] w-full my-[0.44rem]"></div>}
-                </div>
-                ))}
+            <div className="dropdown absolute top-full left-0 w-[16rem] filter-styling bg-white text-[#6B6C70] border-[#3A2A9B] font-semibold mt-[0.44rem] py-[0.56rem] z-10 max-h-[17.7rem] overflow-auto">
+                {filteredRoles.length > 0 ? (
+                    filteredRoles.map((role, index) => (
+                        <div 
+                            key={index} 
+                            onClick={() => {
+                                setSearchTerm(role);
+                                setShowDropdown(false);
+                            }}
+                            className="px-[1.81rem] cursor-pointer hover:text-black"
+                        >
+                            {role}
+                            {/* Horizontal divider for all except last drop down */}
+                            {index !== filteredRoles.length - 1 && <div className="border-b border-[#C7CBDA] w-full my-[0.44rem]"></div>}
+                        </div>
+                    ))
+                ) : (
+                    <div className="px-[1.81rem]">No roles found...</div>
+                )}
             </div>
           )}
         </div>

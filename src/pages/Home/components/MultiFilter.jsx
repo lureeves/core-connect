@@ -127,7 +127,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
 
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold  
+            className={`relative filter-styling flex justify-between items-center w-[10rem] h-10 pr-6 pl-7 font-semibold  
                         ${showDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDropdown(!showDropdown)}
             ref={dropdownRef}
@@ -150,7 +150,7 @@ const MultiFilter = ({ setMentorIndexes, setIsDropdownOpen }) => {
             {/* Dropdown for selecting filter values */}
             {showDropdown && (
                 <div 
-                className={`filter-container absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem] z-10`}
+                className={`filter-styling absolute border-[#3A2A9B] top-[3rem] right-0 p-[1rem] w-[15.5rem] h-[23.25rem] z-10`}
                 // {Prevents dropdown from closing when clicked inside}
                 onClick={(event) => event.stopPropagation()}> 
 

@@ -57,7 +57,7 @@ const DisciplineFilter = ({ selectedDisciplines, handleSetSelectedDisciplines, s
     };
     return (
         <div 
-            className={`relative filter-container flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 
+            className={`relative filter-styling flex justify-between items-center w-[13.5rem] h-10 pr-6 pl-7 font-semibold opacity-100 z-20 
             ${showDisciplineDropdown ? `border-[#3A2A9B]` : ``}`}
             onClick={() => setShowDisciplineDropdown(!showDisciplineDropdown)}
             ref={dropdownRef}
@@ -73,7 +73,7 @@ const DisciplineFilter = ({ selectedDisciplines, handleSetSelectedDisciplines, s
             </button>
 
             {showDisciplineDropdown && (
-                <div className={`filter-container absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.65rem] overflow-auto`}>
+                <div className={`filter-styling absolute border-[#3A2A9B] top-[2.4rem] right-0 p-[1rem] w-[13.5rem] h-[18.65rem] overflow-auto`}>
                     {/* Search Box */}
                     <div className="absolute left-[1.6rem] top-[2.15rem] transform -translate-y-1/2 z-10 text-[1rem]"><MagGlassIcon /></div>
                     <input 

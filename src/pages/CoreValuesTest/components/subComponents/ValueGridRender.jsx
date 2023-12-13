@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import { CoreValueButton, ActionButton } from './Buttons.jsx'
 import ClipLoader from "react-spinners/ClipLoader";
 
+
 /**
  * StartTest component renders the page before inital test to see if user wants to enter the page or not.
  * @param {Object} props - The properties passed to the component.
@@ -46,6 +47,7 @@ export const InitialValues = ({ coreValues, selectedValues, handleValueClick }) 
     );
 };
 
+
 /**
  * Component to display and allow selection from the first set of chosen values.
  * @param {Object} props - Component props.
@@ -71,6 +73,7 @@ export const TenValues = ({ stateOneValues, selectedValues, handleValueClick }) 
     );
 };
 
+
 /**
  * Component to display and allow selection from the second set of chosen values.
  * @param {Object} props - Component props.
@@ -95,6 +98,7 @@ export const FiveValues = ({ stateTwoValues, selectedValues, handleValueClick })
         </>
     );
 };
+
 
 /**
  * Component to display and allow selection from the third set of chosen values.
@@ -129,10 +133,7 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
  */
 const api = import.meta.env.VITE_AI_API_KEY;
 
-
 export const FinalValues = ({ finalValues }) => {
-    
-   
     // Calculates the width for a core value based on its character length.
     const calculateWidth = (value) => {
         const baseWidth = 20; // Base width
@@ -234,4 +235,3 @@ export const FinalValues = ({ finalValues }) => {
         </div>
     );
 };
-// ? image:"https://via.placeholder.com/150"

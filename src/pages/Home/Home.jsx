@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { arrow, filter } from '../../assets';
 import MentorCard from './components/MentorCard.jsx'
 import RoleSearch from './components/RoleSearch.jsx'
 import IndustryFilter from './components/IndustryFilter.jsx';
@@ -9,6 +8,13 @@ import MultiFilter from './components/MultiFilter.jsx';
 import { MentorData } from '../../data/GoogleDriveMentors.jsx'
 import '../Home/Home.css'
 
+/**
+ * Home Component
+ *
+ * The main page of the application where users can find mentors. It integrates various
+ * components to filter and search for mentors based on different criteria such as role, industry,
+ * core values, availability, and more. It also displays mentors in a grid of cards.
+ */
 const Home = () => {
     const [flip, setFlip] = useState(0);
 
@@ -22,7 +28,6 @@ const Home = () => {
     const [availabilityFilterResults, setAvailabilityFilterResults] = useState([]);
     const [multiFilterResults, setMultiFilterResults] = useState([]);
     
-
     // Flips arrow on search filter
     const Flipping = (num)=>{
         if (num==flip){
@@ -33,6 +38,13 @@ const Home = () => {
         }
     };
 
+    /**
+     * Combines the results from different filters to determine the final list of mentors to display.
+     * 
+     * @param {Array<Array<number>>} filters - An array of arrays, each containing the indexes of mentors
+     *                                         filtered by different criteria.
+     * @returns {Array<number>} - An array of mentor indexes after combining all filters.
+     */
     useEffect(() => {
         const combineFilters = (filters) => {
             if (filters.every(filter => filter.length === 0)) {
@@ -48,12 +60,6 @@ const Home = () => {
         // Include additional filter results in the combineFilters call as needed
 
         setMentorIndexes(combinedIndexes);
-
-        // console.log("Role Search Results:", roleSearchResults);
-        // console.log("Industry Filter Results:", industryFilterResults);
-        // console.log("Value Filter Results:", valueFilterResults);
-        // console.log("Availability Filter Results: ", availabilityFilterResults);
-        // console.log("Multi Filter Results: ", multiFilterResults);
     }, [roleSearchResults, industryFilterResults, valueFilterResults, availabilityFilterResults, multiFilterResults]); 
     
 
@@ -68,14 +74,18 @@ const Home = () => {
                 </div>
 
                 {/* Questions Section */}
-                <div className='w-[68rem] grid grid-cols-2 gap-x-[1.25rem]'>
+                <div className='w-[67.75rem] grid grid-cols-2 gap-x-[1.25rem] text-[1.25rem]'>
                     <div className='border border-t-[1px] border-[#C7CBDA] rounded-[0.625rem] py-[2.5rem] px-[2.12rem]'>
-                        <h3 className="text-[1.25rem] font-semibold mb-[3.75rem]">What are Core Values?</h3>
-                        <p className="text-[1.125rem]">Core values are fundamental beliefs and priorities that guide a person's or organization's behavior. They can be thought of as an internal compass of principles that drive decisions and help to standout from others. Not only do they help you develop and achieve personal goals, they can help you with professional goals.</p>
+                        <h3 className="text-[1.25rem] font-semibold mb-[3.75rem]">
+                            What are Core Values?</h3>
+                        <p className="text-[1.125rem]">
+                            Core values are fundamental beliefs and priorities that guide a person's or organization's behavior. They can be thought of as an internal compass of principles that drive decisions and help to standout from others. Not only do they help you develop and achieve personal goals, they can help you with professional goals.</p>
                     </div>
                     <div className='border border-t-[1px] border-[#C7CBDA] rounded-[0.625rem] py-[2.5rem] px-[2.12rem]'>
-                        <h3 className="text-[1.25rem] font-semibold mb-[3.75rem]">How can I use Core Values when finding a mentor?</h3>
-                        <p className="text-[1.125rem]">By matching with a mentor that understands what matters most to you, they can provide advice in a way that could be more clear to you. Both you and the mentor can also experience more engagement and  reciprocal learning. Even if your mentor doesn’t match your core values, you can go into the session with an expectation of the mentorship dynamic.</p>
+                        <h3 className="text-[1.25rem] font-semibold mb-[1.81rem]">
+                            How can I use Core Values when finding a mentor?</h3>
+                        <p className="text-[1.125rem]">
+                            By matching with a mentor that understands what matters most to you, they can provide advice in a way that could be more clear to you. Both you and the mentor can also experience more engagement and  reciprocal learning. Even if your mentor doesn’t match your core values, you can go into the session with an expectation of the mentorship dynamic.</p>
                     </div>  
                 </div>
 
@@ -116,7 +126,6 @@ const Home = () => {
                     ) : (
                         <p></p>
                     )}
-                    
                     
                     {/* Design mentors */}
                     <div className='grid grid-cols-4 gap-x-[1.25rem] gap-y-[5.94rem]'>
