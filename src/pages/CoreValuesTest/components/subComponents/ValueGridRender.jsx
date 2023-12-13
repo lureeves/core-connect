@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CoreValueButton, ActionButton } from './Buttons.jsx'
 import ClipLoader from "react-spinners/ClipLoader";
+import { DashedBorder } from '../../../../assets'
 
 /**
  * StartTest component renders the page before inital test to see if user wants to enter the page or not.
@@ -134,13 +135,7 @@ export const ThreeValues = ({ stateThreeValues, selectedValues, handleValueClick
 const apiKey = import.meta.env.VITE_CHATGPT_API_KEY;
 
 export const FinalValues = ({ finalValues }) => {
-    // Calculates the width for a core value based on its character length.
-    const calculateWidth = (value) => {
-        const baseWidth = 20; // Base width
-        const widthPerCharacter = 10; // Additional width per character
-        return `${baseWidth + (value.length * widthPerCharacter)}px`;
-    };
-    let coreValues = finalValues.join(' ');
+    let coreValues = finalValues.join(', ');
     const [image, setImage] = useState('/');
     const [loading, setLoading] =useState(false);
   
@@ -167,7 +162,8 @@ export const FinalValues = ({ finalValues }) => {
     
             let data = await response.json();
             if (data && data.data && data.data.length > 0) {
-                setImage(data.data[0].url);
+                const imageUrl = data.data[0].url;
+                setImage(imageUrl);
             } else {
                 console.error("No image data received");
             }
@@ -180,48 +176,68 @@ export const FinalValues = ({ finalValues }) => {
     
     
     return (
-        <div className=''>
-            <div className="flex flex-col justify-center items-center">
-                <h3 className='mb-[47px] font-lg font-bold'>Congratulations on taking the time to learn more about yourself!</h3>
-                <h4 className="mb-[40px] text-xl font-semibold">Here are your top 3 Core Values!</h4>
-                <div className='flex flex-col'> 
-                    <div className='flex'>
-                        <div className='flex flex-col items-center'>
-                            {
-                                loading?(
-                                    <div className='mr-[2rem] h-full w-full flex justify-center items-center'>
-                                        <ClipLoader
-                                        color={"#2C4193"}
-                                        loading={loading}
-                                        size={50}
-                                        aria-label="Loading Spinner"
-                                        data-testid="loader"
-                                        />
-                                    </div>
-                                ):(
-                                    <img src={image==='/'?"https://via.placeholder.com/150":image} alt="Generated" className="mr-[25px] rounded-[10px] w-[150px]" /> 
-                                )
-                            }
-                        </div> 
-                        <div className='flex flex-col'>
-                            {finalValues.map(value => (
-                                <div key={value} 
-                                    className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] w-fit bg-[#D7E0FF] text-center">
-                                    {value}
+        <div className="flex flex-col justify-center items-center">
+            {/* Card Heading Texts */}
+            <h3 className='mb-[47px] font-lg font-bold'>
+                Congratulations on taking the time to learn more about yourself!
+            </h3>
+            <h4 className="mb-[40px] text-xl font-semibold">
+                Here are your top 3 Core Values!
+            </h4>
+
+            <div className='flex flex-col'> 
+                <div className='flex'>
+                    {/* Image Generation */}
+                    <div className='flex flex-col items-center'>
+                        {
+                            loading? (
+                                <div className='mr-[2rem] h-full w-[11.6rem] flex justify-center items-center'>
+                                    <ClipLoader
+                                    color={"#2C4193"}
+                                    loading={loading}
+                                    size={50}
+                                    aria-label="Loading Spinner"
+                                    data-testid="loader"
+                                    />
                                 </div>
-                            ))}
-                            
-                        </div>
-                    </div>  
-                    <div className='flex w-full justify-center'>
-                        <button className='mr-[1.5rem] bg-[#2C4193] w-fit text-white font-semibold px-2 mt-[1rem] rounded-lg'
-                            onClick={()=>imageGenerator()}>
-                                Generate
-                        </button>
+                            ) : (
+                                image === '/' ? (
+                                    <div className={`
+                                    flex items-center justify-center 
+                                    h-[12rem] mr-[1.56rem]`}> 
+                                        {/* Border Around Button */}
+                                        <img src={DashedBorder} alt="Dashed Border " />
+
+                                        <button className='
+                                            absolute flex items-center justify-center
+                                            text-[0.8125rem] text-white font-medium
+                                            bg-[#3A2A9B] rounded-[0.25rem] 
+                                            h-[1.125rem] py-[0.85rem] px-[0.5rem]'
+                                            onClick={()=>imageGenerator()}>
+                                                Generate Custom Image
+                                        </button>
+                                    </div>
+                                ) : (
+                                    // Display the generated image
+                                    <img 
+                                        src={image} 
+                                        alt="Generated Image" 
+                                        className='h-[12rem] rounded-[0.25rem] mr-[1.56rem]'/>
+                                )
+                            )
+                        }
+                    </div> 
+
+                    {/* Core Values */}
+                    <div className='flex flex-col'>
+                        {finalValues.map(value => (
+                            <div key={value} 
+                                className="core-value mb-[16px] py-[6px] px-[11px] rounded-[4px] w-fit bg-[#D7E0FF] text-center">
+                                {value}
+                            </div>
+                        ))}
                     </div>
-                    
-                    
-                </div>
+                </div>  
             </div>
         </div>
     );
