@@ -53,11 +53,11 @@ const MentorCard = (props) => {
     const help_with = MentorData[props.id].help_with.split(",");
 
     return (
-        <div className='w-[16rem] h-[25rem] rounded-[0.5rem] pt-[0.81rem] bg-[#FBFCFF] shadow-[1px_1px_15px_1px_rgba(0,0,0,0.1)]'
+        <div className='w-[16rem] h-[25.28rem] rounded-[0.5rem] pt-[0.81rem] bg-[#FBFCFF] shadow-[1px_1px_15px_1px_rgba(0,0,0,0.1)]'
             onClick={()=>window.open(`/MentorProfile/${props.id}`,'_blank')}
         >
             {/* Section for profile picture and core values */}
-            <div className='flex gap-3 pl-[0.81rem]'>
+            <div className='flex gap-3 pl-[0.81rem] pb-[0.28rem]'>
                 <img className="w-20 rounded-md" src={profilePicture} alt="Profile" />
                 <div className='flex flex-col gap-2'>
                     {core_values.map((value, index) => (
