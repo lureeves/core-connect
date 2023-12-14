@@ -1,151 +1,189 @@
 import React, {useState, useEffect} from 'react'
 import close from '../../../assets/close.svg'
 import check from '../../../assets/check.svg'
-import arrow from '../../../assets/arrow.svg'
-import { CheckBox } from '../../../assets'
 import { coreValues } from '../../../data/CoreValues'
+import CoreValueSelection from './subComponents/CoreValueSelection'
 import '../MentorProfile.css';
 
-
+/**
+ * RequestForm Component
+ * 
+ * A React component that represents a form for requesting mentorship sessions. It allows users to specify their
+ * preferences and availability for mentorship. This form is part of a larger application focused on connecting
+ * mentees with mentors.
+ *
+ * Props:
+ *   - id: A unique identifier for the mentor, used to manage local storage and form submission.
+ *   - onClosed: A function to handle the closing of the form.
+ *
+ * State:
+ *   - submit (boolean): Indicates whether the form has been submitted.
+ *   - workStyle (number): Represents the selected work style of the user.
+ *   - hoverStyle (number): Used to manage hover state for work style options.
+ *   - saveStyle (string|null): Stores the final selected work style as a string.
+ *   - selectedValues (Array): Stores the selected core values.
+ *   - dropdown (number): Manages the visibility of dropdown menus for core values.
+ *   - options (Array): Stores the list of core values available for selection.
+ *   - form (Object|null): Stores the final form data to be submitted.
+ *   - bgX (string|null): Stores the user's background experience input.
+ *   - focus (string|null): Stores the user's focus areas input.
+ *   - ready (boolean): Indicates whether the form is ready to be submitted.
+ *
+ * External Data:
+ *   - coreValues (Array): Contains a list of core values to choose from.
+ *
+ * Features:
+ *   - Dynamic form fields for selecting core values, work style, and inputting background and focus areas.
+ *   - Drop-down selection for core values with dynamic filtering based on selection.
+ *   - Work style selection with hover effects to show detailed descriptions.
+ *   - Real-time validation to enable the submit button only when all fields are filled.
+ *   - Local storage integration to remember the selected date and time for the session.
+ *   - Alert messages for incomplete fields upon submission attempt.
+ *   - Automatic form submission and closure after a delay, upon successful completion.
+ *
+ * Usage:
+ *   <RequestForm id={mentorId} onClosed={handleClose} />
+ */
 const RequestForm = (props) => {
-  const [submit, setSubmit]= useState(false);
-  const [workStyle,setWorkStyle] = useState(0);
-  const [hoverStyle, setHoverStyle] = useState(0);
-  const [saveStyle,setSaveStyle] = useState(null);
-  const [selectedValues, setSelectedValues] = useState(
-    () => {
-    const storedValues = localStorage.getItem('selectedValues');
-    return storedValues ? JSON.parse(storedValues) : [];
-  });
-  const [dropdown, setDropDown] = useState(0);
-  let [options, setOptions] = useState(coreValues.sort()) ;
+    const [submit, setSubmit]= useState(false);
+    const [workStyle,setWorkStyle] = useState(0);
+    const [hoverStyle, setHoverStyle] = useState(0);
+    const [saveStyle,setSaveStyle] = useState(null);
+    const [selectedValues, setSelectedValues] = useState(
+        () => {
+        const storedValues = localStorage.getItem('selectedValues');
+        return storedValues ? JSON.parse(storedValues) : [];
+    });
+    const [dropdown, setDropDown] = useState(0);
+    let [options, setOptions] = useState(coreValues.sort()) ;
 
-  const [form, setForm] = useState(null);
+    const [form, setForm] = useState(null);
 
-  let [bgX,setbgX] = useState(null);
-  let [focus,setFocus] = useState(null);
-  const submitting = ()=>{
-    setbgX(document.getElementById('bgX').value)
-    setFocus(document.getElementById('focus').value)
-    if(bgX && focus && saveStyle &&selectedValues){
-      let final = {
-        time: localStorage.getItem(`${props.id} day`) + " " + localStorage.getItem(`${props.id} time`),
-        values: selectedValues,
-        Style: saveStyle,
-        bgX: bgX,
-        focus: focus
-      }
-      setForm(final);
-      setSubmit(true);
-      setTimeout(()=>{
-        console.log(final);
-        props.onClosed();
-      }, 5000)
-    }
-    else if (!selectedValues){
-      alert('Please select your 3 core values or take the test')
-    }
-    else if (!saveStyle){
-      alert('Please select a work style')
-    }
-    else if (!bgX){
-      alert('Please fill out background experience')
-    }
-    else if (!focus){
-      alert('Please fill out what you want to focus on')
-    }
-    else{
-      alert("Something went wrong")
+    let [bgX,setbgX] = useState(null);
+    let [focus,setFocus] = useState(null);
+    const submitting = ()=>{
+        setbgX(document.getElementById('bgX').value)
+        setFocus(document.getElementById('focus').value)
+        if(bgX && focus && saveStyle &&selectedValues){
+        let final = {
+            time: localStorage.getItem(`${props.id} day`) + " " + localStorage.getItem(`${props.id} time`),
+            values: selectedValues,
+            Style: saveStyle,
+            bgX: bgX,
+            focus: focus
+        }
+        setForm(final);
+        setSubmit(true);
+        setTimeout(()=>{
+            console.log(final);
+            props.onClosed();
+        }, 5000)
+        }
+        else if (!selectedValues){
+        alert('Please select your 3 core values or take the test')
+        }
+        else if (!saveStyle){
+        alert('Please select a work style')
+        }
+        else if (!bgX){
+        alert('Please fill out background experience')
+        }
+        else if (!focus){
+        alert('Please fill out what you want to focus on')
+        }
+        else{
+        alert("Something went wrong")
+        }
+
     }
 
-  }
-  const decideStyle = (num)=>{
-    setWorkStyle(num);
-    if(num===1){
-      setSaveStyle("IDEA-ORIENTED")
+    const decideStyle = (num)=>{
+        setWorkStyle(num);
+        if(num===1){
+        setSaveStyle("IDEA-ORIENTED")
+        }
+        else if(num==2){
+        setSaveStyle("DETAIL-ORIENTED")
+        }
+        else if(num==3){
+        setSaveStyle("SUPPORT-ORIENTED")
+        }
+        else if(num==4){
+        setSaveStyle("LOGIC-ORIENTED")
+        }
     }
-    else if(num==2){
-      setSaveStyle("DETAIL-ORIENTED")
-    }
-    else if(num==3){
-      setSaveStyle("SUPPORT-ORIENTED")
-    }
-    else if(num==4){
-      setSaveStyle("LOGIC-ORIENTED")
-    }
-  }
 
-  const toggleValue = (index, value) => {
+    const toggleValue = (index, value) => {
+        let temp;
+        if(selectedValues){
+        temp = selectedValues;
+        }
+        else{
+        temp = ["","",""]
+        }
     
-    let temp;
-    if(selectedValues){
-      temp = selectedValues;
-    }
-    else{
-      temp = ["","",""]
-    }
- 
-    temp[index] = value;
-    setSelectedValues(temp);
-    setDropDown(0);
-    filteringValues()
-  };
+        temp[index] = value;
+        setSelectedValues(temp);
+        setDropDown(0);
+        filteringValues()
+    };
 
-  const toggleDrop = (num)=>{
-    if(num == dropdown){
-      setDropDown(0)
+    const toggleDrop = (num)=>{
+        if(num == dropdown){
+        setDropDown(0)
+        }
+        else{
+        setDropDown(num)
+        }
     }
-    else{
-      setDropDown(num)
+    const filteringValues = ()=>{
+        let filtered=coreValues.sort().filter((option)=> !selectedValues.includes(option))
+        setOptions(filtered)
     }
-  }
-  const filteringValues = ()=>{
-    let filtered=coreValues.sort().filter((option)=> !selectedValues.includes(option))
-    setOptions(filtered)
-  }
-  const [ready, setReady]=useState(false)
-  const checkReady =()=>{
-    setbgX(document.getElementById('bgX').value)
-    setFocus(document.getElementById('focus').value)
-    if(bgX && focus && saveStyle &&selectedValues){
-      setReady(true)
-    }
-    else{
-      setReady(false)
-    }
-  }
-  useEffect(()=>{
-    
-  }, [selectedValues, ready])
+  
+    const [ready, setReady]=useState(false)
 
-  return (
+    const checkReady =()=>{
+        setbgX(document.getElementById('bgX').value)
+        setFocus(document.getElementById('focus').value)
+        if(bgX && focus && saveStyle &&selectedValues){
+        setReady(true)
+        }
+        else{
+        setReady(false)
+        }
+    }
+
+    useEffect(()=>{
+    }, [selectedValues, ready])
+
+    return (
     <>
-      {
-        submit?(
-          <div id='submit' onClick={()=>props.onClosed()} className='absolute bg-white top-2/4 left-[40%] object-center h-fit w-[27.5rem] submit '>
-            <div className='flex gap-3 justify-center items-center py-[3.4375rem] px-[5.3125] text-[1.5rem] font-bold '>
-              Request Form Sent
-              <img src={check} alt="" />
+    {
+    submit?(
+        <div id='submit' onClick={()=>props.onClosed()} className='absolute bg-white top-2/4 left-[40%] object-center h-fit w-[27.5rem] submit '>
+        <div className='flex gap-3 justify-center items-center py-[3.4375rem] px-[5.3125] text-[1.5rem] font-bold '>
+            Request Form Sent
+            <img src={check} alt="" />
+        </div>
+        </div>
+    ):(
+        <div className=' absolute w-[59.25rem] border h-[62.875rem] inset-1/4 z-10 bg-white shadow-xl px-[3rem] py-[2.5rem] rounded-[0.625rem]'
+            onClick={()=>checkReady()}
+        >
+            {/* Header */}
+            <div className='flex justify-end'>
+                <img onClick={()=>props.onClosed()} className='cursor-pointer' src={close} alt="" />
             </div>
-          </div>
-        ):(
-          <div className=' absolute w-[59.25rem] border h-[62.875rem] inset-1/4 z-10 bg-white shadow-xl px-[3rem] py-[2.5rem] rounded-[0.625rem]'
-                onClick={()=>checkReady()}
-          >
-            
-                    {/* Top section */}
-                    <div className='flex justify-end'>
-                      <img onClick={()=>props.onClosed()} className='cursor-pointer' src={close} alt="" />
-                    </div>
-                    <div className='flex justify-center font-bold text-[1.5rem] font-sans mb-[1.875rem]'>
-                      <h1>Mentor Request Form</h1>
-                    </div>
-                    <div className='flex bg-[#E1E4EE] w-fit px-[0.75rem] py-[0.375rem] gap-[.4375rem] rounded-md mb-[2.0625rem]'>
-                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>Selected Date</h2>
-                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} day`)}</h2>
-                      <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} time`)}</h2>
-                      <h2 className='font-semibold text-[#393939]'>PST</h2>
-                    </div>
+            <div className='flex justify-center font-bold text-[1.5rem] font-sans mb-[1.875rem]'>
+                <h1>Mentor Request Form</h1>
+            </div>
+            <div className='flex bg-[#E1E4EE] w-fit px-[0.75rem] py-[0.375rem] gap-[.4375rem] rounded-md mb-[2.0625rem]'>
+                <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>Selected Date</h2>
+                <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} day`)}</h2>
+                <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} time`)}</h2>
+                <h2 className='font-semibold text-[#393939]'>PST</h2>
+            </div>
 
                     {/* Core Values */}
                     <div className='flex flex-col'>
@@ -224,122 +262,121 @@ const RequestForm = (props) => {
                           
                         </div>
 
-                    {/* Work Style */}
-                        <div className='border rounded-lg border-[#C7CBDA] w-[30.8125rem] justify-center py-[1.8125rem] px-[1.25rem]'>
-                          <h2 className='w-full flex justify-center mb-[1.875rem] font-semibold '>What is your working style?<em className='text-red-500'>*</em></h2>
-                          <div className='flex flex-wrap justify-center items-center'>
-                            <div onClick={()=>decideStyle(1)}
-                                onMouseEnter={()=>setHoverStyle(1)}
-                                onMouseLeave={()=>setHoverStyle(0)}
-                              > 
-                              {
-                                hoverStyle==1?(
-                                  <h2  
-                                  className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
-                                    Strategic, Visionary, Ambitious, Influential, Resilient, Compelling
-                                </h2>
-                                  
-                                ):(
-                                  <h2  
-                                  className={`border cursor-pointer font-semibold ${workStyle==1? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
-                                    IDEA-ORIENTED
-                                  </h2>
-                                )
-                              }   
-                              </div>
-
-                            <div onClick={()=>decideStyle(2)}
-                              onMouseEnter={()=>setHoverStyle(2)}
-                              onMouseLeave={()=>setHoverStyle(0)}
-                            > 
-                            {
-                              hoverStyle==2?(
-                                <h2  
-                                className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
-                                  Meticulous, Organized, Methodical, Reliable, Diligent, Careful
-                              </h2>
-                                
-                              ):(
-                                <h2  
-                                className={`border cursor-pointer font-semibold ${workStyle==2? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
-                                  DETAIL-ORIENTED
-                                </h2>
-                              )
-                            }   
-                            </div>
-
-                            <div onClick={()=>decideStyle(3)}
-                              onMouseEnter={()=>setHoverStyle(3)}
-                              onMouseLeave={()=>setHoverStyle(0)}
-                            > 
-                            {
-                              hoverStyle==3?(
-                                <h2  
-                                className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
-                                  Empathetic, Diplomatic, Emotionally intelligent, Sociable, Helpful, Expressive
-                              </h2>
-                                
-                              ):(
-                                <h2  
-                                className={`border cursor-pointer font-semibold ${workStyle==3? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
-                                  SUPPORT-ORIENTED
-                                </h2>
-                              )
-                            }   
-                            </div>
-
-                            <div onClick={()=>decideStyle(4)}
-                              onMouseEnter={()=>setHoverStyle(4)}
-                              onMouseLeave={()=>setHoverStyle(0)}
-                            > 
-                            {
-                              hoverStyle==4?(
-                                <h2  
-                                className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
-                                  Analytical, Driven, Focused, Rational, Methodical, Goal-oriented
-                              </h2>
-                                
-                              ):(
-                                <h2  
-                                className={`border cursor-pointer font-semibold ${workStyle==4? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
-                                  LOGIC-ORIENTED
-                                </h2>
-                              )
-                            }   
-                            </div>
+            {/* Work Style */}
+                <div className='border rounded-lg border-[#C7CBDA] w-[30.8125rem] justify-center py-[1.8125rem] px-[1.25rem]'>
+                    <h2 className='w-full flex justify-center mb-[1.875rem] font-semibold '>What is your working style?<em className='text-red-500'>*</em></h2>
+                    <div className='flex flex-wrap justify-center items-center'>
+                    <div onClick={()=>decideStyle(1)}
+                        onMouseEnter={()=>setHoverStyle(1)}
+                        onMouseLeave={()=>setHoverStyle(0)}
+                        > 
+                        {
+                        hoverStyle==1?(
+                            <h2  
+                            className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
+                            Strategic, Visionary, Ambitious, Influential, Resilient, Compelling
+                        </h2>
                             
-                            
-                            
-                            
-                          </div>
+                        ):(
+                            <h2  
+                            className={`border cursor-pointer font-semibold ${workStyle==1? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
+                            IDEA-ORIENTED
+                            </h2>
+                        )
+                        }   
                         </div>
-                      </div>
-                      
 
-                      {/* Typing section */}
-                      <div className='flex flex-col items-start mt-[1.31rem] border border-[#C7CBDA] rounded-lg p-5 gap-5 mb-10'>
-                        <div className='w-full flex flex-col gap-3'>
-                          <h2 className='font-semibold'>Tell me a little bit about your professional background?<em className='text-red-500'>*</em></h2>
-                          <textarea onChange={()=>checkReady()} id='bgX' type="textarea" className='border flex justify-start w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]  ' />
-                        </div>
-                        <div className='w-full flex flex-col gap-3'>
-                          <h2 className='font-semibold'>What do you need help with? List the top 3 things you would like to focus on during this session.<em className='text-red-500'>*</em></h2>
-                          <textarea onChange={()=>checkReady()} id='focus' type="textarea" className='border w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]' />
-                        </div>
-                      </div>
+                    <div onClick={()=>decideStyle(2)}
+                        onMouseEnter={()=>setHoverStyle(2)}
+                        onMouseLeave={()=>setHoverStyle(0)}
+                    > 
+                    {
+                        hoverStyle==2?(
+                        <h2  
+                        className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
+                            Meticulous, Organized, Methodical, Reliable, Diligent, Careful
+                        </h2>
+                        
+                        ):(
+                        <h2  
+                        className={`border cursor-pointer font-semibold ${workStyle==2? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
+                            DETAIL-ORIENTED
+                        </h2>
+                        )
+                    }   
+                    </div>
 
-                      {/* Submit Button */}
-                      <div className='flex justify-center'>
-                        <a ><button  onClick={()=>submitting()} className={`font-semibold text-white ${ready?'bg-[#2C4298]':'bg-[#6f789A]'}  px-[1.6875rem] py-[0.5625rem] w-[12.375rem] rounded `}>Submit</button></a>
-                      </div>
+                    <div onClick={()=>decideStyle(3)}
+                        onMouseEnter={()=>setHoverStyle(3)}
+                        onMouseLeave={()=>setHoverStyle(0)}
+                    > 
+                    {
+                        hoverStyle==3?(
+                        <h2  
+                        className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
+                            Empathetic, Diplomatic, Emotionally intelligent, Sociable, Helpful, Expressive
+                        </h2>
+                        
+                        ):(
+                        <h2  
+                        className={`border cursor-pointer font-semibold ${workStyle==3? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
+                            SUPPORT-ORIENTED
+                        </h2>
+                        )
+                    }   
+                    </div>
 
+                    <div onClick={()=>decideStyle(4)}
+                        onMouseEnter={()=>setHoverStyle(4)}
+                        onMouseLeave={()=>setHoverStyle(0)}
+                    > 
+                    {
+                        hoverStyle==4?(
+                        <h2  
+                        className={`border bg-[#F3F5FE] cursor-pointer font-semibold rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.875rem] flex items-center justify-center mr-[12px] mb-[12px] p-3`}>
+                            Analytical, Driven, Focused, Rational, Methodical, Goal-oriented
+                        </h2>
+                        
+                        ):(
+                        <h2  
+                        className={`border cursor-pointer font-semibold ${workStyle==4? 'bg-[#3a2a9b] text-white' : ''}  rounded-[0.625rem] border-[#3A2A9B] h-[5.5rem] w-[12rem] text-[0.9375rem] flex items-center justify-center mr-[12px] mb-[12px]`}>
+                            LOGIC-ORIENTED
+                        </h2>
+                        )
+                    }   
+                    </div>
+                    
+                    
+                    
+                    
                     </div>
                 </div>
-        )
-      }
-      
+                </div>
+                
+
+                {/* Typing section */}
+                <div className='flex flex-col items-start mt-[1.31rem] border border-[#C7CBDA] rounded-lg p-5 gap-5 mb-10'>
+                <div className='w-full flex flex-col gap-3'>
+                    <h2 className='font-semibold'>Tell me a little bit about your professional background?<em className='text-red-500'>*</em></h2>
+                    <textarea onChange={()=>checkReady()} id='bgX' type="textarea" className='border flex justify-start w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]  ' />
+                </div>
+                <div className='w-full flex flex-col gap-3'>
+                    <h2 className='font-semibold'>What do you need help with? List the top 3 things you would like to focus on during this session.<em className='text-red-500'>*</em></h2>
+                    <textarea onChange={()=>checkReady()} id='focus' type="textarea" className='border w-full h-[5.5rem] rounded-lg p-1 border-[#C7CBDA]' />
+                </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className='flex justify-center'>
+                <a ><button  onClick={()=>submitting()} className={`font-semibold text-white ${ready?'bg-[#2C4298]':'bg-[#6f789A]'}  px-[1.6875rem] py-[0.5625rem] w-[12.375rem] rounded `}>Submit</button></a>
+                </div>
+
+            </div>
+        </div>
+    )
+    }
     </>
-  )
+    )
 }
 
 export default RequestForm
