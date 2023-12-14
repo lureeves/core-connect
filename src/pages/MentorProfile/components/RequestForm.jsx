@@ -162,7 +162,7 @@ const RequestForm = (props) => {
                               {selectedValues? selectedValues[0]: "Compassionate"} 
                               <img className={dropdown===1?``:'rotate-180'} src={arrow} alt="" />
                             </button>
-                            {dropdown==1&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[21.8rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                            {dropdown==1&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16.3rem] top-[21.8rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
                                               <div className='w-[85%] flex flex-col'>
                                                   {options.map((option,index)=>{
                                                         return <div 
@@ -183,7 +183,7 @@ const RequestForm = (props) => {
                                 {selectedValues? selectedValues[1]: "Loyalty"} 
                                 <img className={dropdown===2?``:'rotate-180'} src={arrow} alt="" />
                               </button>
-                              {dropdown==2&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[25.7rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                              {dropdown==2&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16.3rem] top-[25.7rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
                                                 <div className='w-[85%] flex flex-col'>
                                                     {options.map((option,index)=>{
                                                           return <div 
@@ -208,7 +208,7 @@ const RequestForm = (props) => {
                                 {selectedValues? selectedValues[2]: "Responsibility"} 
                                 <img className={dropdown===3?``:'rotate-180'} src={arrow} alt="" />
                               </button>
-                              {dropdown==3&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[29.4rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                              {dropdown==3&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16.3rem] top-[29.4rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
                                                 <div className='w-[85%] flex flex-col'>
                                                     {options.map((option,index)=>{
                                                           return <div 
