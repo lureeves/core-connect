@@ -3,6 +3,7 @@ import close from '../../../assets/close.svg'
 import check from '../../../assets/check.svg'
 import { coreValues } from '../../../data/CoreValues'
 import CoreValueSelection from './subComponents/CoreValueSelection'
+import arrow from '../../../assets/arrow.svg';
 import '../MentorProfile.css';
 
 /**
