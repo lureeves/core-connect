@@ -56,11 +56,10 @@ const RequestForm = (props) => {
     });
     const [dropdown, setDropDown] = useState(0);
     let [options, setOptions] = useState(coreValues.sort()) ;
-
     const [form, setForm] = useState(null);
-
     let [bgX,setbgX] = useState(null);
     let [focus,setFocus] = useState(null);
+
     const submitting = ()=>{
         setbgX(document.getElementById('bgX').value)
         setFocus(document.getElementById('focus').value)
@@ -116,16 +115,15 @@ const RequestForm = (props) => {
     const toggleValue = (index, value) => {
         let temp;
         if(selectedValues){
-        temp = selectedValues;
+            temp = selectedValues;
         }
         else{
-        temp = ["","",""]
+            temp = ["","",""]
         }
-    
+
         temp[index] = value;
         setSelectedValues(temp);
         setDropDown(0);
-        filteringValues()
     };
 
     const toggleDrop = (num)=>{
@@ -184,7 +182,6 @@ const RequestForm = (props) => {
                 <h2 className='font-semibold text-[#393939] pr-2 border-r border-[#CECECE]'>{localStorage.getItem(`${props.id} time`)}</h2>
                 <h2 className='font-semibold text-[#393939]'>PST</h2>
             </div>
-
                     {/* Core Values */}
                     <div className='flex flex-col'>
                       <div className='flex gap-[1.475rem]'>
@@ -192,75 +189,40 @@ const RequestForm = (props) => {
                           <h2 className='font-semibold flex justify-center text-center w-[100%] '>What are your top 3 core values? <em className='text-red-500'>*</em></h2>
                           <div className='flex flex-col h-full justify-around '>
                             
-                            {/* DropDown one */}
-                            <button 
-                            onClick={()=>toggleDrop(1)}
-                            
-                            className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==1?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
-                              {selectedValues? selectedValues[0]: "Compassionate"} 
-                              <img className={dropdown===1?``:'rotate-180'} src={arrow} alt="" />
-                            </button>
-                            {dropdown==1&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[21.8rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
-                                              <div className='w-[85%] flex flex-col'>
-                                                  {options.map((option,index)=>{
-                                                        return <div 
-                                                        onClick={()=>{
-                                                          toggleValue(0,option)
-                                                        }}
-                                                        className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
-                                                      })}
-                                              </div>
-                                                
-                                            </div>}
+                          <div className='flex flex-col h-full justify-around '>
+                            <CoreValueSelection 
+                                dropdown={dropdown} 
+                                toggleDrop={toggleDrop} 
+                                selectedValues={selectedValues} 
+                                toggleValue={toggleValue} 
+                                options={options} 
+                                index={0} 
+                                defaultValue="Compassionate"
+                            />
 
-                            {/* Dropdown 2 */}
-                              <button 
-                                onClick={()=>toggleDrop(2)}
-                              
-                              className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==2?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
-                                {selectedValues? selectedValues[1]: "Loyalty"} 
-                                <img className={dropdown===2?``:'rotate-180'} src={arrow} alt="" />
-                              </button>
-                              {dropdown==2&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[25.7rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
-                                                <div className='w-[85%] flex flex-col'>
-                                                    {options.map((option,index)=>{
-                                                          return <div 
-                                                          onClick={()=>{
-                                                            toggleValue(1,option)
-                                                          }}
-                                                          className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
-                                                        })}
-                                                </div>
-                                                  
-                                              </div>}
+                            <CoreValueSelection 
+                                dropdown={dropdown} 
+                                toggleDrop={toggleDrop} 
+                                selectedValues={selectedValues} 
+                                toggleValue={toggleValue} 
+                                options={options} 
+                                index={1} 
+                                defaultValue="Loyalty" 
+                            />
 
-                            
-                            
-
-                            {/* Dropdown 3 */}
-
-                            <button 
-                                onClick={()=>toggleDrop(3)}
-                              
-                              className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==3?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
-                                {selectedValues? selectedValues[2]: "Responsibility"} 
-                                <img className={dropdown===3?``:'rotate-180'} src={arrow} alt="" />
-                              </button>
-                              {dropdown==3&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[29.4rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
-                                                <div className='w-[85%] flex flex-col'>
-                                                    {options.map((option,index)=>{
-                                                          return <div 
-                                                          onClick={()=>{
-                                                            toggleValue(2,option)
-                                                          }}
-                                                          className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
-                                                        })}
-                                                </div>
-                                                  
-                                              </div>}
-                          </div>
-                          
+                            <CoreValueSelection 
+                                dropdown={dropdown} 
+                                toggleDrop={toggleDrop} 
+                                selectedValues={selectedValues} 
+                                toggleValue={toggleValue} 
+                                options={options} 
+                                index={2} 
+                                defaultValue="Responsibility" 
+                            />
                         </div>
+                        </div>
+                          
+                    </div>
 
             {/* Work Style */}
                 <div className='border rounded-lg border-[#C7CBDA] w-[30.8125rem] justify-center py-[1.8125rem] px-[1.25rem]'>

@@ -5,18 +5,38 @@ const CoreValueSelection = ({ dropdown, toggleDrop, selectedValues, toggleValue,
     return (
         <>
             <button 
-                onClick={()=>toggleDrop(index+1)}
-                className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5] buttonShadow'>
-                    {selectedValues? selectedValues[index]: defaultValue} 
+                onClick={() => toggleDrop(index+1)}
+                className={`border flex justify-between items-center rounded-[1.25rem] 
+                    py-[5px] pl-[2.56rem] pr-[1.81rem] w-[15.7rem] buttonShadow 
+                    text-[0.9375rem]
+                    ${dropdown==index+1?"border-[#3A2A9B]":"border-[#9EA6C5]"}`}
+                    >
+                    {selectedValues ? selectedValues[index] : defaultValue} 
+
+                    {/* Dropdown Arrow */}
                     <img className={dropdown===index+1?``:'rotate-180'} src={arrow} alt="" />
             </button>
-            {dropdown==index+1 &&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[21.8rem] border border-[#9EA6C5] rounded-lg items-center z-10'>
-                    {options.map((option)=>{
-                    return <div 
-                    onClick={()=>{
-                        toggleValue(index,option)
-                    }}
-                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
+            
+            {dropdown==index+1 &&  
+                <div className='flex flex-col absolute overflow-y-scroll  
+                    bg-white w-[15.7rem] h-[13.5rem] top-[21.8rem] border border-[#3A2A9B] rounded-[1.25rem] 
+                    text-[0.9375rem] pt-[0.5rem] z-10'>
+                    {options.map((option, i)=>{
+                        return <>
+                            <div 
+                                key={i}
+                                onClick={()=>{
+                                    toggleValue(index,option)
+                                }}
+                                className={`cursor-pointer pl-[2.56rem] inline-block
+                                ${selectedValues.includes(option) ? 'bg-[#3A2A9B] text-white' : ''}`}
+                                >
+                                    {option}
+                            </div>
+
+                            {/* Horizontal Dividing Line */}
+                            {i !== options.length - 1 && <div className="ml-[2.03rem] border-b border-[#C7CBDA] w-[11.75rem] my-[0.44rem]"></div>}
+                        </>
                     })}
                 </div>}
         </>
