@@ -7,3 +7,14 @@
 .submit{
     box-shadow: 0px 0px 27px 0px rgba(0, 0, 0, 0.13);
 }
+
+.coreValues::-webkit-scrollbar{
+    background-color: white;
+    width: 1px;
+    height: 10px;
+    margin-right: 10px;
+   
+}
+.coreValues::-webkit-scrollbar-thumb{
+    background-color: white;
+}

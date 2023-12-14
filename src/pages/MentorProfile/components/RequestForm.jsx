@@ -158,59 +158,68 @@ const RequestForm = (props) => {
                             <button 
                             onClick={()=>toggleDrop(1)}
                             
-                            className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5] buttonShadow'>
+                            className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==1?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
                               {selectedValues? selectedValues[0]: "Compassionate"} 
                               <img className={dropdown===1?``:'rotate-180'} src={arrow} alt="" />
                             </button>
-                            {dropdown==1&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[21.8rem] border border-[#9EA6C5] rounded-lg items-center z-10'>
-                                  {options.map((option,index)=>{
-                                    return <div 
-                                    onClick={()=>{
-                                      toggleValue(0,option)
-                                    }}
-                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
-                                  })}
-                              </div>}
+                            {dropdown==1&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[21.8rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                                              <div className='w-[85%] flex flex-col'>
+                                                  {options.map((option,index)=>{
+                                                        return <div 
+                                                        onClick={()=>{
+                                                          toggleValue(0,option)
+                                                        }}
+                                                        className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
+                                                      })}
+                                              </div>
+                                                
+                                            </div>}
 
                             {/* Dropdown 2 */}
-                            <button 
-                              onClick={()=>toggleDrop(2)}
+                              <button 
+                                onClick={()=>toggleDrop(2)}
                               
-                              className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5] buttonShadow'>
+                              className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==2?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
+                                {selectedValues? selectedValues[1]: "Loyalty"} 
+                                <img className={dropdown===2?``:'rotate-180'} src={arrow} alt="" />
+                              </button>
+                              {dropdown==2&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[25.7rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                                                <div className='w-[85%] flex flex-col'>
+                                                    {options.map((option,index)=>{
+                                                          return <div 
+                                                          onClick={()=>{
+                                                            toggleValue(1,option)
+                                                          }}
+                                                          className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
+                                                        })}
+                                                </div>
+                                                  
+                                              </div>}
 
-                              {selectedValues? selectedValues[1]: "Loyalty"} 
-                              <img className={dropdown===2?``:'rotate-180'} src={arrow} alt="" />
-                            </button>
-
-                            {dropdown==2&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[25.3rem] border border-[#9EA6C5] rounded-lg items-center z-10'>
-                                  {options.map((option,index)=>{
-                                    return <div 
-                                    onClick={()=>{
-                                      toggleValue(1,option)
-                                    }}
-                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
-                                  })}
-                              </div>}
+                            
+                            
 
                             {/* Dropdown 3 */}
+
                             <button 
-                              onClick={()=>toggleDrop(3)}
+                                onClick={()=>toggleDrop(3)}
                               
-                              className='border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] border-[#9EA6C5] buttonShadow'>
-
-                              {selectedValues? selectedValues[2]: "Loyalty"} 
-                              <img className={dropdown===3?``:'rotate-180'} src={arrow} alt="" />
-                            </button>
-
-                            {dropdown==3&&  <div className='flex flex-col  max-h-[10.8rem] overflow-y-scroll absolute bg-white w-[16rem] top-[28.8rem] border border-[#9EA6C5] rounded-lg items-center z-10'>
-                                  {options.map((option,index)=>{
-                                    return <div 
-                                    onClick={()=>{
-                                      toggleValue(2,option)
-                                    }}
-                                    className='border-b hover:bg-slate-200 cursor-pointer border-b-slate-300 w-full flex justify-center py-1'>{option}</div>
-                                  })}
-                              </div>}
+                              className={`border flex justify-between items-center rounded-3xl py-[5px] pl-[2.56rem] pr-[1.81rem] ${dropdown==3?"border-[#3A2A9B]":"border-[#9EA6C5]"} buttonShadow`}>
+                                {selectedValues? selectedValues[2]: "Responsibility"} 
+                                <img className={dropdown===3?``:'rotate-180'} src={arrow} alt="" />
+                              </button>
+                              {dropdown==3&&  <div className='flex flex-col  max-h-[8.8rem] overflow-y-scroll coreValues absolute bg-white w-[16rem] top-[29.4rem] border border-[#3A2A9B] rounded-[1.25rem] items-center z-10 '>
+                                                <div className='w-[85%] flex flex-col'>
+                                                    {options.map((option,index)=>{
+                                                          return <div 
+                                                          onClick={()=>{
+                                                            toggleValue(2,option)
+                                                          }}
+                                                          className='border-b  text-[#6B6C70] hover:text-black cursor-pointer border-b-slate-300 w-full flex justify-start pl-[15px] py-1'>{option}</div>
+                                                        })}
+                                                </div>
+                                                  
+                                              </div>}
                           </div>
                           
                         </div>
