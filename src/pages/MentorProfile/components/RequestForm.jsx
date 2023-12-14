@@ -129,7 +129,7 @@ const RequestForm = (props) => {
             </div>
           </div>
         ):(
-          <div className=' absolute w-[59.25rem] border h-[62.875rem] inset-1/4 z-10 bg-white shadow-xl px-[3rem] py-[2.5rem] rounded-[0.625rem]'
+          <div className=' absolute w-[59.25rem] border h-fit inset-1/4 z-10 bg-white shadow-xl px-[3rem] py-[2.5rem] rounded-[0.625rem]'
                 onClick={()=>checkReady()}
           >
             
